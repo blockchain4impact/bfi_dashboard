@@ -1,0 +1,58 @@
+.navbar{
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchbar{
+    background-color: #F3F7FA;
+    padding: 1vh;
+    border-radius: 1vh;
+}
+
+.searchbar input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.searchicon svg {
+    color: #94A2BC;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+}
+
+.bellicon{
+    padding-inline: 3vh;
+    font-size: large;
+    color: #768396;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.user img{
+    width: 50%;
+    background-color: #E2F3FF;
+    border-radius: 50%;  
+}
+
+.downicon{
+    color: #0072BC;
+    padding-inline: 1vh;
+}
+
+.bfi-icon{
+    width: 45%;
+    float: left;
+    padding: 2vh;
+}

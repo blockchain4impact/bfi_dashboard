@@ -1,0 +1,30 @@
+.sidebar{
+    height: 100%;
+    width: 13%;
+    background-color: white;
+}
+
+.sidebar-menu{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 1vh;
+}
+
+.sidebar-menu a{
+    padding-block: 2vh;
+    padding-inline: 2vh;
+    color: #97BED0;
+    border-radius: 1vh;
+    text-decoration: none;
+}
+
+.sidebar-menu a:hover{
+    background-color: #0072BC;
+    color: white;
+}
+
+.active{
+    background-color: #0072BC;
+    color: white !important;
+}
