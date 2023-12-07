@@ -6,6 +6,9 @@ export default function Home() {
   return (
     <div className="home">
       <Cards />
+      <Cards />
+      <Cards />
+      <Cards />
     </div>
   )
 }
