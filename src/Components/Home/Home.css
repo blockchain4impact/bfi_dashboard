@@ -2,6 +2,7 @@
     background-color: #F3FAFF;
     display: flex;
     flex-wrap: wrap;
-    padding: 5vh;
+    padding: 3vh;
     justify-content: space-around;
+    padding-bottom: 0;
 }
