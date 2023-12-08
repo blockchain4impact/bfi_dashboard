@@ -1,8 +1,12 @@
-import "../Cards/Cards.css"
-import React from 'react'
-import Vector from "../../Assets/images/Vector.png"
+import React from 'react';
+import "../Cards/Cards.css";
+import Vector from "../../Assets/images/Vector.png";
 
-export default function Cards(props) {
+export default function Cards({ data }) {
+
+  if (!data || !data.items) {
+    return <div>Loading...</div>;
+  }  
   return (
     <div className="cards">
         <div className="card-header">
@@ -12,38 +16,25 @@ export default function Cards(props) {
         </div>
         <div className="card-body">
             <div className="card-head">
-                DFS
+                {data.title}
             </div>
-            <div className="card-content">
-                <div className="card-percentage">
-                    <p>50%</p>
-                </div>
-                <div className="card-body-content">
-                    <p>1. Hire core IDFS team</p>
-                    <p>Complete interviews and Finalise Candidates</p>
-                </div>
-            </div>
-
-            <div className="card-content">
-                <div className="card-percentage">
-                    <p>20%</p>
-                </div>
-                <div className="card-body-content">
-                    <p>1. Hire core IDFS team</p>
-                    <p>Complete Onboarding</p>
-                </div>
-            </div>
-
-            <div className="card-content">
-                <div className="card-percentage">
-                    <p>0%</p>
-                </div>
-                <div className="card-body-content">
-                    <p>2. Launch HCD Fellowship</p>
-                    <p>Onboarding the Partners Process</p>
-                </div>
-            </div>
+            {data.items.map(item => (
+              <div className="card-content" key={item.id}>
+                  <div className="card-percentage">
+                      <p>{item.percentage}</p>
+                  </div>
+                  <div className="card-body-content">
+                      <p>{item.title}</p>
+                      <p>{item.detail}</p>
+                  </div>
+                  <div className="names-container">
+                    <div className="rounded-name">
+                        <p>{item.names}</p>
+                    </div>
+                  </div>
+              </div>
+            ))}
         </div>
     </div>
-  )
+  );
 }

@@ -23,6 +23,7 @@
 .sidebar-menu a:hover{
     background-color: #0072BC;
     color: white;
+    transition-duration: 0.3s;
 }
 
 .active{
