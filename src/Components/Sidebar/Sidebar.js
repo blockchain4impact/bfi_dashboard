@@ -9,7 +9,7 @@ export default function Sidebar() {
           <NavLink to='/' activeclassname='active'>Dashboard</NavLink>
           <NavLink to='/bri'>BRI</NavLink>
           <NavLink to='/biome'>BIOME</NavLink>
-          <NavLink to='/orgf'>ORG</NavLink>
+          <NavLink to='/org'>ORG</NavLink>
           <NavLink to='/dfs'>DFS</NavLink>
       </div>
     </div>
