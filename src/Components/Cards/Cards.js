@@ -4,12 +4,14 @@ import Vector from "../../Assets/images/Vector.png";
 
 function determineCardColor(percentage) {
   const numericPercentage = parseInt(percentage, 10);
-  if (numericPercentage === 100) {
-    return "#EBF8EE"; // Green for 100%
+  if (numericPercentage >= 75 && numericPercentage < 100) {
+    return "#EBF8EE"; // Light green for 75% to 99%
+  } else if (numericPercentage === 100) {
+    return "#389C39"; // Green for 100%
   } else if (numericPercentage === 0) {
     return "#FFC4C3"; // Red for 0%
   } else {
-    return "#FDF5EC"; // Original color
+    return "#FDF5EC"; // Default color
   }
 }
 
@@ -32,11 +34,14 @@ export default function Cards({ data }) {
             const cardColor = determineCardColor(item.percentage);
             let titleColor, detailColor;
             if (item.percentage === "100%") {
-              titleColor = "#389C39"; // Green for 100%
-              detailColor = "#389C39"; // Green for 100%
+              titleColor = "#C7FFC7"; // Green for 100%
+              detailColor = "#C7FFC7"; // Green for 100%
             } else if (item.percentage === "0%") {
               titleColor = "#E94944"; // Red for 0%
               detailColor = "#E94944"; // Red for 0%
+            } else if (item.percentage >= "75%") {
+              titleColor = "#389C39"; // Light green for above 75%
+              detailColor = "#389C39"; // Light green for above 75%
             } else {
               titleColor = "#F0984C"; // Default title color
               detailColor = "#C4A387"; // Default detail color
