@@ -32,10 +32,11 @@ export default function Cards({ data }) {
         <div className="card-container">
           {data.items.map((item) => {
             const cardColor = determineCardColor(item.percentage);
-            let titleColor, detailColor;
+            let titleColor, detailColor, percentColor;
             if (item.percentage === "100%") {
               titleColor = "#C7FFC7"; // Green for 100%
               detailColor = "#C7FFC7"; // Green for 100%
+              percentColor = "#FFFF"; //white % for 100%
             } else if (item.percentage === "0%") {
               titleColor = "#E94944"; // Red for 0%
               detailColor = "#E94944"; // Red for 0%
@@ -54,7 +55,7 @@ export default function Cards({ data }) {
                 style={{ backgroundColor: cardColor }}
               >
                 <div className="card-percentage">
-                  <p>{item.percentage}</p>
+                  <p style={{ color:percentColor }}>{item.percentage}</p>
                 </div>
                 <div className="card-body-content">
                   <div className="card-details">
