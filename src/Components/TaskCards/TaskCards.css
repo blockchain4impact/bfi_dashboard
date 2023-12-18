@@ -1,0 +1,44 @@
+.task-cards{
+    width: 20%;
+    background: white;
+    padding: 2vh;
+    border-radius: 1vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.task-cards-header{
+    display: flex;
+    justify-content: space-between;
+    padding-block: 2vh;
+}
+
+.task-cards-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2vh;
+}
+
+.task-card-data{
+    display: flex;
+    gap: 2vh;
+    padding-block: 2vh;
+    align-items: center;
+    background: aliceblue;
+    padding-left: 2vh;
+}
+
+.task-card-data::after{
+    content: '';
+    background: aquamarine;
+    width: 5px;
+    height: 30px;
+}
+
+.task-cards-footer{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3vh;
+    padding-inline: 1vh;
+}
+

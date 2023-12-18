@@ -1,0 +1,30 @@
+.progressbar-container{
+    display: flex;
+    border-radius: 5vh;
+    justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.progress-done{
+    color: white;
+    padding: 2vh;
+    border-radius: 5vh;
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    padding-inline: 4vh;
+}
+
+.progress-percentage{
+    display: flex;
+    align-items: center;
+    padding-right: 3vh;
+}
+
+.progress-percentage h5{
+    background: white;
+    border-radius: 5vh;
+    padding: 2vh;
+    padding-inline: 3vh;
+    margin: 1vh;
+}
