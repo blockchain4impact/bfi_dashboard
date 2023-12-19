@@ -57,7 +57,7 @@ export default function Cards({ data }) {
                 className="card-content"
                 key={item.id}
                 style={{ backgroundColor: cardColor }}
-                onClick={() => navigate('/'+data.title)}
+                onClick={() => navigate('/'+data.title.toLowerCase())}
               >
                 <div className="card-percentage">
                   <p style={{ color: percentColor }}>{item.percentage}</p>

@@ -2,10 +2,11 @@ import React from "react";
 import Cards from "../Cards/Cards";
 import "../Home/Home.css";
 
-const cardData = [
+export const cardData = [
   {
     id: 1,
     title: "BRI",
+    pathname: '/bri',
     items: [
       {
         id: 1,
@@ -14,6 +15,8 @@ const cardData = [
           "To be recognized as an Indian Biomedical Innovation Ecosystem enabler",
         detail: "BFI is recognized as a key catalyst supporter for Biome",
         names: ["Pooja", "Gaurav"],
+        bgcolor: 'rgb(138,43,226)',
+        lightbgcolor: 'rgba(138,43,226,0.2)',
       },
       {
         id: 2,
@@ -22,6 +25,8 @@ const cardData = [
           "Launch BFI-BIOME Network and discussions with Institutes and Incubators",
         detail: "Successful launch with 10+ EoI received",
         names: ["Pooja", "Gaurav"],
+        bgcolor: 'rgb(255,140,0)', 
+        lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
         id: 3,
@@ -29,6 +34,8 @@ const cardData = [
         title: "Signing MoU with Insitutes and Incubators for BFI-BIOME",
         detail: "Signing of MoU(s) with 5+ Institute/Incubators",
         names: ["Pooja", "Gaurav"],
+        bgcolor: 'rgb(50,205,50)', 
+        lightbgcolor: 'rgba(50,205,50,0.2)',
       },
       {
         id: 4,
@@ -56,6 +63,7 @@ const cardData = [
   {
     id: 2,
     title: "BIOME",
+    pathname: '/biome',
     items: [
       {
         id: 1,
@@ -63,6 +71,8 @@ const cardData = [
         title: "Successful launch with 10+ Eol recieved",
         detail: "Discussions with Inst./Incubators",
         names: ["Girish", "Gaurav"],
+        bgcolor: 'rgb(138,43,226)',
+        lightbgcolor: 'rgba(138,43,226,0.2)',
       },
       {
         id: 2,
@@ -70,19 +80,24 @@ const cardData = [
         title: "Signing of MoU(s) with 5+ Institute/Incubators",
         detail: "Finalize the list of Institutes/Incubators",
         names: ["Faraz", "Naga"],
+        bgcolor: 'rgb(255,140,0)', 
+        lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
-        id: 2,
+        id: 3,
         percentage: "0%",
         title: "Commencement of Projects/programs",
         detail: "Shortlisting of projects/finalization of program",
         names: ["Girish", "Gaurav"],
+        bgcolor: 'rgb(50,205,50)', 
+        lightbgcolor: 'rgba(50,205,50,0.2)',
       },
     ],
   },
   {
     id: 3,
     title: "ORG",
+    pathname: '/org',
     items: [
       {
         id: 1,
@@ -90,6 +105,8 @@ const cardData = [
         title: "Hiring: 3 members in BRI, 7 in IDFS and 2 in BFI Support roles",
         detail: "Complete interviews and Finalise Candidates - BRI",
         names: ["Pooja and Faraz", "Gaurav"],
+        bgcolor: 'rgb(138,43,226)',
+        lightbgcolor: 'rgba(138,43,226,0.2)',
       },
       {
         id: 2,
@@ -97,6 +114,8 @@ const cardData = [
         title: "Clean audit with PWC",
         detail: "Interium Audit Report",
         names: ["Girish", "Gaurav"],
+        bgcolor: 'rgb(255,140,0)', 
+        lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
         id: 3,
@@ -104,6 +123,8 @@ const cardData = [
         title: "Infrastructure",
         detail: "Öffice space",
         names: ["Team BFI", "Naga"],
+        bgcolor: 'rgb(50,205,50)', 
+        lightbgcolor: 'rgba(50,205,50,0.2)',
       },
       {
         id: 4,
@@ -166,7 +187,9 @@ const cardData = [
   {
     id: 4,
     title: "DFS",
+    pathname: '/dfs',
     percentage: "75%",
+    subtasks: 'Contract signing with BVT',
     items: [
       {
         id: 1,
@@ -174,6 +197,9 @@ const cardData = [
         title: "Hire core IDFS team",
         detail: "Complete interviews and Finalise Candidates",
         names: ["Ramnath", "Naga"],
+        bgcolor: 'rgb(138,43,226)',
+        lightbgcolor: 'rgba(138,43,226,0.2)',
+        width: '66%'
       },
       {
         id: 2,
@@ -181,6 +207,9 @@ const cardData = [
         title: "Launch HCD Fellowship",
         detail: "Complete Onboarding",
         names: ["VSR - Knowledge and Research Lead", "Naga"],
+        bgcolor: 'rgb(255,140,0)', 
+        lightbgcolor: 'rgba(255,140,0,0.2)',
+        width: '99%'
       },
       {
         id: 3,
@@ -188,6 +217,9 @@ const cardData = [
         title: "Launch IHCR Fund",
         detail: "Onboarding the Partners Process",
         names: ["Ramnath", "Naga"],
+        bgcolor: 'rgb(50,205,50)', 
+        lightbgcolor: 'rgba(50,205,50,0.2)',
+        width: '80%'
       },
       {
         id: 4,
