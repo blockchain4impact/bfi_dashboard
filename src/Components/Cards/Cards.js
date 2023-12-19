@@ -1,8 +1,11 @@
 import React from "react";
 import "../Cards/Cards.css";
 import Vector from "../../Assets/images/Vector.png";
+import { useNavigate } from 'react-router-dom';
+
 
 function determineCardColor(percentage) {
+
   const numericPercentage = parseInt(percentage, 10);
   if (numericPercentage >= 75 && numericPercentage < 100) {
     return "#EBF8EE"; // Light green for 75% to 99%
@@ -16,6 +19,7 @@ function determineCardColor(percentage) {
 }
 
 export default function Cards({ data }) {
+  const navigate = useNavigate();
   if (!data || !data.items) {
     return <div>Loading...</div>;
   }
@@ -30,7 +34,7 @@ export default function Cards({ data }) {
       <div className="card-body">
         <div className="card-head">{data.title}</div>
         <div className="card-container">
-          {data.items.map((item) => {
+          {data.items.map((item,i) => {
             const cardColor = determineCardColor(item.percentage);
             let titleColor, detailColor, percentColor;
             if (item.percentage === "100%") {
@@ -53,9 +57,10 @@ export default function Cards({ data }) {
                 className="card-content"
                 key={item.id}
                 style={{ backgroundColor: cardColor }}
+                onClick={() => navigate('/'+data.title)}
               >
                 <div className="card-percentage">
-                  <p style={{ color:percentColor }}>{item.percentage}</p>
+                  <p style={{ color: percentColor }}>{item.percentage}</p>
                 </div>
                 <div className="card-body-content">
                   <div className="card-details">
