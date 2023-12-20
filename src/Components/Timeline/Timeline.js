@@ -76,10 +76,11 @@ export default function Timeline() {
       </div>
 
       <div className='timeline-footer'>
-        <TaskCards />
-        <TaskCards />
-        <TaskCards />
-        <TaskCards />
+        {cardData.map((data) => data.pathname.includes(window.location.pathname) && 
+          data.items.slice(0,2).map((value) => (
+            <TaskCards title={value.title} task={value.names} percentage={value.percentage}/>
+          ))
+        )}
       </div>
 
     </div>

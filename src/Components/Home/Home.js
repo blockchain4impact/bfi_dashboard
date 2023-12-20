@@ -25,7 +25,7 @@ export const cardData = [
           "Launch BFI-BIOME Network and discussions with Institutes and Incubators",
         detail: "Successful launch with 10+ EoI received",
         names: ["Pooja", "Gaurav"],
-        bgcolor: 'rgb(255,140,0)', 
+        bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
@@ -34,7 +34,7 @@ export const cardData = [
         title: "Signing MoU with Insitutes and Incubators for BFI-BIOME",
         detail: "Signing of MoU(s) with 5+ Institute/Incubators",
         names: ["Pooja", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)', 
+        bgcolor: 'rgb(50,205,50)',
         lightbgcolor: 'rgba(50,205,50,0.2)',
       },
       {
@@ -80,7 +80,7 @@ export const cardData = [
         title: "Signing of MoU(s) with 5+ Institute/Incubators",
         detail: "Finalize the list of Institutes/Incubators",
         names: ["Faraz", "Naga"],
-        bgcolor: 'rgb(255,140,0)', 
+        bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
@@ -89,7 +89,7 @@ export const cardData = [
         title: "Commencement of Projects/programs",
         detail: "Shortlisting of projects/finalization of program",
         names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)', 
+        bgcolor: 'rgb(50,205,50)',
         lightbgcolor: 'rgba(50,205,50,0.2)',
       },
     ],
@@ -107,6 +107,7 @@ export const cardData = [
         names: ["Pooja and Faraz", "Gaurav"],
         bgcolor: 'rgb(138,43,226)',
         lightbgcolor: 'rgba(138,43,226,0.2)',
+        taskcard: ["Interviews and Finalization", "Contract signing with BVT", ""]
       },
       {
         id: 2,
@@ -114,7 +115,7 @@ export const cardData = [
         title: "Clean audit with PWC",
         detail: "Interium Audit Report",
         names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(255,140,0)', 
+        bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
       },
       {
@@ -123,7 +124,7 @@ export const cardData = [
         title: "Infrastructure",
         detail: "Öffice space",
         names: ["Team BFI", "Naga"],
-        bgcolor: 'rgb(50,205,50)', 
+        bgcolor: 'rgb(50,205,50)',
         lightbgcolor: 'rgba(50,205,50,0.2)',
       },
       {
@@ -190,6 +191,7 @@ export const cardData = [
     pathname: '/dfs',
     percentage: "75%",
     subtasks: 'Contract signing with BVT',
+    taskslist: ['BFI-BIOME(Virtual Network)', 'National Conferences 2024'],
     items: [
       {
         id: 1,
@@ -207,7 +209,7 @@ export const cardData = [
         title: "Launch HCD Fellowship",
         detail: "Complete Onboarding",
         names: ["VSR - Knowledge and Research Lead", "Naga"],
-        bgcolor: 'rgb(255,140,0)', 
+        bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
         width: '99%'
       },
@@ -217,7 +219,7 @@ export const cardData = [
         title: "Launch IHCR Fund",
         detail: "Onboarding the Partners Process",
         names: ["Ramnath", "Naga"],
-        bgcolor: 'rgb(50,205,50)', 
+        bgcolor: 'rgb(50,205,50)',
         lightbgcolor: 'rgba(50,205,50,0.2)',
         width: '80%'
       },

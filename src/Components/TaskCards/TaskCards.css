@@ -2,40 +2,44 @@
 
 
 .task-cards {
-    width: 20%;
-    background: white;
-    padding: 1vh;
-    border-radius: 1vh;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-top: 7px solid #E94944;
-  }
-  
-  .task-cards-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: left;
-    padding-block: 1.5vh;
-  }
-  
- 
-  .task-cards-header h3 {
-    flex: 1; 
-    margin: 0;
-  
-  }
-  
-  .task-cards-header .anticon-more {
-    font-size: 25px;
-  }
-  
-  .task-cards-body {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2vh;
-  }
-  
-  
+  width: 20%;
+  background: white;
+  padding: 2vh;
+  border-radius: 1vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top: 7px solid #E94944;
+  margin-inline: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.task-cards-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding-block: 1.5vh;
+}
+
+
+.task-cards-header h3 {
+  flex: 1;
+  margin: 0;
+
+}
+
+.task-cards-header .anticon-more {
+  font-size: 25px;
+}
+
+.task-cards-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+}
+
+
 .task-card-data {
   position: relative;
   width: 90%;
@@ -50,6 +54,7 @@
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   border-radius: 10px;
+  margin-block: 1vh;
 }
 
 .user-avatar {
@@ -101,38 +106,38 @@
 
 
 .task-card-progress-bar {
-    height: 10px;
-    background: #eee;
-    border-radius: 5px;
-    margin-top: 2vh;
-    position: relative;
-    margin-top: 2.5rem;
-  }
-  
-  .progress-title {
-    position: absolute;
-    top: -20px; 
-    left: 15%;
-    transform: translateX(-50%);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #768396; 
-  }
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  margin-top: 2vh;
+  position: relative;
+  margin-top: 2.5rem;
+}
 
-  .progress-title span{
-    color: black;
- 
-  }
-  
-  .progress-bar {
-    height: 100%;
-    background: #FE7F2E;
-    border-radius: 5px;
-  }
-  
+.progress-title {
+  position: absolute;
+  top: -20px;
+  left: 22%;
+  transform: translateX(-50%);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #768396;
+}
 
-  
+.progress-title span {
+  color: black;
+
+}
+
+.progress-bar {
+  height: 100%;
+  background: #FE7F2E;
+  border-radius: 5px;
+}
+
+
+
 
 
 

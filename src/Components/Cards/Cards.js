@@ -3,7 +3,6 @@ import "../Cards/Cards.css";
 import Vector from "../../Assets/images/Vector.png";
 import { useNavigate } from 'react-router-dom';
 
-
 function determineCardColor(percentage) {
 
   const numericPercentage = parseInt(percentage, 10);
