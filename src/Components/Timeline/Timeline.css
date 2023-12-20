@@ -3,6 +3,7 @@
     width: 100%;
 }
 
+
 .tag{
     margin: 0;
     border: 1px solid #E3E3E3;
@@ -104,7 +105,7 @@
 
 .timeline-footer{
     margin-block: 5vh;
-    background-color: rgba(100, 149, 237, 0.2);
+    background-color:transparent;
     margin-inline: 4vh;
     padding: 1vh;
     display: flex;
