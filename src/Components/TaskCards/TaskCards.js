@@ -1,11 +1,8 @@
-// TaskCards component
-
 import React from "react";
 import "../TaskCards/TaskCards.css";
 import { MoreOutlined } from "@ant-design/icons";
-
 export default function TaskCards(props) {
-  // Define an array of colors for each card
+
   const cardColors = ['#0072BC', '#FCBE04'];
 
   return (

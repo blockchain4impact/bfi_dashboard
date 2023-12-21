@@ -1,5 +1,3 @@
-/* TaskCards component CSS */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 .task-cards {
@@ -28,7 +26,6 @@
   font-size: 18px;
 }
 
-/* TaskCards component CSS */
 
 .task-card-data {
   position: relative;
@@ -45,7 +42,7 @@
   font-weight: 700;
   border-radius: 5px;
   margin-block: 1vh;
-  border-right: 5px solid transparent; /* Add this line to add a right border */
+  border-right: 5px solid transparent; 
 }
 
 .user-avatar {
@@ -59,8 +56,6 @@
   font-weight: bold;
   text-align: center;
 }
-
-/* Remove the ::after pseudo-element styles */
 
 .task-card-progress-bar {
   height: 10px;
@@ -236,6 +231,11 @@ font-size: 18px;
   background: #FE7F2E;
   border-radius: 5px;
 } */
+
+
+
+
+
 
 /* 
   .task-cards{
