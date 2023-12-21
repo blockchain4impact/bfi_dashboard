@@ -1,4 +1,99 @@
+/* TaskCards component CSS */
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+.task-cards {
+  width: 20%;
+  background: white;
+  padding: 2vh;
+  border-radius: 1vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top: 7px solid #E94944;
+  margin-inline: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.task-cards-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding-block: 1.5vh;
+}
+
+.task-cards-header p {
+  font-family: DM Sans;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* TaskCards component CSS */
+
+.task-card-data {
+  position: relative;
+  width: 90%;
+  height: auto;
+  display: flex;
+  gap: 1vh;
+  padding-block: 1vh;
+  align-items: center;
+  background: #FFEFE5;
+  padding-left: 2vh;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-block: 1vh;
+  border-right: 5px solid transparent; /* Add this line to add a right border */
+}
+
+.user-avatar {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Remove the ::after pseudo-element styles */
+
+.task-card-progress-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  margin-top: 2vh;
+  position: relative;
+  margin-top: 2.5rem;
+}
+
+.progress-title {
+  position: absolute;
+  top: -20px;
+  left: 15%;
+  transform: translateX(-50%);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #768396;
+}
+
+.progress-title span {
+  color: black;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #FE7F2E;
+  border-radius: 5px;
+}
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 
 .task-cards {
@@ -19,6 +114,12 @@
   justify-content: space-between;
   align-items: left;
   padding-block: 1.5vh;
+}
+
+.task-cards-header p{
+  font-family: DM Sans;
+font-weight: 700;
+font-size: 18px;
 }
 
 
@@ -134,12 +235,7 @@
   height: 100%;
   background: #FE7F2E;
   border-radius: 5px;
-}
-
-
-
-
-
+} */
 
 /* 
   .task-cards{

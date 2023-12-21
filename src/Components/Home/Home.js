@@ -10,9 +10,9 @@ export const cardData = [
     items: [
       {
         id: 1,
-        percentage: "12%",
+        percentage: "25%",
         title:
-          "To be recognized as an Indian Biomedical Innovation Ecosystem enabler",
+          "BFI-BIOME(Virtual Network)",
         detail: "BFI is recognized as a key catalyst supporter for Biome",
         names: ["Pooja", "Gaurav"],
         bgcolor: 'rgb(138,43,226)',
@@ -20,9 +20,9 @@ export const cardData = [
       },
       {
         id: 2,
-        percentage: "100%",
+        percentage: "0%",
         title:
-          "Launch BFI-BIOME Network and discussions with Institutes and Incubators",
+          "National Conferences 2024",
         detail: "Successful launch with 10+ EoI received",
         names: ["Pooja", "Gaurav"],
         bgcolor: 'rgb(255,140,0)',
@@ -102,7 +102,7 @@ export const cardData = [
       {
         id: 1,
         percentage: "75%",
-        title: "Hiring: 3 members in BRI, 7 in IDFS and 2 in BFI Support roles",
+        title: "Interviews and Finalization",
         detail: "Complete interviews and Finalise Candidates - BRI",
         names: ["Pooja and Faraz", "Gaurav"],
         bgcolor: 'rgb(138,43,226)',
@@ -195,8 +195,8 @@ export const cardData = [
     items: [
       {
         id: 1,
-        percentage: "35%",
-        title: "Hire core IDFS team",
+        percentage: "50%",
+        title: "Interviews and finalization",
         detail: "Complete interviews and Finalise Candidates",
         names: ["Ramnath", "Naga"],
         bgcolor: 'rgb(138,43,226)',
@@ -205,10 +205,10 @@ export const cardData = [
       },
       {
         id: 2,
-        percentage: "0%",
-        title: "Launch HCD Fellowship",
+        percentage: "25%",
+        title: "Contract signing with BVT",
         detail: "Complete Onboarding",
-        names: ["VSR - Knowledge and Research Lead", "Naga"],
+        names: ["Ramnath", "Naga"],
         bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
         width: '99%'
