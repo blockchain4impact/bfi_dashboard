@@ -69,7 +69,7 @@ export const cardData = [
       {
         id: 1,
         percentage: "25%",
-        title: "Successful launch with 10+ Eol recieved",
+        title: "BFI-BIOME(Virtual Network)",
         detail: "Discussions with Inst./Incubators",
         names: ["Girish", "Gaurav"],
         bgcolor: 'rgb(138,43,226)',
@@ -78,7 +78,7 @@ export const cardData = [
       {
         id: 2,
         percentage: "75%",
-        title: "Signing of MoU(s) with 5+ Institute/Incubators",
+        title: "BFI-BIOME(Virtual Network)",
         detail: "Finalize the list of Institutes/Incubators",
         names: ["Faraz", "Naga"],
         bgcolor: 'rgb(255,140,0)',
