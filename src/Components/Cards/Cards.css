@@ -106,6 +106,10 @@
   font-weight: 700;
 }
 
+.card-details{
+  width: 80%;
+}
+
 .card-head {
   font-size: x-large;
   font-weight: 700;
