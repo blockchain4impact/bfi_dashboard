@@ -1,6 +1,6 @@
 import React from "react";
 import "../Cards/Cards.css";
-import Vector from "../../Assets/images/Vector.png";
+import { Progress } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 function determineCardColor(percentage) {
@@ -26,14 +26,13 @@ export default function Cards({ data }) {
   return (
     <div className="cards">
       <div className="card-header">
-        <div className="rectangle">
-          <img src={Vector} alt="vector-img" />
-        </div>
+        <div className="card-head">{data.title}</div>
+        <Progress percent={30} showInfo={false} />
+        <div className="card-percent">30%</div>
       </div>
       <div className="card-body">
-        <div className="card-head">{data.title}</div>
         <div className="card-container">
-          {data.items.map((item,i) => {
+          {data.items.map((item, i) => {
             const cardColor = determineCardColor(item.percentage);
             let titleColor, detailColor, percentColor;
             if (item.percentage === "100%") {
@@ -56,9 +55,9 @@ export default function Cards({ data }) {
                 className="card-content"
                 key={item.id}
                 style={{ backgroundColor: cardColor }}
-                onClick={() => navigate('/'+data.title.toLowerCase())}
+                onClick={() => navigate('/' + data.title.toLowerCase())}
               >
-                <div className="card-percentage">
+                <div className="card-percentage" style={{ backgroundColor: titleColor, color: "white" }}>
                   <p style={{ color: percentColor }}>{item.percentage}</p>
                 </div>
                 <div className="card-body-content">

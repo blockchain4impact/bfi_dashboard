@@ -61,9 +61,35 @@
   justify-content: space-between;
 }
 
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 3vh;
+  align-items: center;
+}
+
+.ant-progress{
+  margin: 0;
+  width: 65%;
+}
+
 .card-body-content p {
   margin: 0;
   font-size: 1em;
+}
+
+.card-percent{
+  background-color: aliceblue;
+    color: mediumblue;
+    border: 1px solid mediumblue;
+    padding-inline: 1vh;
+    border-radius: 1vh;
+}
+
+.card-percentage{
+  padding-inline: 2vh;
+  margin-block: 2vh;
+  border-radius: 1vh;
 }
 
 .card-body-content p:first-child {
@@ -83,8 +109,6 @@
   font-size: x-large;
   font-weight: 700;
   text-align: left;
-  padding-left: 2vh;
-  padding-top: 2vh;
 }
 
 .names-container {
