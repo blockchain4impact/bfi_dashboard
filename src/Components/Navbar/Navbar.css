@@ -44,15 +44,16 @@
     align-items: center;
 }
 
-.user img{
-    width: 50%;
+.userimg{
+    width: 45%;
     background-color: #E2F3FF;
     border-radius: 50%;  
 }
 
 .downicon{
     color: #0072BC;
-    padding-inline: 1vh;
+    padding-left: 2vh;
+    width: 20%;
 }
 
 .bfi-icon{
