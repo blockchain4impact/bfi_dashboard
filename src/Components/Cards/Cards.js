@@ -7,14 +7,12 @@ function determineCardColor(percentage) {
 
   const numericPercentage = parseInt(percentage, 10);
   if (numericPercentage >= 75 && numericPercentage < 100) {
-    return "#EBF8EE"; // Light green for 75% to 99%
+    return "#FFF8E5"; // Light green for 75% to 99%
   } else if (numericPercentage === 100) {
-    return "#389C39"; // Green for 100%
-  } else if (numericPercentage === 0) {
-    return "#FFC4C3"; // Red for 0%
-  } else {
-    return "#FDF5EC"; // Default color
-  }
+    return "#E8FFC6"; // Green for 100%
+  } else if (numericPercentage < 75) {
+    return "#FDD4D4"; // Red for 0%
+  } 
 }
 
 export default function Cards({ data }) {
@@ -36,15 +34,16 @@ export default function Cards({ data }) {
             const cardColor = determineCardColor(item.percentage);
             let titleColor, detailColor, percentColor;
             if (item.percentage === "100%") {
-              titleColor = "#C7FFC7"; // Green for 100%
+              titleColor = "#97C354"; // Green for 100%
               detailColor = "#C7FFC7"; // Green for 100%
               percentColor = "#FFFF"; //white % for 100%
-            } else if (item.percentage === "0%") {
-              titleColor = "#E94944"; // Red for 0%
+            } else if (item.percentage < "75%") {
+              titleColor = "#F45757"; // Red for 0%
               detailColor = "#E94944"; // Red for 0%
             } else if (item.percentage >= "75%") {
-              titleColor = "#389C39"; // Light green for above 75%
-              detailColor = "#389C39"; // Light green for above 75%
+              titleColor = "#FFD659"; // Light green for above 75%
+              detailColor = "#389C39";
+              percentColor = "#976F00"; // Light green for above 75%
             } else {
               titleColor = "#F0984C"; // Default title color
               detailColor = "#C4A387"; // Default detail color
@@ -62,13 +61,13 @@ export default function Cards({ data }) {
                 </div>
                 <div className="card-body-content">
                   <div className="card-details">
-                    <p style={{ color: titleColor }}>{item.title}</p>
-                    <p style={{ color: detailColor }}>{item.detail}</p>
+                    <p style={{color: '#3D3D3D'}}>{item.title}</p>
+                    <p style={{color: 'rgba(0,0,0,0.5)'}}>{item.detail}</p>
                   </div>
                   <div className="names-container">
                     {item.names.map((name, nameIndex) => (
                       <div className="rounded-name" key={nameIndex}>
-                        <p>{name}</p>
+                        <p>{name.substr(0,1)}</p>
                       </div>
                     ))}
                   </div>

@@ -3,6 +3,7 @@ import React from 'react'
 import bfilogo from "../../Assets/images/bfilogo.png"
 import { SearchOutlined, BellOutlined, DownOutlined } from '@ant-design/icons';
 import user from "../../Assets/images/user.png"
+import downarrow from "../../Assets/images/downarrow.png"
 
 export default function Navbar() {
   return (
@@ -19,8 +20,9 @@ export default function Navbar() {
           <BellOutlined className="bellicon"/>
         </div>
         <div className="user">
-          <img src={user} alt="user-logo" />
-          <DownOutlined className="downicon"/>
+          <img src={user} alt="user-logo" className="userimg" />
+          <img src={downarrow} alt="bfi-logo-img" className="downicon"/>
+
         </div>
 
       </div>
