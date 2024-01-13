@@ -3,7 +3,7 @@ import Home from './Components/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
-import TimelineCalender from "./Components/Timeline/TimelineCalender";
+import Timeline from "./Components/Timeline/Timeline";
 function App() {
   return (
     <div className="App">
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path='/' Component={Home} />
             {["/dfs", "/bri", "/org", "/biome"].map((path, index) =>
-              <Route path={path} Component={TimelineCalender} key={index} />
+              <Route path={path} Component={Timeline} key={index} />
             )}
           </Routes>
         </div>
