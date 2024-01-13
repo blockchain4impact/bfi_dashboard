@@ -76,29 +76,52 @@ export const cardData = [
       {
         id: 1,
         percentage: "25%",
-        title: "BFI-BIOME(Virtual Network)",
+        title: "BITS",
         detail: "Discussions with Inst./Incubators",
         names: ["Girish", "Gaurav"],
         bgcolor: 'rgb(138,43,226)',
         lightbgcolor: 'rgba(138,43,226,0.2)',
+        badge: "Institute"
       },
       {
         id: 2,
         percentage: "75%",
-        title: "BFI-BIOME(Virtual Network)",
+        title: "CDRI",
         detail: "Finalize the list of Institutes/Incubators",
         names: ["Faraz", "Naga"],
         bgcolor: 'rgb(255,140,0)',
         lightbgcolor: 'rgba(255,140,0,0.2)',
+        badge: "Institute"
       },
       {
         id: 3,
         percentage: "0%",
-        title: "Commencement of Projects/programs",
+        title: "FNDR",
         detail: "Shortlisting of projects/finalization of program",
         names: ["Girish", "Gaurav"],
         bgcolor: 'rgb(50,205,50)',
         lightbgcolor: 'rgba(50,205,50,0.2)',
+        badge: "Institute"
+      },
+      {
+        id: 4,
+        percentage: "0%",
+        title: "IlSc",
+        detail: "Shortlisting of projects/finalization of program",
+        names: ["Girish", "Gaurav"],
+        bgcolor: 'rgb(50,205,50)',
+        lightbgcolor: 'rgba(50,205,50,0.2)',
+        badge: "Institute"
+      },
+      {
+        id: 5,
+        percentage: "0%",
+        title: "AIC CCMB",
+        detail: "Shortlisting of projects/finalization of program",
+        names: ["Girish", "Gaurav"],
+        bgcolor: 'rgb(50,205,50)',
+        lightbgcolor: 'rgba(50,205,50,0.2)',
+        badge: "Incubator"
       },
     ],
     Dashboarditems: [

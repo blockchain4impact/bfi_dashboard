@@ -5,8 +5,11 @@ import Collapse from '../Collapse/Collapse';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import TaskCards from '../TaskCards/TaskCards';
 import { cardData } from '../Home/Home';
+import downarrow from "../../Assets/images/downarrow.png";
+import { Progress } from 'antd';
 
 export default function Timeline() {
+  const paths = ["/bri", "/org", "/dfs"]
   const week = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
   return (
@@ -26,8 +29,9 @@ export default function Timeline() {
       </div>
 
       <div className='timeline-body'>
-        <div className='timeline-body-contenthead'>
+        <div className='timeline-body-contenthead' style={window.location.pathname === "/biome" ? { flexDirection: 'column' } : {}}>
           {cardData.map((v) => v.pathname.includes(window.location.pathname) &&
+            window.location.pathname !== "/biome" &&
             <>
               <div className='timeline-content'>
                 <div style={{ display: 'flex', justifyContent: "space-around" }}>
@@ -37,7 +41,6 @@ export default function Timeline() {
 
                 <div className='timeline-tasks'>
                   {v.items.slice(0, 3).map((value) => <Collapse title={value.title} />)}
-                  {/* // subheads={['Interviews and finalization', 'Contract signing with BVT']}  */}
                 </div>
               </div>
 
@@ -71,13 +74,43 @@ export default function Timeline() {
             </>
           )}
 
+          {cardData.map((v) => v.pathname.includes("/biome") &&
+            window.location.pathname !== "/dfs" &&
+            window.location.pathname !== "/bri" &&
+            window.location.pathname !== "/org" &&
+            <>
+              {v.items.map((value) =>
+                <div className='biome-data'>
+                  <div className='biome-task-list' >
+                    <div className='biome-task-name'>
+                      <p>{value.title}</p>
+                    </div>
+                    <div className='biome-badge'>
+                      <p>{value.badge}</p>
+                    </div>
+                  </div>
+
+                  <div className='biome-list-progress'>
+                    <div className='biome-progress'>
+                      <Progress percent={100} showInfo={false}/>
+                    </div>
+                    <div className='biome-dropdown'>
+                      <img src={downarrow} alt='dropdown' />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+
         </div>
       </div>
 
       <div className='timeline-footer'>
-        {cardData.map((data) => data.pathname.includes(window.location.pathname) && 
-          data.items.slice(0,2).map((value) => (
-            <TaskCards title={value.title} task={value.names} percentage={value.percentage}/>
+        {cardData.map((data) => data.pathname.includes(window.location.pathname) &&
+          window.location.pathname !== "/biome" &&
+          data.items.slice(0, 2).map((value) => (
+            <TaskCards title={value.title} task={value.names} percentage={value.percentage} />
           ))
         )}
       </div>
