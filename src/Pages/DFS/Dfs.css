@@ -1,0 +1,14 @@
+.dfs{
+    width: 100%;
+    background-color: rgba(243, 250, 255, 1);
+}
+
+.dfs-calendar{
+    width: 35%;
+}
+
+.dfs-months{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+}

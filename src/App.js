@@ -1,9 +1,12 @@
 import './App.css';
-import Home from './Components/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
-import Timeline from "./Components/Timeline/Timeline";
+import Home from './Pages/Home/Home';
+import Org from './Pages/ORG/Org';
+import Bri from './Pages/BRI/Bri';
+import Biome from './Pages/BIOME/Biome';
+import Dfs from './Pages/DFS/Dfs';
 function App() {
   return (
     <div className="App">
@@ -13,9 +16,10 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path='/' Component={Home} />
-            {["/dfs", "/bri", "/org", "/biome"].map((path, index) =>
-              <Route path={path} Component={Timeline} key={index} />
-            )}
+            <Route path='/org' Component={Org} />
+            <Route path='/bri' Component={Bri} />
+            <Route path='/biome' Component={Biome} />
+            <Route path='/dfs' Component={Dfs} />
           </Routes>
         </div>
       </Router>

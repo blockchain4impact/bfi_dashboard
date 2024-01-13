@@ -1,0 +1,87 @@
+.biome{
+    width: 100%;
+    background-color: rgba(243, 250, 255, 1);
+}
+
+.biome-data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5vh;
+    margin-inline: 6vh;
+    background: white;
+    padding: 3vh;
+    border-radius: 2vh;
+}
+
+.biome-task-list{
+    border-radius: 2vh;
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    width: 100%;
+}
+
+.biome-badge p{
+    background: rgba(245, 213, 122, 1);
+    border-radius: 2vh;
+    padding-inline: 2vh;
+    padding-block: 2px;
+    color: rgb(100, 100, 8);
+}
+
+.biome-dropdown img {
+    width: 45%;
+}
+
+.biome-list-progress{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.biome-progress{
+    width: 100%;
+}
+
+.biome-task-name p{
+    font-weight: 700;
+}
+
+.ant-progress {
+    margin: 0;
+    width: 90%;
+}
+
+.ant-progress-bg{
+    height: 15px !important;
+    background: linear-gradient(90deg, #97C354 53.64%, #F35757 68.23%);
+}
+
+.timeline-tag{
+    padding-inline: 2vh !important;
+    border: 1px solid #0072BC !important;
+    color: #0072BC;
+}
+
+.timeline-date-tag{
+    color: #768396;
+}
+
+.timeline-tags{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20vw;
+    margin: 4vh;
+}
+
+.tag{
+    margin: 0;
+    border: 1px solid #E3E3E3;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: small;
+}
