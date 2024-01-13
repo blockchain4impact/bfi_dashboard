@@ -1,8 +1,8 @@
 
 import React from "react";
-import Cards from "../Cards/Cards";
-import "../Home/Home.css";
-import Overall from "../Overall/Overall";
+import Cards from "../../Components/Cards/Cards";
+import "./Home.css";
+import Overall from "../../Components/Overall/Overall";
 
 export const cardData = [
   {
@@ -268,7 +268,7 @@ export const cardData = [
     items: [
       {
         id: 1,
-        percentage: "50%",
+        percentage: "83%",
         title: "Interviews and finalization",
         detail: "Complete interviews and Finalise Candidates",
         names: ["Ramnath", "Naga"],

@@ -1,0 +1,20 @@
+.org-main{
+    width: 100%;
+    background-color: rgba(243, 250, 255, 1);
+}
+
+.monthname{
+    display: flex;
+    width: 90%;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+}
+
+.monthname p{
+    font-weight: 800;
+    color: slategray;
+}
+
+.org-body{
+    margin: 3vh;
+}
