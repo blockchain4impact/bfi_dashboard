@@ -1,0 +1,46 @@
+.overall {
+    display: flex;
+    width: 100%;
+}
+
+.overall-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 2vh;
+    padding-block: 2vh;
+    margin-inline: 2vh;
+}
+
+.overall-head {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.overall-body-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-block: 2vh;
+}
+
+p.name-tag {
+    border: 1px solid rgba(0, 114, 188, 1);
+    padding: 3px 2vh;
+    border-radius: 2vh;
+    font-size: xx-small;
+    margin: 3px;
+}
+
+.names {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    color: rgba(0, 114, 188, 1);
+}
+
+.overall-head p {
+    font-size: small;
+}

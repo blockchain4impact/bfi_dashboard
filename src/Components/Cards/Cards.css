@@ -1,154 +1,164 @@
 .cards {
   background-color: white;
-  border-radius: 1vh;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  margin: 2vh;
-  width: calc(50% - 4vh);
-}
-
-.rectangle {
-  background-color: #f5f5f5;
-  margin-right: 6vh;
-  border-radius: 5px;
-}
-
-.rectangle img {
-  display: block;
-}
-
-.card-content {
-  display: flex;
-  align-items: center;
-  padding-inline: 2vh;
-  background-color: #fdf5ec;
-  margin: 2vh;
   border-radius: 2vh;
-  font-size: larger;
-  cursor: pointer;
+  margin: 2vh;
+  width: 95%;
+  border: 1px solid rgba(221, 221, 221, 1);
+  height: 30vh;
 }
 
-.card-container {
-  height: 32vh;
-  overflow: auto;
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 40px;
 }
 
-.card-container::-webkit-scrollbar {
-  width: 6px;
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(233, 246, 255, 1);
+  border-radius: 40px;
 }
 
-.card-container::-webkit-scrollbar-track {
-  background: #f4f4f4;
-  border-radius: 15px;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 114, 188, 1);
+  border-radius: 40px;
 }
 
-.card-container::-webkit-scrollbar-thumb {
-  background: #0072bc;
-  border-radius: 15px;
+.cards>h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
 
-.card-container::-webkit-scrollbar-thumb:hover {
-  background: #0071bcb6;
+.container {
+  width: 20%;
+}
+
+.card-head h2 {
+  margin: 0;
+  padding: 3vh;
+  text-align: left;
+  padding-bottom: 0;
+}
+
+.card-body {
+  display: flex;
+  padding-block: 3vh;
+  padding-top: 5px;
+  justify-content: space-between;
+}
+
+.card-body-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18%;
+}
+
+.card-status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-style {
+  background-color: rgba(239, 249, 255, 1);
 }
 
 .card-body-content {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 2vh;
-  font-size: small;
-  width: 100%;
-  text-align: left;
-  justify-content: space-between;
-  position: relative;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 3vh;
   align-items: center;
-}
-
-.ant-progress {
-  margin: 0;
-  width: 65%;
-}
-
-.card-body-content p {
-  margin: 0;
-  font-size: 1em;
-}
-
-.card-percent {
-  background-color: #EDF5FF;
-  color: #2F91FF;
-  border: 1.5px solid #2F91FF;
-  padding-inline: 1vh;
-  border-radius: 5px;
-}
-
-.card-percentage {
-  padding-inline: 2vh;
-  margin-block: 2vh;
+  justify-content: flex-start;
+  background-color: rgba(239, 249, 255, 1);
+  padding: 1vh;
   border-radius: 1vh;
+  width: 78%;
 }
 
-.card-body-content p {
-  color: #3D3D3D;
-  font-weight: 700;
-}
-
-.card-body-content p:first-child {
-  font-weight: 600;
-}
-
-.card-percentage p {
-  font-weight: 700;
-}
-
-.card-details {
-  width: 80%;
-}
-
-.card-head {
-  font-size: x-large;
-  font-weight: 700;
+.card-body-data {
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: larger;
+  padding-left: 2vh;
 }
 
-.names-container {
-  display: inherit;
-  position: absolute;
-  right: 0;
+.card-date {
+  padding: 1vh;
+  border-radius: 1vh;
+  font-size: small;
+  color: rgba(18, 80, 120, 1);
+  font-weight: 800;
 }
 
-.names-container .rounded-name:first-child {
-  left: 6px;
+.status {
+  font-size: x-small;
+  border-radius: 5px;
+  padding: 8px;
+  padding-inline: 10px;
+  font-weight: 800;
 }
 
-
-.rounded-name {
-  background-color: white;
-  color: #838383;
-  padding: 5px 9px;
-  border-radius: 15px;
-  position: relative;
-  right: 0;
-  border: 1px solid #838383;
+.title {
+  font-size: small;
+  font-weight: 700;
 }
 
-/* .rounded-name p {
-  font-size: xx-small;
-} */
+.detail {
+  font-size: small;
+  font-weight: 700;
+}
+
+.card-container {
+  height: 75%;
+  overflow-y: scroll;
+  margin-inline: 2vh;
+  padding-inline: 2vh;
+}
+
+.card-container-biome {
+  height: 75%;
+  overflow-y: scroll;
+  margin-inline: 2vh;
+}
+
+.biome-table{
+  width: 100%;
+  text-align: justify;
+  border-spacing: 1em;
+
+}
+
+.biome-table tbody{
+  padding-block: 2vh;
+}
+
+.biome-table tbody td{
+  text-align: center;
+  background-color: rgba(239, 249, 255, 1);
+  border-radius: 1vh;
+  padding-block: 1vh;
+}
+
+.biome-table thead td{
+  font-weight: 700;
+}
+
+table.biome-table td {
+  font-size: smaller;
+}
+
+.biome-status{
+  color: rgba(56, 156, 57, 1);
+  background-color: rgba(250, 255, 247, 1) !important;
+}
 
 /* 720p screens */
-@media screen and (max-width: 1280px) and (max-height: 720px) and (min-height: 300px) {
-  .card-body-content p {
-    font-size: smaller;
-  }
+/* @media screen and (max-width: 1280px) and (max-height: 720px) and (min-height: 300px) {
 
-  .ant-progress {
-    margin: 0;
-    width: 65%;
-  }
-}
+} */
