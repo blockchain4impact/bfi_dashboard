@@ -1,8 +1,6 @@
 .home {
-    background-color: #F3FAFF;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3vh;
     justify-content: space-around;
     padding-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
