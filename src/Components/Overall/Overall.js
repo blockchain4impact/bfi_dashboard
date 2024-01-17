@@ -3,7 +3,6 @@ import CircularProgress from '../CircularPB/CircularProgress'
 import "../Overall/Overall.css"
 
 export default function Overall(props) {
-    console.log(props.data)
     return (
         <div className='overall-main'>
             <div className='overall-head'>
@@ -13,7 +12,7 @@ export default function Overall(props) {
             {
                 props.data.overall?.map((value, index) => (
                     <div className='overall-body-content'>
-                        <CircularProgress percentage={value.percentage} />
+                        <CircularProgress percentage={value.percentage} width={65} />
                         <div className='names'>
                             {value.names.map((name, index) =>
                                 <p className='name-tag'>{name}</p>

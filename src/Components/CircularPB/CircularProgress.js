@@ -16,9 +16,8 @@ export default function CircularProgress(props) {
     }
     else
         stroke = "rgba(151, 195, 84, 1)" //green
-    console.log(stroke)
     return (
-        <svg width="50" height="50" viewBox="0 0 160 160" style={{ transform: 'rotate(-90deg)' }}>
+        <svg width={`${props.width}`} height={props.width} viewBox="0 0 160 160" style={{ transform: 'rotate(-90deg)' }}>
             <circle
                 r="70"
                 cx="80"

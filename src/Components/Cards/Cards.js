@@ -22,7 +22,7 @@ export default function Cards({ data }) {
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
-                    <CircularProgress percentage={value.percentage} />
+                    <CircularProgress percentage={value.percentage} width={45} />
                   </div>
                   <div className="card-body-data card-style">
                     <p className="title">{value.title}</p>
@@ -32,8 +32,8 @@ export default function Cards({ data }) {
                 <div className="card-body-details">
                   <p className="card-date card-style">31st Mar, 2027</p>
                   <div className="card-status">
-                    <p className="card-style status" style={{ color: 'rgba(18, 80, 120, 1)' }}>Ongoing</p>
-                    <p className="card-style status">High</p>
+                    <p className="card-style status" style={{ color: value.textColor? value.textColor : 'rgba(210, 150, 0, 1)', backgroundColor: value.bgColor? value.bgColor : 'rgba(255, 251, 241, 1)' }}>Ongoing</p>
+                    {/* <p className="card-style status">High</p> */}
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@ export default function Cards({ data }) {
               {data?.Dashboarditems?.map((value, index) => (
                 <tr>
                   <td>{value.InstituteName}</td>
-                  <td>{value.Institute}</td>
+                  <td >{value.Institute}</td>
                   <td className="biome-status">{value.EOLStatus}</td>
                   <td className="biome-status">{value.InDiss}</td>
                 </tr>
