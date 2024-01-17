@@ -32,7 +32,9 @@ export default function Cards({ data }) {
                 <div className="card-body-details">
                   <p className="card-date card-style">31st Mar, 2027</p>
                   <div className="card-status">
-                    <p className="card-style status" style={{ color: value.textColor? value.textColor : 'rgba(210, 150, 0, 1)', backgroundColor: value.bgColor? value.bgColor : 'rgba(255, 251, 241, 1)' }}>Ongoing</p>
+                    <p className="card-style status" style={{ color: value.percentage === '100%'? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.percentage === '100%'? 'rgba(250, 255, 247, 1)': 'rgba(255, 251, 241, 1)' }}>
+                      {value.percentage === '100%'? 'Completed' : 'Ongoing'}
+                    </p>
                     {/* <p className="card-style status">High</p> */}
                   </div>
                 </div>

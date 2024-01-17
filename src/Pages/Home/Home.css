@@ -4,3 +4,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+
+.home-main{
+    width: 100%;
+}
