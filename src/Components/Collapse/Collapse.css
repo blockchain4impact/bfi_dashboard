@@ -3,7 +3,7 @@
     width: 35vh;
     gap: 2vh;
     border-radius: 2vh;
-    padding: 3vh;
+    padding: 5vh;
     background-color: white;
     margin: 4vh;
     font-size: small;
@@ -30,4 +30,38 @@
 
 .collapse-expanded p:hover {
     color: black;
+}
+
+.biome-collapse{
+    display: flex;
+    justify-content: space-between;
+    padding: 3vh;
+}
+
+.biome-dataset{
+    display: flex;
+    justify-content: space-between;
+    padding-block: 1vh;
+    border-bottom: 1px solid rgba(227, 227, 227, 1);
+    align-items: center;
+}
+
+.collapse-expanded{
+    margin-top: 2vh;
+}
+
+.biome-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.biome-item{
+    font-size: 12px;
+    padding: 1vh;
+    border-radius: 2vh;
+    padding-inline: 2vh;
+    text-align: center;
+    font-weight: 700;
 }

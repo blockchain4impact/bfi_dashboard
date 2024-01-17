@@ -26,6 +26,8 @@ export default function Org() {
                             bgcolor={value.percentage!=='100%'? '#FFD659': '#97C354'}
                             title={value.title}
                             names={value.names}
+                            bgColor={'rgba(255, 248, 229, 1)'}
+                            percentColor={value.percentage === '100%'? 'rgba(151, 195, 84, 1)' :'rgba(255, 214, 89, 1)'}
                         />
                     )
                 )}
