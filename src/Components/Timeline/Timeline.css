@@ -1,16 +1,3 @@
-/* HorizontalTimeline.css */
-.horizontal-timeline {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .timeline {
-    width: 70%;
-  }
-  
-  .calendar {
-    width: 30%;
-  }
-  
+.percent{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
