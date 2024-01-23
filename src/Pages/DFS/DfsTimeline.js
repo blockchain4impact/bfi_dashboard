@@ -151,7 +151,7 @@ const DfsTimeline = () => {
               <body xmlns="http://www.w3.org/1999/xhtml">
                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
                   {value.names?.map((name, index) => (
-                    <p style={{ backgroundColor: 'orange', paddingInline: '5px', borderRadius: '50%', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
+                    <p style={{ backgroundColor: 'orange', paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
                   ))}
                   <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }} onClick={() => findStartDate(i)}>{value.title}</p>
                 </div>
