@@ -31,8 +31,8 @@ export default function Bri(props) {
                             prevMonth.map((prevMonth) =><p>{prevMonth}</p>)}</p>
                         </div>
                     )}
-
                 </div>
+                
                 <div className='bri-body'>
                 {
                     cardData.map((val) => val.pathname === window.location.pathname &&
