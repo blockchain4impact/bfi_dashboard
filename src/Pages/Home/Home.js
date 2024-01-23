@@ -324,7 +324,7 @@ export default function Home() {
       <h1 style={{textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh'}}>Main Dashboard</h1>
       <div className="home">
         {cardData.map((card) => (
-          <Cards key={card.id} data={card} />
+          <Cards key={card.id} dataItems={card} />
         ))}
 
       </div>
