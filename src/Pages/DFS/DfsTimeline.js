@@ -166,7 +166,7 @@ const DfsTimeline = () => {
                             <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
                             <circle cx='25' cy='22' r="3" fill="#FFF" />
                         </svg>
-                        <svg x={yPos + 35} y={`100` * `${i + 1}` + 8}>
+                        <svg x={value.endYear === 2023 ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
                             <filter id="shadow">
                                 <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
                             </filter>
