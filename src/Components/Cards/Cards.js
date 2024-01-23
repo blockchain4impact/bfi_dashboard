@@ -3,22 +3,23 @@ import "../Cards/Cards.css";
 import { Progress } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from "../CircularPB/CircularProgress";
+import { data } from "../../Pages/BIOME/Biome";
 
-export default function Cards({ data }) {
+export default function Cards({ dataItems }) {
   const navigate = useNavigate();
-  if (!data || !data.items) {
+  if (!dataItems || !dataItems.items) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="cards">
       <div className="card-head">
-        <h2>{data.title}</h2>
+        <h2>{dataItems.title}</h2>
       </div>
-      <div className={data.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
-        {data.title !== 'BIOME' ?
+      <div className={dataItems.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
+        {dataItems.title !== 'BIOME' ?
           <>
-            {data?.items.map((value, index) => (
+            {dataItems?.items.map((value, index) => (
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
@@ -53,7 +54,7 @@ export default function Cards({ data }) {
               </tr>
             </thead>
             <tbody>
-              {data?.Dashboarditems?.map((value, index) => (
+              {data?.map((value, index) => (
                 <tr>
                   <td>{value.InstituteName}</td>
                   <td >{value.Institute}</td>

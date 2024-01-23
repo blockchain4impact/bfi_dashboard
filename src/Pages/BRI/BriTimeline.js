@@ -1,49 +1,74 @@
 import React from 'react';
 
 const BriTimeline = () => {
-  const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
+  const oct = 50, nov = 150, dec = 250,
+    ttFourQ1 = 375, ttFourQ2 = 500,
+    ttFiveQ1 = 625, ttFiveQ2 = 755,
+    ttSixQ1 = 875, ttSixQ2 = 1005,
+    ttSevenQ1 = 1125, ttSevenQ2 = 1255;
+  const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
   const data = [{
-    title: 'Hire core IDFS team',
-    names: ['N', 'G'],
-    startDate: '31 Jan 2024',
-    endDate: '15 Nov 2024',
+    title: 'To be recognised as an Indian Biomedical Innovation Ecosystem enabler',
+    names: ['P', 'G'],
+    startDate: '31 Aug 2024',
+    endDate: '15 Jan 2027',
     progress: '45%',
     startYear: 2024,
-    endYear: 2024
+    endYear: 2027
   },
   {
-    title: 'Launch HCD Fellowship',
-    names: ['N'],
+    title: 'Launch BFI-BIOME Network and discussion with Institutes and Incubators',
+    names: ['P', 'G'],
     startDate: '31 Oct 2023',
-    endDate: '25 Feb 2024',
-    progress: '0%',
-    startYear: 2023,
-    endYear: 2024
-  },
-  {
-    title: 'Launch IHCR Fund',
-    names: ['R', 'N'],
-    startDate: '31 Oct 2023',
-    endDate: '31 Dec 2023',
-    progress: '30%',
+    endDate: '25 Nov 2023',
+    progress: '100%',
     startYear: 2023,
     endYear: 2023
   },
-    {
-      title: 'Regular Program Monitoring + Team Governance',
-      names: ['R', 'N'],
-      startDate: '31 Jun 2024',
-      endDate: '31 Sep 2024',
-      progress: '50%',
-      startYear: 2024,
-      endYear: 2024
-    }
+  {
+    title: 'Signing MoU with Institutes and Incubators for BFI-BIOME',
+    names: ['P', 'G'],
+    startDate: '31 Oct 2023',
+    endDate: '31 Jan 2024',
+    progress: '87%',
+    startYear: 2023,
+    endYear: 20234
+  },
+  {
+    title: 'Finalising projects/programs and commencement of the projects/programs',
+    names: ['P', 'G'],
+    startDate: '31 Jan 2024',
+    endDate: '31 Dec 2024',
+    progress: '0%',
+    startYear: 2024,
+    endYear: 2026
+  },
+  {
+    title: 'Periodic project/program review/evaluation',
+    names: ['P', 'G'],
+    startDate: '31 Oct 2023',
+    endDate: '31 Nov 2023',
+    progress: '0%',
+    startYear: 2024,
+    endYear: 2026
+  },
+  {
+    title: 'Annual Project/Program Review',
+    names: ['P', 'G'],
+    startDate: '31 Oct 2023',
+    endDate: '31 Nov 2023',
+    progress: '0%',
+    startYear: 2024,
+    endYear: 2026
+  }
   ]
 
   const findStartDate = (index) => {
     let xPos;
     const month = data[index].startDate.substring(3, 6)
     const year = data[index].startDate.substring(7, 11)
+    const month1 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+    const month2 = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     if (year === '2023') {
       if (month === 'Oct') {
         xPos = oct
@@ -53,18 +78,32 @@ const BriTimeline = () => {
         xPos = dec
       }
     } else if (year === '2024') {
-      const month1 = ['Jan', 'Feb', 'Mar']
-      const month2 = ['Apr', 'May', 'Jun']
-      const month3 = ['Jul', 'Aug', 'Sep']
-      const month4 = ['Oct', 'Nov', 'Dec']
+
       if (month1.includes(month)) {
-        xPos = janmar
+        xPos = ttFourQ1
       } else if (month2.includes(month)) {
-        xPos = aprjun
-      } else if (month3.includes(month)) {
-        xPos = julsep
-      } else if (month4.includes(month)) {
-        xPos = octdec
+        xPos = ttFourQ2
+      }
+    }
+    else if (year === '2025') {
+      if (month1.includes(month)) {
+        xPos = ttFiveQ1
+      } else if (month2.includes(month)) {
+        xPos = ttFiveQ2
+      }
+    }
+    else if (year === '2026') {
+      if (month1.includes(month)) {
+        xPos = ttSixQ1
+      } else if (month2.includes(month)) {
+        xPos = ttSixQ2
+      }
+    }
+    else if (year === '2027') {
+      if (month1.includes(month)) {
+        xPos = ttSevenQ1
+      } else if (month2.includes(month)) {
+        xPos = ttSevenQ2
       }
     }
     return xPos
@@ -74,6 +113,8 @@ const BriTimeline = () => {
     let yPos;
     const month = data[index].endDate.substring(3, 6)
     const year = data[index].endDate.substring(7, 11)
+    const month1 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+    const month2 = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     if (year === '2023') {
       if (month === 'Oct') {
         yPos = oct
@@ -83,18 +124,32 @@ const BriTimeline = () => {
         yPos = dec
       }
     } else if (year === '2024') {
-      const month1 = ['Jan', 'Feb', 'Mar']
-      const month2 = ['Apr', 'May', 'Jun']
-      const month3 = ['Jul', 'Aug', 'Sep']
-      const month4 = ['Oct', 'Nov', 'Dec']
+
       if (month1.includes(month)) {
-        yPos = janmar
+        yPos = ttFourQ1
       } else if (month2.includes(month)) {
-        yPos = aprjun
-      } else if (month3.includes(month)) {
-        yPos = julsep
-      } else if (month4.includes(month)) {
-        yPos = octdec
+        yPos = ttFourQ2
+      }
+    }
+    else if (year === '2025') {
+      if (month1.includes(month)) {
+        yPos = ttFiveQ1
+      } else if (month2.includes(month)) {
+        yPos = ttFiveQ2
+      }
+    }
+    else if (year === '2026') {
+      if (month1.includes(month)) {
+        yPos = ttSixQ1
+      } else if (month2.includes(month)) {
+        yPos = ttSixQ2
+      }
+    }
+    else if (year === '2027') {
+      if (month1.includes(month)) {
+        yPos = ttSevenQ1
+      } else if (month2.includes(month)) {
+        yPos = ttSevenQ2
       }
     }
     return yPos
@@ -103,67 +158,101 @@ const BriTimeline = () => {
   return (
     <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
       <g>
-        <text x="265" y="15"
+        <text x="165" y="15"
           fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2023</text>
 
         <text x="50" y="55" id="oct"
-         font-weight="600" dx="-11.1953125px">Oct</text>
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Oct</text>
         <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
-        <text x="250" y="55"
+        <text x="150" y="55"
           fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Nov</text>
+        <line x1="150" x2="150" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+
+        <text x="250" y="55" id="dec"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Dec</text>
         <line x1="250" x2="250" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
-        <text x="450" y="55" id="dec"
-          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Dec</text>
-        <line x1="450" x2="450" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+        <line x1="310" x2="310" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
 
-        <line x1="600" x2="600" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
-
-        <text x="965" y="15"
+        <text x="440" y="15"
           fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2024</text>
 
-        <text x="700" y="55" id="oct"
-          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Mar</text>
-        <line x1="725" x2="725" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+        <text x="350" y="55" id="oct"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Jun</text>
+        <line x1="375" x2="375" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
-        <text x="900" y="55"
-          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Apr - Jun</text>
-        <line x1="925" x2="925" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+        <text x="480" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Dec</text>
+        <line x1="500" x2="500" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
-        <text x="1100" y="55" id="dec"
-          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Sep</text>
+        <line x1="565" x2="565" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
+
+        <text x="680" y="15"
+          fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2025</text>
+
+        <text x="600" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Jun</text>
+        <line x1="625" x2="625" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+
+        <text x="730" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Dec</text>
+        <line x1="755" x2="755" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+
+        <line x1="820" x2="820" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
+
+        <text x="930" y="15"
+          fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2026</text>
+
+        <text x="850" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Jun</text>
+        <line x1="875" x2="875" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+
+        <text x="980" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Dec</text>
+        <line x1="1005" x2="1005" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+
+        <line x1="1060" x2="1060" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
+
+        <text x="1180" y="15"
+          fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2027</text>
+
+        <text x="1100" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Jun</text>
         <line x1="1125" x2="1125" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
-        <text x="1300" y="55" id="dec"
-          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Oct - Dec</text>
-        <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+        <text x="1230" y="55"
+          fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Dec</text>
+        <line x1="1255" x2="1255" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
 
       </g>
       {data.map((value, i) => {
         const xPos = findStartDate(i);
         const yPos = findEndingDate(i);
-        const width = value.startYear === 2023 && value.endYear === 2024 ? yPos - xPos + 25 : yPos - xPos
-        const percentage = width * (parseInt(value.progress)/100)
+        const width = yPos - xPos;
+        const percentage = width * (parseInt(value.progress) / 100)
         return (
           <g width={'50vh'}>
-            <foreignObject className="node" x={value.startYear === 2023 ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+            <foreignObject className="node" x={xPos + 20} y={`100` * `${i + 1}` - 25} width="100%" height="50">
               <body xmlns="http://www.w3.org/1999/xhtml">
                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                  {value.names?.map((name, index) => (
-                    <p style={{ backgroundColor: 'orange', paddingInline: '5px', borderRadius: '50%', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
-                  ))}
+                  {value.names?.map((name, index) => {
+                    const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
+                    return (
+                      <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
+                    )
+                  })}
                   <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }} onClick={() => findStartDate(i)}>{value.title}</p>
                 </div>
               </body>
             </foreignObject>
-            <svg x={value.startYear === 2023 ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+            <svg x={xPos} y={`100` * `${i + 1}`}>
               <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
               <rect x='0' y='0' width={percentage} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
               <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
               <circle cx='25' cy='22' r="3" fill="#FFF" />
             </svg>
-            <svg x={yPos + 35} y={`100` * `${i + 1}` + 8}>
+            <svg x={yPos + 10} y={`100` * `${i + 1}` + 8}>
               <filter id="shadow">
                 <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
               </filter>
