@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DfsTimeline = () => {
+const BriTimeline = () => {
   const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
   const data = [{
     title: 'Hire core IDFS team',
@@ -180,4 +180,4 @@ const DfsTimeline = () => {
   );
 };
 
-export default DfsTimeline;
+export default BriTimeline;
