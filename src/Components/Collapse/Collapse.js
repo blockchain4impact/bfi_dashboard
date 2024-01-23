@@ -7,7 +7,7 @@ import { Progress } from 'antd';
 export default function Collapse(props) {
     const [open, setOpen] = useState(false)
         return (
-            <div className='biome-body' onClick={() => setOpen(!open)}>
+            <div className='biome-body' onClick={() => setOpen(!open)} style={{cursor: 'pointer'}}>
                 <div className='biome-data'>
                     <div className='biome-task-list' >
                         <div className='biome-task-name'>
