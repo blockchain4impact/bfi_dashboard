@@ -129,7 +129,7 @@ export const cardData = [
     overall: [
       {
         percentage: "25%",
-        names: ["Ramnath", "Naga", "VSR", "HCD", "Girish"]
+        names: ["Gaurav", "Pooja"]
       }
     ]
   },
