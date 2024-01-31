@@ -5,21 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import CircularProgress from "../CircularPB/CircularProgress";
 import { data } from "../../Pages/BIOME/Biome";
 
-export default function Cards({ dataItems }) {
+export default function Cards(props) {
   const navigate = useNavigate();
-  if (!dataItems || !dataItems.items) {
+  if (!props.data || !props.data.items) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="cards">
       <div className="card-head">
-        <h2>{dataItems.title}</h2>
+        <h2>{props.data.title}</h2>
       </div>
-      <div className={dataItems.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
-        {dataItems.title !== 'BIOME' ?
+      <div className={props.data.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
+        {props.data.title !== 'BIOME' ?
           <>
-            {dataItems?.items.map((value, index) => (
+            {props.data?.items.map((value, index) => (
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
@@ -33,8 +33,8 @@ export default function Cards({ dataItems }) {
                 <div className="card-body-details">
                   <p className="card-date card-style">31st Mar, 2027</p>
                   <div className="card-status">
-                    <p className="card-style status" style={{ color: value.percentage === '100%'? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.percentage === '100%'? 'rgba(250, 255, 247, 1)': 'rgba(255, 251, 241, 1)' }}>
-                      {value.percentage === '100%'? 'Completed' : 'Ongoing'}
+                    <p className="card-style status" style={{ color: value.percentage === '100%' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.percentage === '100%' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
+                      {value.percentage === '100%' ? 'Completed' : 'Ongoing'}
                     </p>
                     {/* <p className="card-style status">High</p> */}
                   </div>
@@ -67,5 +67,6 @@ export default function Cards({ dataItems }) {
         }
       </div>
     </div>
+
   );
 }

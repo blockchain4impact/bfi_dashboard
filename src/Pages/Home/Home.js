@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import Cards from "../../Components/Cards/Cards";
 import "./Home.css";
 import Overall from "../../Components/Overall/Overall";
 import axios from "axios";
+import { fetchData } from '../../API/Api';
 
 export const cardData = [
   {
@@ -125,7 +125,78 @@ export const cardData = [
         badge: "Incubator"
       },
     ],
-   
+    Dashboarditems: [
+      {
+        id: 1,
+        badge: "Institute",
+        InstituteName: "BITS",
+        Institute: "Institute",
+        EOLStatus: "Received",
+        InDiss: "Done",
+        FormalDiss: "Done",
+        MoUr: "Shared",
+        Mous: "Yet to Start",
+        Funds: "Yet to Start",
+        ProjectsShortlist: "Yet to Start",
+        ProjectsStarted: "Yet to Start"
+      },
+      {
+        id: 2,
+        InstituteName: "CCMB",
+        badge: "Institute",
+        Institute: "Institute",
+        EOLStatus: "Received",
+        InDiss: "Done",
+        FormalDiss: "Done",
+        MoUr: "Shared",
+        Mous: "Yet to Start",
+        Funds: "Yet to Start",
+        ProjectsShortlist: "Yet to Start",
+        ProjectsStarted: "Yet to Start"
+      },
+      {
+        id: 3,
+        badge: "Institute",
+        InstituteName: "FNDR",
+        Institute: "Institute",
+        EOLStatus: "Received",
+        InDiss: "Done",
+        FormalDiss: "Done",
+        MoUr: "Shared",
+        Mous: "Yet to Start",
+        Funds: "Yet to Start",
+        ProjectsShortlist: "Yet to Start",
+        ProjectsStarted: "Yet to Start"
+      },
+      {
+        id: 4,
+        badge: "Institute",
+        InstituteName: "IISc",
+        Institute: "Institute",
+        EOLStatus: "Received",
+        InDiss: "Done",
+        FormalDiss: "Done",
+        MoUr: "Shared",
+        Mous: "Completed",
+        Funds: "On Going",
+        ProjectsShortlist: "Yet to Start",
+        ProjectsStarted: "Yet to Start"
+      },
+      {
+        id: 5,
+        badge: "Incubator",
+        InstituteName: "AIC CCMB",
+        Institute: "Institute",
+        EOLStatus: "Received",
+        InDiss: "Done",
+        FormalDiss: "Not Done",
+        MoUr: "in Discussion",
+        Mous: "Yet to Start",
+        Funds: "Yet to Start",
+        ProjectsShortlist: "Yet to Start",
+        ProjectsStarted: "Yet to Start"
+      },
+    ],
     overall: [
       {
         percentage: "25%",
@@ -286,32 +357,13 @@ export const cardData = [
 ];
 
 export default function Home() {
-
-  function parseCSV(csvText) {
-    const rows = csvText.split(/\r?\n/); // Split CSV text into rows, handling '\r' characters
-    const headers = rows[0].split(','); // Extract headers (assumes the first row is the header row)
-    const data = []; // Initialize an array to store parsed data
-    for (let i = 1; i < rows.length; i++) {
-      const rowData = rows[i].split(','); // Split the row, handling '\r' characters
-      const rowObject = {};
-      for (let j = 0; j < headers.length; j++) {
-        rowObject[headers[j]] = rowData[j];
-      }
-      data.push(rowObject);
-    }
-    return data;
-  }
-
-
-
   return (
     <div className="home-main">
       <h1 style={{textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh'}}>Main Dashboard</h1>
       <div className="home">
         {cardData.map((card) => (
-          <Cards key={card.id} dataItems={card} />
+          <Cards key={card.id} data={card} />
         ))}
-
       </div>
 
       <div className="overall">
