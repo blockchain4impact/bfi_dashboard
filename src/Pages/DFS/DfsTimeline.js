@@ -1,6 +1,19 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { fetchData } from '../../API/Api';
 const DfsTimeline = () => {
+    const [data1, setData] = useState([])
+    let startYear, endYear
+    useEffect(() => {
+        fetchData()
+            .then(data => {
+                setData(data)
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error in component:', error);
+            });
+    }, []);
+
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
     const data = [{
         title: 'Hire core IDFS team',
@@ -39,12 +52,24 @@ const DfsTimeline = () => {
         endYear: 2024
     }
     ]
-    const tagColors = [ "#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
+    const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
+
     const findStartDate = (index) => {
-        let xPos;
-        const month = data[index].startDate.substring(3, 6)
-        const year = data[index].startDate.substring(7, 11)
-        if (year === '2023') {
+        let xPos, month, year, noArray = [];
+        for (let i = 0; i < data1.length; i++) {
+            if (parseInt(data1[i].SlNo) === index) {
+                noArray.push(data1[i].SlNo)
+            }
+            if(data1[i].SlNo === noArray[2]){
+                month = data1[i].Timeline.substring(3, 6)
+                year = data1[i].Timeline.substring(7, 6)
+            }
+        }
+        // month = data1.filter((val, i) => parseInt(val.SlNo) === noArray[2]).map((value, index) => value.Timeline.substring(3, 6))
+        // year = data1.filter((val, i) => parseInt(val.SlNo) === noArray[2]).map((value, index) => value.Timeline.substring(7, 11))
+
+        startYear = year
+        if (year === '23') {
             if (month === 'Oct') {
                 xPos = oct
             } else if (month === 'Nov') {
@@ -52,7 +77,7 @@ const DfsTimeline = () => {
             } else if (month === 'Dec') {
                 xPos = dec
             }
-        } else if (year === '2024') {
+        } else if (year === '24') {
             const month1 = ['Jan', 'Feb', 'Mar']
             const month2 = ['Apr', 'May', 'Jun']
             const month3 = ['Jul', 'Aug', 'Sep']
@@ -67,14 +92,23 @@ const DfsTimeline = () => {
                 xPos = octdec
             }
         }
+        console.log(xPos)
         return xPos
+
     }
 
     const findEndingDate = (index) => {
-        let yPos;
-        const month = data[index].endDate.substring(3, 6)
-        const year = data[index].endDate.substring(7, 11)
-        if (year === '2023') {
+        let yPos, month, year, noArray=[];
+        for (let i = 0; i < data1.length; i++) {
+            if (parseInt(data1[i].SlNo) === index) {
+                noArray.push(data1[i].SlNo)
+            }
+        }
+        const length = noArray.length
+        month = data1.filter((val, i) => parseInt(val.SlNo) === noArray[length-1]).map((value, index) => value.Timeline.substring(3, 6))
+        year = data1.filter((val, i) => parseInt(val.SlNo) === noArray[length-1]).map((value, index) => value.Timeline.substring(3, 6))
+        endYear = year
+        if (year === '23') {
             if (month === 'Oct') {
                 yPos = oct
             } else if (month === 'Nov') {
@@ -82,7 +116,7 @@ const DfsTimeline = () => {
             } else if (month === 'Dec') {
                 yPos = dec
             }
-        } else if (year === '2024') {
+        } else if (year === '24') {
             const month1 = ['Jan', 'Feb', 'Mar']
             const month2 = ['Apr', 'May', 'Jun']
             const month3 = ['Jul', 'Aug', 'Sep']
@@ -104,40 +138,40 @@ const DfsTimeline = () => {
         <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
             <g>
                 <text x="265" y="15"
-                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2023</text>
+                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2023</text>
 
                 <text x="50" y="55" id="oct"
-                    font-weight="600" dx="-11.1953125px">Oct</text>
-                <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fontWeight="600" dx="-11.1953125px">Oct</text>
+                <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="250" y="55"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Nov</text>
-                <line x1="250" x2="250" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Nov</text>
+                <line x1="250" x2="250" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="450" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Dec</text>
-                <line x1="450" x2="450" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Dec</text>
+                <line x1="450" x2="450" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <line x1="600" x2="600" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" stroke-width="1"></line>
+                <line x1="600" x2="600" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" strokeWidth="1"></line>
 
                 <text x="965" y="15"
-                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" font-weight="700" font-size='16px'>2024</text>
+                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2024</text>
 
                 <text x="700" y="55" id="oct"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jan - Mar</text>
-                <line x1="725" x2="725" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jan - Mar</text>
+                <line x1="725" x2="725" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="900" y="55"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Apr - Jun</text>
-                <line x1="925" x2="925" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Apr - Jun</text>
+                <line x1="925" x2="925" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="1100" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Jul - Sep</text>
-                <line x1="1125" x2="1125" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jul - Sep</text>
+                <line x1="1125" x2="1125" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="1300" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" font-weight="600" dx="-11.1953125px">Oct - Dec</text>
-                <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" stroke-width="1"></line>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct - Dec</text>
+                <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
             </g>
             {data.map((value, i) => {
