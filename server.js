@@ -11,7 +11,7 @@ console.log(process.env.REACT_APP_MONGODB_CONNECT_URI)
 app.use(express.json());
 app.use(cors());
 
-const PostSchema = require("./models/Posts")
+const PostSchema = require("./backend/models/Posts")
 
 mongoose.connect('mongodb+srv://bfi:bfi2024@cluster0.mbbas0d.mongodb.net/blockchain4impact');
 
