@@ -357,10 +357,6 @@ export const cardData = [
 ];
 
 export default function Home() {
-  const [csvData, setCsvData] = useState([]);
-  useEffect(() => {
-    fetchCSVData();
-  }, []);
 
   function parseCSV(csvText) {
     const rows = csvText.split(/\r?\n/); // Split CSV text into rows, handling '\r' characters
@@ -377,18 +373,7 @@ export default function Home() {
     return data;
   }
 
-  const fetchCSVData = () => {
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ__zK3Usg5WZvsLXNzBLVrhad3P7iiHjhcPxuu_whBbyr4kZGxe5mWl7sisFCSmJ6bzfQWEWpzdwXO/pub?output=csv'; // Replace with your Google Sheets CSV file URL
-    axios.get(csvUrl)
-      .then((response) => {
-        const parsedCsvData = parseCSV(response.data);
-        setCsvData(parsedCsvData);
-        console.log(parsedCsvData);
-      })
-      .catch((error) => {
-        console.error('Error fetching CSV data:', error);
-      });
-  }
+
 
   return (
     <div className="home-main">
