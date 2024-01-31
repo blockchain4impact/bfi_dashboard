@@ -172,4 +172,8 @@ table.biome-table td {
     justify-content: space-between;
     width: 24%;
   }
+
+  .card-container {
+    height: 75%;
+  }
 }

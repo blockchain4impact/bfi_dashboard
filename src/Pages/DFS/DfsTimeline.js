@@ -174,46 +174,45 @@ const DfsTimeline = () => {
                 <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
             </g>
-            {
-                data1.map((value, i) => {
-                    const xPos = findStartDate(i);
-                    const yPos = findEndingDate(i);
-                    // const yPos = oct
-                    const width = startYear === 23 && endYear === 24 ? yPos - xPos + 25 : yPos - xPos
-                    const percentage = width * (parseInt(value.progress) / 100)
-                    return (
-                        <g width={'50vh'}>
-                            <foreignObject className="node" x={value.startYear === 2023 ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
-                                <body xmlns="http://www.w3.org/1999/xhtml">
-                                    <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                        {value.names?.map((name, index) => {
-                                            const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
-                                            return (
-                                                <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
-                                            )
-                                        })}
-                                        <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }}>{value.Objective}</p>
-                                    </div>
-                                </body>
-                            </foreignObject>
-                            <svg x={value.startYear === 2023 ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
-                                <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
-                                <rect x='0' y='0' width={percentage} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
-                                <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
-                                <circle cx='25' cy='22' r="3" fill="#FFF" />
-                            </svg>
-                            <svg x={yPos + 35} y={`100` * `${i + 1}` + 8}>
-                                <filter id="shadow">
-                                    <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
-                                </filter>
-                                <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
-                                <text x='23.5' y='18' fill="black" fontSize={'12px'} fontWeight="600" dx="-11.1953125px">
-                                    {value.progress}
-                                </text>
-                            </svg>
-                        </g>
-                    )
-                })}
+            {data.map((value, i) => {
+                const xPos = findStartDate(i);
+                const yPos = findEndingDate(i);
+                const width = value.startYear === 2023 && value.endYear === 2024 ? yPos - xPos + 25 : yPos - xPos
+                const percentage = width * (parseInt(value.progress) / 100)
+                return (
+                    <g width={'50vh'}>
+                        <foreignObject className="node" x={value.startYear === 2023 ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+                            <body xmlns="http://www.w3.org/1999/xhtml">
+                                <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
+                                    {value.names?.map((name, index) => {
+                                        const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
+                                        return (
+                                            <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
+                                        )
+                                    })}
+                                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }} onClick={() => findStartDate(i)}>{value.title}</p>
+                                </div>
+                            </body>
+                        </foreignObject>
+                        <svg x={value.startYear === 2023 ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+                            <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
+                            <rect x='0' y='0' width={percentage? percentage: '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
+                            <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
+                            <circle cx='25' cy='22' r="3" fill="#FFF" />
+                        </svg>
+                        <svg x={value.endYear === 2023 ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
+                            <filter id="shadow">
+                                <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+                            </filter>
+                            <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
+                            <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">
+                                {value.progress}
+                            </text>
+                        </svg>
+                    </g>
+
+                )
+            })}
         </svg >
     );
 };

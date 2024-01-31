@@ -248,7 +248,7 @@ const BriTimeline = () => {
             </foreignObject>
             <svg x={xPos} y={`100` * `${i + 1}`}>
               <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
-              <rect x='0' y='0' width={percentage} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
+              <rect x='0' y='0' width={percentage? percentage: '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
               <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
               <circle cx='25' cy='22' r="3" fill="#FFF" />
             </svg>
