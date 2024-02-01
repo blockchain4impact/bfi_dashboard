@@ -206,20 +206,13 @@ const BriTimeline = () => {
           // const names = namesArray(value.dashboardItems)
           const percentage = width * (parseInt(value.Overallprogress) / 100)
           return (
-            <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{cursor: 'pointer'}}>
+            <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
               <foreignObject className="node" x={xPos + 20} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                 <body xmlns="http://www.w3.org/1999/xhtml">
                   <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                    {value.dashboardItems?.map((name, index) => {
-                      const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
-                      return (
-                        <>
-                          <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }}>{name.BFI.substring(0, 1)}</p>
-                          <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }}>{name.DFS.substring(0, 1)}</p>
-                        </>
-                      )
-                    })}
-                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }}>{value.objective}</p>
+                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '6px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '6px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
+                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
                   </div>
                 </body>
               </foreignObject>

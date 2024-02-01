@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
 import "../AddData/AddData.css"
 import { PlusCircleOutlined } from '@ant-design/icons';
-import CustomInput from '../../Components/Input/CustomInput';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import axios from 'axios';
 
 function AddData() {
+    const [messageApi, contextHolder] = message.useMessage();
     const [count, setCount] = useState(1)
     const [data, setData] = useState({})
     const [dashboardItems, setDashboardItems] = useState([])
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'This is a success message',
+        });
+    };
+    const error = (err) => {
+        messageApi.open({
+            type: 'error',
+            content: err,
+        });
+    };
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
@@ -25,15 +37,16 @@ function AddData() {
             dashboardItems: [...dashboardItems],
         };
 
-        axios.post('http://localhost:8080/post', combinedData).then((res) => console.log('success')).catch((err) => console.log(err))
+        axios.post('http://localhost:8080/post', combinedData).then((res) => success()).catch((err) => error(err))
     }
     return (
         <div className='addData'>
+            {contextHolder}
             <div className='addData-head'>
                 <h1>Add Data</h1>
                 <div className='addData-btn'>
-                    <Button type="primary" onClick={handleSubmit}>Submit</Button>&nbsp;&nbsp;&nbsp;
-                    <Button onClick={()=>window.location.pathname = `/`}>Cancel</Button>
+                    <Button type="primary" style={{ backgroundColor: 'rgba(0, 114, 188, 1)', fontFamily: 'DM sans' }} onClick={handleSubmit}>Submit</Button>&nbsp;&nbsp;&nbsp;
+                    <Button onClick={() => window.location.pathname = `/`}>Cancel</Button>
                 </div>
             </div>
 
@@ -67,7 +80,7 @@ function AddData() {
                     <div className='dashboard-body'>
                         {[...Array(count)].map((e, i) => (
                             <div key={i} className='dashboardItems'>
-                                <p>{`Sl.No: 1.${i+1}`}</p>
+                                <p>{`Sl.No: 1.${i + 1}`}</p>
                                 <div className='addform'>
                                     <label htmlFor='Key_Results'>Key Results</label>
                                     <textarea className='input' type={"text"} placeholder={"Enter Key Results"} rows="5" cols="33" name={"Key_Results"} onChange={(e) => handleDashItemsChange(e, i)} />
@@ -92,6 +105,10 @@ function AddData() {
                                 <div className='addform'>
                                     <label htmlFor='Status'>Status</label>
                                     <input className='input' type={"text"} placeholder={"Enter Status"} name={"Status"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                </div>
+                                <div className='addform'>
+                                    <label htmlFor='Timeline'>Timeline</label>
+                                    <input className='input' type={"text"} placeholder={"eg. 15-Nov-24"} name={"Timeline"} onChange={(e) => handleDashItemsChange(e, i)} />
                                 </div>
                                 <div className='addform'>
                                     <label htmlFor='progress'>progress</label>

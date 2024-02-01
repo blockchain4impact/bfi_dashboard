@@ -6,31 +6,31 @@ const DfsTimeline = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const fetchData = async () => {
-        await axios.get(`http://localhost:8080/`).then((res)=>setData(res.data))
+        await axios.get(`http://localhost:8080/`).then((res) => setData(res.data))
     }
     useEffect(() => {
         fetchData()
     }, []);
     const navigateToEdit = (id) => {
         navigate('/edit', { state: id })
-      }
+    }
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
     const startYear = (startDate) => {
         let year;
         console.log(startDate)
-        year = startDate.substring(7,11)
+        year = startDate.substring(7, 11)
         return year
     }
     const endYear = (endDate) => {
         let year;
-        year = endDate.substring(7,11)
+        year = endDate.substring(7, 11)
         return year
     }
     const findStartDate = (startDate) => {
         let xPos, month, year;
-        
-        month = startDate.substring(3,6)
+
+        month = startDate.substring(3, 6)
         year = startYear(startDate)
         console.log("month:", month, "year:", year)
         if (year === '23') {
@@ -62,7 +62,7 @@ const DfsTimeline = () => {
 
     const findEndingDate = (endDate) => {
         let yPos, month, year;
-        month = endDate.substring(3,6)
+        month = endDate.substring(3, 6)
         year = endYear(endDate)
         console.log(year)
         if (year === '23') {
@@ -88,7 +88,7 @@ const DfsTimeline = () => {
                 yPos = octdec
             }
         }
-        
+
         return yPos
     }
 
@@ -138,29 +138,25 @@ const DfsTimeline = () => {
                 const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
                 const percentage = width * (parseInt(value.Overallprogress) / 100)
                 return (
-                    <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{cursor: 'pointer'}}>
+                    <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
                         <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                             <body xmlns="http://www.w3.org/1999/xhtml">
                                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                    {value.names?.map((name, index) => {
-                                        const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
-                                        return (
-                                            <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }}>{name.substring(0,1)}</p>
-                                        )
-                                    })}
-                                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }}>{value.objective}</p>
+                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))],paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
+                                    <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
                                 </div>
                             </body>
                         </foreignObject>
                         <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
                             <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
-                            <rect x='0' y='0' width={percentage? percentage: '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
+                            <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
                             <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
                             <circle cx='25' cy='22' r="3" fill="#FFF" />
                         </svg>
-                        <svg x={endYear(value.startDate) === '23' ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
+                        <svg x={endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45} y={`100` * `${i + 1}` + 8}>
                             <filter id="shadow">
-                                <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+                                <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
                             </filter>
                             <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
                             <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">

@@ -111,12 +111,12 @@ function EditData() {
                         </div>
                     </div>
                     <div className="dashboard-form">
-                        <div className="dashboard-form-head">
+                        {/* <div className="dashboard-form-head">
                             <p className="add-btn" onClick={() => setCount(count + 1)}>
                                 Add
                                 <PlusCircleOutlined className="bellicon" />
                             </p>
-                        </div>
+                        </div> */}
                         <div className="dashboard-body">
                             {data.dashboardItems?.map((value, i) => (
                                 <div key={i} className="dashboardItems">

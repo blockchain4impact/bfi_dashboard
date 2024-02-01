@@ -4,9 +4,10 @@ import bfilogo from "../../Assets/images/bfilogo.png"
 import { SearchOutlined, BellOutlined, DownOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import user from "../../Assets/images/user.png"
 import downarrow from "../../Assets/images/downarrow.png"
-import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Navbar() {
+  const navigate = useNavigate()
   return (
     <div className="navbar">
       <div className="logo">
@@ -18,8 +19,8 @@ export default function Navbar() {
           <SearchOutlined className="searchicon" />
         </div>
         <div className="icons">
+          <PlusCircleOutlined className="bellicon" onClick={()=>navigate('/add')} style={{cursor: 'pointer'}}/>
           <BellOutlined className="bellicon" />
-          <NavLink to='/add'><PlusCircleOutlined className="bellicon" /></NavLink>
         </div>
         <div className="user">
           <img src={user} alt="user-logo" className="userimg" />
