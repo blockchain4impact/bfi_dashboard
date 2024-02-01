@@ -11,7 +11,23 @@ function EditData() {
     const [data, setData] = useState({})
     const [count, setCount] = useState(1)
     const [dataset, setDataSet] = useState({
-        Overallprogress: '',
+        overall_progress: '',
+        endDate: '',
+        objective: '',
+        startDate: '',
+        title: '',
+        dashboardItems: [{
+            BFI: '',
+            DFS: '',
+            Initiatives: '',
+            Key_Results: '',
+            Priority: '',
+            Status: '',
+            progress: ''
+        }]
+    })
+    const [updatedData, setUpdatedData] = useState({
+        overall_progress: '',
         endDate: '',
         objective: '',
         startDate: '',
@@ -27,6 +43,14 @@ function EditData() {
         }]
     })
     const [dashboardItems, setDashboardItems] = useState([])
+    const fetchData = async () => {
+        await axios.get(`http://localhost:8080/getpost/${id.state}`).then((res) =>
+            setData(res.data)
+        )
+    }
+    useEffect(() => {
+        fetchData()
+    }, []);
     const handleChange = (e) => {
         setDataSet({ ...dataset, [e.target.name]: e.target.value })
     }
@@ -37,106 +61,109 @@ function EditData() {
             return updatedData;
         });
     }
-    // const handleSubmit = () => {
-    //     const combinedData = {
-    //         [data.Overallprogress]: data.Overallprogress,
-    //         [data.objective]: data.objective,
-    //         [data.title]: data.title,
-    //         [data.startDate]: data.startDate,
-    //         [data.endDate]: data.endDate,
-    //         [data.dashboardItems.BFI]: data.dashboardItems.BFI,
-    //         [data.dashboardItems.DFS]: data.dashboardItems.BFI,
-    //         [data.dashboardItems.Initiatives]: data.dashboardItems.Initiatives,
-    //         [data.dashboardItems.Key_Results]: data.dashboardItems.Key_Results,
-    //         [data.dashboardItems.Priority]: data.dashboardItems.Priority,
-    //         [data.dashboardItems.Status]: data.dashboardItems.Status,
-    //         [data.dashboardItems.progress]: data.dashboardItems.progress,
-    //     };
+    const handleSubmit = () => {
+        setUpdatedData({
+            [updatedData.overall_progress]: 'data.Overallprogress',
+            [updatedData.objective]: dataset.objective ? dataset.objective : data.objective,
+            [updatedData.objective]: dataset.objective ? dataset.objective : data.objective,
+            [updatedData.title]: dataset.title ? dataset.title : data.title,
+            [updatedData.startDate]: dataset.startDate ? dataset.startDate : data.startDate,
+            [updatedData.endDate]: dataset.endDate ? dataset.endDate : data.endDate,
+            [updatedData.dashboardItems.BFI]: dataset.dashboardItems.BFI ? dataset.dashboardItems.BFI : data.dashboardItems.BFI,
+            [updatedData.dashboardItems.DFS]: dataset.dashboardItems.DFS ? dataset.dashboardItems.DFS : data.dashboardItems.DFS,
+            [updatedData.dashboardItems.Initiatives]: dataset.dashboardItems.Initiatives ? dataset.dashboardItems.Initiatives : data.dashboardItems.Initiatives,
+            [updatedData.dashboardItems.Key_Results]: dataset.dashboardItems.Key_Results ? dataset.dashboardItems.Key_Results : data.dashboardItems.Key_Results,
+            [updatedData.dashboardItems.Priority]: dataset.dashboardItems.Priority ? dataset.dashboardItems.Priority : data.dashboardItems.Priority,
+            [updatedData.dashboardItems.Status]: dataset.dashboardItems.Status ? dataset.dashboardItems.Status : data.dashboardItems.Status,
+            [updatedData.dashboardItems.progress]: dataset.dashboardItems.progress ? dataset.dashboardItems.progress : data.dashboardItems.progress,
+        })
+        // const combinedData = {
+        //     [dataset.Overallprogress]: dataset.Overallprogress ? dataset.Overallprogress : data.Overallprogress,
+        //     };
+        setTimeout(function () {
+            console.log(updatedData)
+        }, 2000)
 
-    //     axios.put(`http://localhost:8080/updatepost/${id.state}`, combinedData).then((res) => console.log('success')).catch((err) => console.log(err))
-    // }
-    const fetchData = async () => {
-        await axios.get(`http://localhost:8080/getpost/${id.state}`).then((res) =>
-            setData(res.data)
-        )
+        // axios.put(`http://localhost:8080/updatepost/${id.state}`, combinedData).then((res) => console.log('success')).catch((err) => console.log(err))
     }
-    useEffect(() => {
-        fetchData()
-    }, []);
-    console.log(data)
+
     return (
         <>
             <div className='addData'>
-                <h1>Edit Data</h1>
+                <div className='addData-head'>
+                    <h1>Edit Data</h1>
+                    <div className='addData-btn'>
+                        <Button type="primary" onClick={handleSubmit}>Update</Button>&nbsp;&nbsp;&nbsp;
+                        <Button onClick={()=>window.location.pathname = `/${data.title}`}>Cancel</Button>
+                    </div>
+                </div>
                 <div className='addData-body'>
-                    <div>
+                    <div className='form-data'>
                         <div className='addform'>
-                        </div>
-                        <div className='addform'>
-                            <label htmlFor='Title'>Title</label> &nbsp;
+                            <label htmlFor='Title'>Title</label>
                             <input className='input' type={"text"} placeholder={data.title} name={"Title"} onChange={handleChange} />
                         </div>
                         <div className='addform'>
-                            <label htmlFor='Objective'>Objective</label> &nbsp;
-                            <textarea className='input' type={"text"} placeholder={data.objective} rows="5" cols="33" name={"Objective"} onChange={handleChange} />
+                            <label htmlFor='Objective'>Objective</label>
+                            <textarea className='input' type={"text"} placeholder={data.objective} rows="5" cols="33" name={"objective"} onChange={handleChange} />
                         </div>
                         <div className='addform'>
-                            <label htmlFor='Start_Date'>Start Date</label> &nbsp;
-                            <input className='input' type={"text"} placeholder={data.startDate} name={"Start_Date"} onChange={handleChange} />
+                            <label htmlFor='Start_Date'>Start Date</label>
+                            <input className='input' type={"text"} placeholder={data.startDate} name={"startDate"} onChange={handleChange} />
                         </div>
                         <div className='addform'>
-                            <label htmlFor='End_Date'>End Date</label> &nbsp;
-                            <input className='input' type={"text"} placeholder={data.endDate} name={"End_Date"} onChange={handleChange} />
+                            <label htmlFor='End_Date'>End Date</label>
+                            <input className='input' type={"text"} placeholder={data.endDate} name={"endDate"} onChange={handleChange} />
                         </div>
                         <div className='addform'>
-                            <label htmlFor='Overall_progress'>Overall progress</label> &nbsp;
-                            <input className='input' type={"text"} placeholder={data.Overallprogress} name={"Overall_progress"} onChange={handleChange} />
+                            <label htmlFor='Overall_progress'>Overall progress</label>
+                            <input className='input' type={"text"} placeholder={data.Overallprogress} name={"overall_progress"} onChange={handleChange} />
                         </div>
                     </div>
                     <div className='dashboard-form'>
-                        {data.dashboardItems?.map((value, i) => (
-                            <div key={i} className='dashboardItems'>
-                                <p>{`1.${i + 1}`}</p>
-                                <div className='addform'>
-                                    <label htmlFor='Key_Results'>Key Results</label> &nbsp;
-                                    <textarea className='input' type={"text"} value={value.Key_Results} rows="5" cols="33" placeholder={"Enter Key Results"} name={"Key_Results"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
+                        <div className='dashboard-form-head'>
+                            <p style={{ visibility: 'hidden' }}>{`Sl.No: 1.${count}`}</p>
+                            <p className='add-btn' onClick={() => setCount(count + 1)}>Add<PlusCircleOutlined className="bellicon" /></p>
+                        </div>
+                        <div className='dashboard-body'>
+                            {data.dashboardItems?.map((value, i) => (
+                                <div key={i} className='dashboardItems'>
+                                    <p>{`Sl.No: 1.${i + 1}`}</p>
+                                    <div className='addform'>
+                                        <label htmlFor='Key_Results'>Key Results</label>
+                                        <textarea className='input' type={"text"} value={value.Key_Results} rows="5" cols="33" placeholder={"Enter Key Results"} name={"Key_Results"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
 
-                                <div className='addform'>
-                                    <label htmlFor='Initiatives'>Initiatives</label> &nbsp;
-                                    <textarea className='input' type={"text"} value={value.Initiatives} rows="5" cols="33" placeholder={"Enter Initiatives"} name={"Initiatives"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    <div className='addform'>
+                                        <label htmlFor='Initiatives'>Initiatives</label>
+                                        <textarea className='input' type={"text"} value={value.Initiatives} rows="5" cols="33" placeholder={"Enter Initiatives"} name={"Initiatives"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
+                                    <div className='addform'>
+                                        <label htmlFor='DFS'>DFS</label>
+                                        <input className='input' type={"text"} value={value.DFS} placeholder={"Enter DFS"} name={"DFS"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
+                                    <div className='addform'>
+                                        <label htmlFor='BFI'>BFI</label>
+                                        <input className='input' type={"text"} value={value.BFI} placeholder={"Enter BFI"} name={"BFI"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
+                                    <div className='addform'>
+                                        <label htmlFor='Priority'>Priority</label>
+                                        <input className='input' type={"text"} value={value.Priority} placeholder={"Enter Priority"} name={"Priority"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
+                                    <div className='addform'>
+                                        <label htmlFor='Status'>Status</label>
+                                        <input className='input' type={"text"} value={value.Status} placeholder={"Enter Status"} name={"Status"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
+                                    <div className='addform'>
+                                        <label htmlFor='progress'>progress</label>
+                                        <input className='input' type={"text"} value={value.progress} placeholder={"Enter progress"} name={"progress"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    </div>
                                 </div>
-                                <div className='addform'>
-                                    <label htmlFor='DFS'>DFS</label> &nbsp;
-                                    <input className='input' type={"text"} value={value.DFS} placeholder={"Enter DFS"} name={"DFS"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
-                                <div className='addform'>
-                                    <label htmlFor='BFI'>BFI</label> &nbsp;
-                                    <input className='input' type={"text"} value={value.BFI} placeholder={"Enter BFI"} name={"BFI"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
-                                <div className='addform'>
-                                    <label htmlFor='Priority'>Priority</label> &nbsp;
-                                    <input className='input' type={"text"} value={value.Priority} placeholder={"Enter Priority"} name={"Priority"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
-                                <div className='addform'>
-                                    <label htmlFor='Status'>Status</label> &nbsp;
-                                    <input className='input' type={"text"} value={value.Status} placeholder={"Enter Status"} name={"Status"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
-                                <div className='addform'>
-                                    <label htmlFor='progress'>progress</label> &nbsp;
-                                    <input className='input' type={"text"} value={value.progress} placeholder={"Enter progress"} name={"progress"} onChange={(e) => handleDashItemsChange(e, i)} />
-                                </div>
-                            </div>
-                        ))}
-                        <PlusCircleOutlined className="bellicon" onClick={() => setCount(count + 1)} />
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <Button type="primary" 
-                // onClick={handleSubmit}
-                >Submit</Button>&nbsp;&nbsp;&nbsp;
-                <Button onClick={() => window.location.pathname = `/${data.title}`}>Cancel</Button>
             </div>
-
         </>
     )
 }
