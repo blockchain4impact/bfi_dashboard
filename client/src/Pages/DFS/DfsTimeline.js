@@ -16,20 +16,23 @@ const DfsTimeline = () => {
       }
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
-    const startYear = (index) => {
+    const startYear = (startDate) => {
         let year;
-        year = data[index].startDate.substring(7,11)
+        console.log(startDate)
+        year = startDate.substring(7,11)
         return year
     }
-    const endYear = (index) => {
+    const endYear = (endDate) => {
         let year;
-        year = data[index].endDate.substring(7,11)
+        year = endDate.substring(7,11)
         return year
     }
-    const findStartDate = (index) => {
+    const findStartDate = (startDate) => {
         let xPos, month, year;
-        month = data[index].startDate.substring(3,6)
-        year = startYear(index)
+        
+        month = startDate.substring(3,6)
+        year = startYear(startDate)
+        console.log("month:", month, "year:", year)
         if (year === '23') {
             if (month === 'Oct') {
                 xPos = oct
@@ -57,10 +60,10 @@ const DfsTimeline = () => {
 
     }
 
-    const findEndingDate = (index) => {
+    const findEndingDate = (endDate) => {
         let yPos, month, year;
-        month = data[index].endDate.substring(3,6)
-        year = endYear(index)
+        month = endDate.substring(3,6)
+        year = endYear(endDate)
         console.log(year)
         if (year === '23') {
             if (month === 'Oct') {
@@ -85,6 +88,7 @@ const DfsTimeline = () => {
                 yPos = octdec
             }
         }
+        
         return yPos
     }
 
@@ -129,13 +133,13 @@ const DfsTimeline = () => {
 
             </g>
             {data.filter((val) => val.title === 'dfs').map((value, i) => {
-                const xPos = findStartDate(i)
-                const yPos = findEndingDate(i)
-                const width = startYear(i) === '23' && endYear(i) === '24' ? yPos - xPos + 25 : yPos - xPos
+                const xPos = findStartDate(value.startDate)
+                const yPos = findEndingDate(value.endDate)
+                const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
                 const percentage = width * (parseInt(value.Overallprogress) / 100)
                 return (
                     <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{cursor: 'pointer'}}>
-                        <foreignObject className="node" x={startYear(i) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+                        <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                             <body xmlns="http://www.w3.org/1999/xhtml">
                                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
                                     {value.names?.map((name, index) => {
@@ -148,13 +152,13 @@ const DfsTimeline = () => {
                                 </div>
                             </body>
                         </foreignObject>
-                        <svg x={startYear(i) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+                        <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
                             <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
                             <rect x='0' y='0' width={percentage? percentage: '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
                             <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
                             <circle cx='25' cy='22' r="3" fill="#FFF" />
                         </svg>
-                        <svg x={endYear(i) === '23' ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
+                        <svg x={endYear(value.startDate) === '23' ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
                             <filter id="shadow">
                                 <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
                             </filter>

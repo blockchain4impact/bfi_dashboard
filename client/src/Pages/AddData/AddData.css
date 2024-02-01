@@ -28,6 +28,7 @@ select {
   padding: 3vh;
   background-color: #F3FAFF;
   border-radius: 3vh;
+  margin-bottom: 5vh;
 }
 
 .addData-head {
@@ -51,7 +52,7 @@ select {
 
 .addform label {
   font-size: small;
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .addform input::placeholder {
@@ -65,7 +66,7 @@ select {
 
 .dashboard-form-head {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   margin-bottom: 2vh;
 }
 
@@ -76,9 +77,10 @@ select {
   padding-block: 1vh;
   border-radius: 1vh;
   cursor: pointer;
-  justify-content: space-around;
-  width: 25%;
   font-size: small;
+  justify-content: space-between;
+  padding-inline: 1vh;
+
 }
 
 .dashboard-body {
