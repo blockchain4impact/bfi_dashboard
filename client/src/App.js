@@ -7,11 +7,13 @@ import Org from './Pages/ORG/Org';
 import Bri from './Pages/BRI/Bri';
 import Biome from './Pages/BIOME/Biome';
 import Dfs from './Pages/DFS/Dfs';
+import AddData from './Pages/AddData/AddData';
+import EditData from './Pages/EditData/EditData';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        <Navbar />
         <div className='home-container'>
           <Sidebar />
           <Routes>
@@ -20,6 +22,8 @@ function App() {
             <Route path='/bri' Component={Bri} />
             <Route path='/biome' Component={Biome} />
             <Route path='/dfs' Component={Dfs} />
+            <Route path='/add' Component={AddData} />
+            <Route path='/edit' Component={EditData} />
           </Routes>
         </div>
       </Router>

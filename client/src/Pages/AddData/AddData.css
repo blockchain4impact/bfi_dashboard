@@ -1,0 +1,91 @@
+.addData {
+  width: 100%;
+}
+
+.addData-body {
+  display: flex;
+  width: 100%;
+  gap: 5vh;
+}
+
+select {
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 2vh;
+  padding-inline: 2vh;
+  padding-block: 1vh;
+}
+
+.inputpart {
+  display: flex;
+}
+
+.dashboard-form {
+  width: fit-content;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 3vh;
+  background-color: #F3FAFF;
+  border-radius: 3vh;
+}
+
+.addData-head {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addData-btn {
+  margin-right: 2vh;
+}
+
+.form-data {
+  background-color: #F3FAFF;
+  padding: 3vh;
+  border-radius: 3vh;
+  height: max-content;
+  width: 30%;
+}
+
+.addform label {
+  font-size: small;
+  font-weight: 500;
+}
+
+.addform input::placeholder {
+  font-size: 12px;
+  font-family: 'DM Sans';
+}
+
+.addform textarea::placeholder {
+  font-family: 'DM Sans';
+}
+
+.dashboard-form-head {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+
+.add-btn {
+  display: flex;
+  gap: 1vh;
+  border: 1px solid gray;
+  padding-block: 1vh;
+  border-radius: 1vh;
+  cursor: pointer;
+  justify-content: space-around;
+  width: 25%;
+  font-size: small;
+}
+
+.dashboard-body {
+  display: flex;
+  gap: 6vh;
+}
+
+.dashboardItems{
+  width: 100%;
+}

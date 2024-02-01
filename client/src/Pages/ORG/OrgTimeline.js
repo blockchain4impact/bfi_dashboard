@@ -1,6 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 
 const OrgTimeline = () => {
+    // const [data, setData] = useState([])
+    // const fetchData = async () => {
+    //     await axios.get(`http://localhost:8080/`).then((res)=>setData(res.data))
+    // }
+    // useEffect(() => {
+    //     fetchData()
+    // }, []);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
     const data = [{

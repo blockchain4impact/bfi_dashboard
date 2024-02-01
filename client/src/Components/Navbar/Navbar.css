@@ -34,7 +34,6 @@
 }
 
 .bellicon{
-    padding-inline: 3vh;
     font-size: larger;
     color: #768396;
 }
@@ -60,6 +59,13 @@
     width: 45%;
     float: left;
     padding: 2vh;
+}
+
+.icons{
+    padding-inline: 3vh;
+    display: flex;
+    justify-content: space-between;
+    gap: 3vh;
 }
 
 /* 720p screens */
