@@ -3,7 +3,6 @@ import Cards from "../../Components/Cards/Cards";
 import "./Home.css";
 import Overall from "../../Components/Overall/Overall";
 import axios from "axios";
-import { fetchData } from '../../API/Api';
 
 export const cardData = [
   {
@@ -357,9 +356,17 @@ export const cardData = [
 ];
 
 export default function Home() {
+  const [data, setData] = useState([])
+  const fetchData = async () => {
+    await axios.get(`http://localhost:8080/`).then((res) => setData(res.data))
+  }
+  useEffect(() => {
+    fetchData()
+  }, []);
+  console.log(data)
   return (
     <div className="home-main">
-      <h1 style={{textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh'}}>Main Dashboard</h1>
+      <h1 style={{ textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh' }}>Main Dashboard</h1>
       <div className="home">
         {cardData.map((card) => (
           <Cards key={card.id} data={card} />

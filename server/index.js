@@ -10,49 +10,53 @@ const port = process.env.REACT_APP_PORT || 5000
 app.use(express.json());
 app.use(cors());
 
-const PostSchema = require("./models/Posts")
+const DfsSchema = require("./models/dfsSchema")
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);
 
 
 app.get("/", async(req,res) => {
-    const data = await PostSchema.find({})
+    const data = await DfsSchema.find({})
     res.send(data)
 })
 
-app.post("/getblog", async(req,res) => {
-    const id = req.body.id
-    const data = await PostSchema.findOne({_id: id})
+app.post("/post", async(req,res) => {
+    const data = req.body
+    console.log(data)
+    const post = new DfsSchema({title: req.body.Title, objective: req.body.Objective, startDate: req.body.Start_Date, endDate: req.body.End_Date, Overallprogress: req.body.Overall_progress, dashboardItems: req.body.dashboardItems})
+    console.log(post)
     try{
-        if(data){
-            res.send(data)
+        await post.save();
+        if(post.save()){
+            res.send({Posted: true})
         }else{
-            res.send("no post found")
+            res.send('not saved')
         }
-    }
-    catch(err){
+    }catch(err){
         res.send(err)
     }
     
 })
 
-app.post("/post", async(req,res) => {
-    const t = req.body.title
-    const s = req.body.subtitle
-    const b = req.body.body
-    const an = req.body.authorName
-    const ap = req.body.authorProfile
-    const d = req.body.PostedDate
-    const cp = req.body.coverPic
-    const post = new PostSchema({authorName: an, date: d, title:t, body:b, subtitle:s, authorProfile: ap, coverPic: cp})
+app.put("/updatepost/:id", async(req,res) => {
+    const id = req.params
     try{
-        await post.save();
-        if(post.save()){
-            res.send({Posted: true})
-        }cp
+        await DfsSchema.updateOne({_id: id.id}, {
+            $set: {
+                endDate: req.body.End_Date, 
+            }
+        })
+        return res.json({ status: 'ok', data: 'updated'})
     }catch(err){
         res.send(err)
     }
+    
+})
+
+app.get("/getpost/:id", async(req,res) => {
+    const id = req.params
+    const data = await DfsSchema.findOne({_id: id.id})
+    res.send(data)
 })
 
 app.delete("/delPost", async(req,res) => {

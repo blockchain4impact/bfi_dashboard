@@ -1,74 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from '../../API/Api';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const DfsTimeline = () => {
-    const [data1, setData] = useState([])
-    let startYear, endYear
+    const navigate = useNavigate()
+    const [data, setData] = useState([])
+    const fetchData = async () => {
+        await axios.get(`http://localhost:8080/`).then((res)=>setData(res.data))
+    }
     useEffect(() => {
         fetchData()
-            .then(data => {
-                setData(data)
-                console.log(data)
-            })
-            .catch(error => {
-                console.error('Error in component:', error);
-            });
     }, []);
-
+    const navigateToEdit = (id) => {
+        navigate('/edit', { state: id })
+      }
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
-    const data = [{
-        title: 'Hire core IDFS team',
-        names: ['N', 'R'],
-        startDate: '31 Oct 2023',
-        endDate: '15 Nov 2023',
-        progress: '35%',
-        startYear: 2023,
-        endYear: 2023
-    },
-    {
-        title: 'Launch HCD Fellowship',
-        names: ['N'],
-        startDate: '31 Oct 2023',
-        endDate: '25 Feb 2024',
-        progress: '0%',
-        startYear: 2023,
-        endYear: 2024
-    },
-    {
-        title: 'Launch IHCR Fund',
-        names: ['R', 'N'],
-        startDate: '31 Oct 2023',
-        endDate: '31 Dec 2023',
-        progress: '30%',
-        startYear: 2023,
-        endYear: 2023
-    },
-    {
-        title: 'Regular Program Monitoring + Team Governance',
-        names: ['R', 'N'],
-        startDate: '31 Oct 2023',
-        endDate: '31 Jan 2024',
-        progress: '45%',
-        startYear: 2023,
-        endYear: 2024
-    }
-    ]
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
-
+    const startYear = (index) => {
+        let year;
+        year = data[index].startDate.substring(7,11)
+        return year
+    }
+    const endYear = (index) => {
+        let year;
+        year = data[index].endDate.substring(7,11)
+        return year
+    }
     const findStartDate = (index) => {
-        let xPos, month, year, noArray = [];
-        for (let i = 0; i < data1.length; i++) {
-            if (parseInt(data1[i].SlNo) === index) {
-                noArray.push(data1[i].SlNo)
-            }
-            if(data1[i].SlNo === noArray[2]){
-                month = data1[i].Timeline.substring(3, 6)
-                year = data1[i].Timeline.substring(7, 6)
-            }
-        }
-        // month = data1.filter((val, i) => parseInt(val.SlNo) === noArray[2]).map((value, index) => value.Timeline.substring(3, 6))
-        // year = data1.filter((val, i) => parseInt(val.SlNo) === noArray[2]).map((value, index) => value.Timeline.substring(7, 11))
-
-        startYear = year
+        let xPos, month, year;
+        month = data[index].startDate.substring(3,6)
+        year = startYear(index)
         if (year === '23') {
             if (month === 'Oct') {
                 xPos = oct
@@ -92,22 +53,15 @@ const DfsTimeline = () => {
                 xPos = octdec
             }
         }
-        console.log(xPos)
         return xPos
 
     }
 
     const findEndingDate = (index) => {
-        let yPos, month, year, noArray=[];
-        for (let i = 0; i < data1.length; i++) {
-            if (parseInt(data1[i].SlNo) === index) {
-                noArray.push(data1[i].SlNo)
-            }
-        }
-        const length = noArray.length
-        month = data1.filter((val, i) => parseInt(val.SlNo) === noArray[length-1]).map((value, index) => value.Timeline.substring(3, 6))
-        year = data1.filter((val, i) => parseInt(val.SlNo) === noArray[length-1]).map((value, index) => value.Timeline.substring(3, 6))
-        endYear = year
+        let yPos, month, year;
+        month = data[index].endDate.substring(3,6)
+        year = endYear(index)
+        console.log(year)
         if (year === '23') {
             if (month === 'Oct') {
                 yPos = oct
@@ -174,39 +128,39 @@ const DfsTimeline = () => {
                 <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
             </g>
-            {data.map((value, i) => {
-                const xPos = findStartDate(i);
-                const yPos = findEndingDate(i);
-                const width = value.startYear === 2023 && value.endYear === 2024 ? yPos - xPos + 25 : yPos - xPos
-                const percentage = width * (parseInt(value.progress) / 100)
+            {data.filter((val) => val.title === 'dfs').map((value, i) => {
+                const xPos = findStartDate(i)
+                const yPos = findEndingDate(i)
+                const width = startYear(i) === '23' && endYear(i) === '24' ? yPos - xPos + 25 : yPos - xPos
+                const percentage = width * (parseInt(value.Overallprogress) / 100)
                 return (
-                    <g width={'50vh'}>
-                        <foreignObject className="node" x={value.startYear === 2023 ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+                    <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }}>
+                        <foreignObject className="node" x={startYear(i) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                             <body xmlns="http://www.w3.org/1999/xhtml">
                                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
                                     {value.names?.map((name, index) => {
                                         const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
                                         return (
-                                            <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }} >{name}</p>
+                                            <p style={{ backgroundColor: colour, paddingInline: '5px', borderRadius: '5vh', height: '21px', fontWeight: '700', color: '#505050' }}>{name.substring(0,1)}</p>
                                         )
                                     })}
-                                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }} onClick={() => findStartDate(i)}>{value.title}</p>
+                                    <p style={{ textAlign: 'left', fontWeight: '500', color: '#768396' }}>{value.objective}</p>
                                 </div>
                             </body>
                         </foreignObject>
-                        <svg x={value.startYear === 2023 ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+                        <svg x={startYear(i) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
                             <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
                             <rect x='0' y='0' width={percentage? percentage: '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
                             <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
                             <circle cx='25' cy='22' r="3" fill="#FFF" />
                         </svg>
-                        <svg x={value.endYear === 2023 ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
+                        <svg x={endYear(i) === '23' ? yPos + 15 : yPos + 35} y={`100` * `${i + 1}` + 8}>
                             <filter id="shadow">
                                 <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
                             </filter>
                             <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
                             <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">
-                                {value.progress}
+                                {value.Overallprogress}
                             </text>
                         </svg>
                     </g>

@@ -1,15 +1,11 @@
 const mongoose = require("mongoose")
 
-const PostSchema = new mongoose.Schema({
+const DfsSchema = new mongoose.Schema({
+    title:{
+        type: String,
+        required: true
+    },
     objective:{
-        type: String,
-        required: true
-    },
-    bfi:{
-        type: String,
-        required: true
-    },
-    dfs: {
         type: String,
         required: true
     },
@@ -25,15 +21,15 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
+    dashboardItems: {
+        type: Array,
         required: true
     },
-    priority: {
-        type: String,
-        required: true
-    }
+    // names: {
+    //     type: Array,
+    //     required: true
+    // },
 })
 
-const Post = mongoose.model("dfs", PostSchema);
-module.exports = Post
+const dfsSchema = mongoose.model("dfs", DfsSchema);
+module.exports = dfsSchema
