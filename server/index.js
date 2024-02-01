@@ -63,7 +63,7 @@ app.put("/updatepost/:id", async (req, res) => {
         progress: req.body.progress
       }]
     });
-    console.log("updatedData: ", updated);
+    // console.log("updatedData: ", updated);
     return res.json({ status: "ok", data: "updated" });
   } catch (err) {
     res.send(err);

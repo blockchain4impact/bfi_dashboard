@@ -109,11 +109,11 @@ function EditData() {
                 : data.dashboardItems?.progress,
         });
         console.log(id);
-        console.log(updatedData);
-        axios
-            .put(`http://localhost:8080/updatepost/${id.state}`, dataset)
-            .then((res) => console.log("success"))
-            .catch((err) => console.log(err));
+        console.log(dataset);
+        // axios
+        //     .put(`http://localhost:8080/updatepost/${id.state}`, dataset)
+        //     .then((res) => console.log("success"))
+        //     .catch((err) => console.log(err));
     };
 
     return (
