@@ -206,7 +206,7 @@ const BriTimeline = () => {
           // const names = namesArray(value.dashboardItems)
           const percentage = width * (parseInt(value.Overallprogress) / 100)
           return (
-            <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }}>
+            <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{cursor: 'pointer'}}>
               <foreignObject className="node" x={xPos + 20} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                 <body xmlns="http://www.w3.org/1999/xhtml">
                   <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
