@@ -61,7 +61,6 @@ const DfsTimeline = () => {
         let yPos, month, year;
         month = data[index].endDate.substring(3,6)
         year = endYear(index)
-        console.log(year)
         if (year === '23') {
             if (month === 'Oct') {
                 yPos = oct
