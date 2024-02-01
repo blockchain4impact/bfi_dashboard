@@ -10,6 +10,7 @@ export default function Cards(props) {
   if (!props.data || !props.data.items) {
     return <div>Loading...</div>;
   }
+  console.log(props.data)
 
   return (
     <div className="cards">

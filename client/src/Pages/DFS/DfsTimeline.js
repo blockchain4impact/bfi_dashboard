@@ -56,7 +56,6 @@ const DfsTimeline = () => {
                 xPos = octdec
             }
         }
-        console.log(xPos)
         return xPos
 
     }
