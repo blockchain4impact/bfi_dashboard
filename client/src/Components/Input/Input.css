@@ -1,0 +1,16 @@
+.input{
+    padding-block: 1vh;
+    padding-inline: 2vh;
+    border-radius: 2vh;
+    border: 1px solid lightgray;
+}
+
+.addform{
+    margin-block: 1vh;
+    padding-block: 1vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 1vh
+}

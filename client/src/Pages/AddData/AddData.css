@@ -1,0 +1,28 @@
+.addData{
+    width: 100%;
+}
+
+.addData-body{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5vh;
+}
+
+select {
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 2vh;
+    padding-inline: 2vh;
+    padding-block: 1vh;
+  }
+
+  .inputpart{
+    display: flex;
+  }
+  
+.dashboard-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}

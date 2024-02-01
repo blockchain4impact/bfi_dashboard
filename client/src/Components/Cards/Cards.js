@@ -10,14 +10,15 @@ export default function Cards(props) {
   if (!props.data || !props.data.items) {
     return <div>Loading...</div>;
   }
+  console.log(props.data)
 
   return (
     <div className="cards">
       <div className="card-head">
         <h2>{props.data.title}</h2>
       </div>
-      <div className={props.data.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
-        {props.data.title !== 'BIOME' ?
+      <div className={props.data.title !== 'biome' ? "card-container" : "card-container-biome"}>
+        {props.data.title !== 'biome' ?
           <>
             {props.data?.items.map((value, index) => (
               <div className="card-body">
@@ -36,7 +37,6 @@ export default function Cards(props) {
                     <p className="card-style status" style={{ color: value.percentage === '100%' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.percentage === '100%' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
                       {value.percentage === '100%' ? 'Completed' : 'Ongoing'}
                     </p>
-                    {/* <p className="card-style status">High</p> */}
                   </div>
                 </div>
               </div>
