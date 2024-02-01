@@ -46,13 +46,24 @@ app.post("/post", async (req, res) => {
 app.put("/updatepost/:id", async (req, res) => {
   const id = req.params;
   console.log(id);
-  console.log(req.body.title);
+  console.log(req.body);
   try {
     let updated = await DfsSchema.findByIdAndUpdate(id.id, {
       title: req.body.title,
+      objective: req.body.objective,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      Overallprogress: req.body.Overallprogress,
+      dashboardItems: [{
+        BFI: req.body.BFI,
+        DFS: req.body.DFS,
+        Initiatives: req.body.Initiatives,
+        Priority: req.body.Priority,
+        Status: req.body.Status,
+        progress: req.body.progress
+      }]
     });
-    console.log(updated
-        );
+    console.log("updatedData: ", updated);
     return res.json({ status: "ok", data: "updated" });
   } catch (err) {
     res.send(err);
