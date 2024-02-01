@@ -363,7 +363,6 @@ export default function Home() {
   useEffect(() => {
     fetchData()
   }, []);
-  console.log(data)
   return (
     <div className="home-main">
       <h1 style={{ textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh' }}>Main Dashboard</h1>

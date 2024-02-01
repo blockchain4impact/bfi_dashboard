@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../AddData/AddData.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import CustomInput from "../../Components/Input/CustomInput";
 import { Button } from "antd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -10,43 +9,6 @@ function EditData() {
     const id = useLocation();
     const [data, setData] = useState({});
     const [count, setCount] = useState(1);
-    const [dataset, setDataSet] = useState({
-        overall_progress: "",
-        endDate: "",
-        objective: "",
-        startDate: "",
-        title: "",
-        dashboardItems: [
-            {
-                BFI: "",
-                DFS: "",
-                Initiatives: "",
-                Key_Results: "",
-                Priority: "",
-                Status: "",
-                progress: "",
-            },
-        ],
-    });
-    const [updatedData, setUpdatedData] = useState({
-        overall_progress: "",
-        endDate: "",
-        objective: "",
-        startDate: "",
-        title: "",
-        dashboardItems: [
-            {
-                BFI: "",
-                DFS: "",
-                Initiatives: "",
-                Key_Results: "",
-                Priority: "",
-                Status: "",
-                progress: "",
-            },
-        ],
-    });
-    const [dashboardItems, setDashboardItems] = useState([]);
     const fetchData = async () => {
         await axios
             .get(`http://localhost:8080/getpost/${id.state}`)
@@ -56,64 +18,26 @@ function EditData() {
         fetchData();
     }, []);
     const handleChange = (e) => {
-        setDataSet({ ...dataset, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value });
     };
     const handleDashItemsChange = (e, index) => {
-        setDashboardItems((prevData) => {
-            const updatedData = [...prevData];
-            updatedData[index] = {
-                ...updatedData[index],
+        setData(prevData => {
+            const updatedDashboardItems = [...prevData.dashboardItems];
+            updatedDashboardItems[index] = {
+                ...updatedDashboardItems[index],
                 [e.target.name]: e.target.value,
             };
-            return updatedData;
+            return {
+                ...prevData,
+                dashboardItems: updatedDashboardItems
+            };
         });
     };
     const handleSubmit = () => {
-        console.log("dataset",dataset);
-        setUpdatedData({
-            [updatedData.overall_progress]: dataset.overall_progress
-                ? dataset.overall_progress
-                : data.Overallprogress,
-            [updatedData.objective]: dataset.objective
-                ? dataset.objective
-                : data.objective,
-            [updatedData.title]: dataset.title
-                ? dataset.title
-                : data.title,
-            [updatedData.startDate]: dataset.startDate
-                ? dataset.startDate
-                : data.startDate,
-            [updatedData.endDate]: dataset.endDate ? dataset.endDate : data.endDate,
-            [updatedData.dashboardItems?.BFI]: dataset.dashboardItems?.BFI
-                ? dataset.dashboardItems?.BFI
-                : data.dashboardItems?.BFI,
-            [updatedData.dashboardItems?.DFS]: dataset.dashboardItems?.DFS
-                ? dataset.dashboardItems?.DFS
-                : data.dashboardItems?.DFS,
-            [updatedData.dashboardItems?.Initiatives]: dataset?.dashboardItems
-                ?.Initiatives
-                ? dataset.dashboardItems?.Initiatives
-                : data.dashboardItems?.Initiatives,
-            [updatedData.dashboardItems?.Key_Results]: dataset.dashboardItems
-                ?.Key_Results
-                ? dataset.dashboardItems?.Key_Results
-                : data.dashboardItems?.Key_Results,
-            [updatedData.dashboardItems?.Priority]: dataset.dashboardItems?.Priority
-                ? dataset.dashboardItems?.Priority
-                : data.dashboardItems?.Priority,
-            [updatedData.dashboardItems?.Status]: dataset.dashboardItems?.Status
-                ? dataset.dashboardItems?.Status
-                : data.dashboardItems?.Status,
-            [updatedData.dashboardItems?.progress]: dataset.dashboardItems?.progress
-                ? dataset.dashboardItems?.progress
-                : data.dashboardItems?.progress,
-        });
-        console.log(id);
-        console.log(dataset);
-        // axios
-        //     .put(`http://localhost:8080/updatepost/${id.state}`, dataset)
-        //     .then((res) => console.log("success"))
-        //     .catch((err) => console.log(err));
+        axios
+            .put(`http://localhost:8080/updatepost/${id.state}`, data)
+            .then((res) => console.log("success", res))
+            .catch((err) => console.log(err));
     };
 
     return (
@@ -126,9 +50,7 @@ function EditData() {
                             Update
                         </Button>
                         &nbsp;&nbsp;&nbsp;
-                        <Button
-                            onClick={() => (window.location.pathname = `/${data.title}`)}
-                        >
+                        <Button onClick={() => (window.location.pathname = `/${data.title}`)}>
                             Cancel
                         </Button>
                     </div>
@@ -140,7 +62,7 @@ function EditData() {
                             <input
                                 className="input"
                                 type={"text"}
-                                placeholder={data.title}
+                                value={data.title}
                                 name={"title"}
                                 onChange={handleChange}
                             />
@@ -150,7 +72,7 @@ function EditData() {
                             <textarea
                                 className="input"
                                 type={"text"}
-                                placeholder={data.objective}
+                                value={data.objective}
                                 rows="5"
                                 cols="33"
                                 name={"objective"}
@@ -162,7 +84,7 @@ function EditData() {
                             <input
                                 className="input"
                                 type={"text"}
-                                placeholder={data.startDate}
+                                value={data.startDate}
                                 name={"startDate"}
                                 onChange={handleChange}
                             />
@@ -172,7 +94,7 @@ function EditData() {
                             <input
                                 className="input"
                                 type={"text"}
-                                placeholder={data.endDate}
+                                value={data.endDate}
                                 name={"endDate"}
                                 onChange={handleChange}
                             />
@@ -182,15 +104,14 @@ function EditData() {
                             <input
                                 className="input"
                                 type={"text"}
-                                placeholder={data.Overallprogress}
-                                name={"overall_progress"}
+                                value={data.Overallprogress}
+                                name={"Overallprogress"}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
                     <div className="dashboard-form">
                         <div className="dashboard-form-head">
-                            <p style={{ visibility: "hidden" }}>{`Sl.No: 1.${count}`}</p>
                             <p className="add-btn" onClick={() => setCount(count + 1)}>
                                 Add
                                 <PlusCircleOutlined className="bellicon" />
@@ -208,7 +129,6 @@ function EditData() {
                                             value={value.Key_Results}
                                             rows="5"
                                             cols="33"
-                                            placeholder={"Enter Key Results"}
                                             name={"Key_Results"}
                                             onChange={(e) => handleDashItemsChange(e, i)}
                                         />

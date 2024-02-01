@@ -20,8 +20,6 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/post", async (req, res) => {
-  const data = req.body;
-  //   console.log(data);
   const post = new DfsSchema({
     title: req.body.Title,
     objective: req.body.Objective,
@@ -30,7 +28,6 @@ app.post("/post", async (req, res) => {
     Overallprogress: req.body.Overall_progress,
     dashboardItems: req.body.dashboardItems,
   });
-  console.log(post);
   try {
     await post.save();
     if (post.save()) {
@@ -45,8 +42,6 @@ app.post("/post", async (req, res) => {
 
 app.put("/updatepost/:id", async (req, res) => {
   const id = req.params;
-  console.log(id);
-  console.log(req.body);
   try {
     let updated = await DfsSchema.findByIdAndUpdate(id.id, {
       title: req.body.title,
@@ -63,7 +58,6 @@ app.put("/updatepost/:id", async (req, res) => {
         progress: req.body.progress
       }]
     });
-    // console.log("updatedData: ", updated);
     return res.json({ status: "ok", data: "updated" });
   } catch (err) {
     res.send(err);

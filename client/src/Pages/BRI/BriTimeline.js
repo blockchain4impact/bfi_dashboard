@@ -13,12 +13,6 @@ const BriTimeline = () => {
     fetchData()
 
   }, []);
-  console.log(data)
-  // const namesArray = (values) => {
-  //   let names = []
-  //   values
-  //   return names;
-  // }
 
   const oct = 50, nov = 150, dec = 250,
     ttFourQ1 = 375, ttFourQ2 = 500,
@@ -217,7 +211,6 @@ const BriTimeline = () => {
                 <body xmlns="http://www.w3.org/1999/xhtml">
                   <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
                     {value.dashboardItems?.map((name, index) => {
-                      console.log(name)
                       const colour = tagColors[Math.floor((Math.random() * tagColors.length))];
                       return (
                         <>
