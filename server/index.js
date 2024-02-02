@@ -70,7 +70,7 @@ app.get("/getpost/:id", async (req, res) => {
 
 app.delete("/delPost/:id", async (req, res) => {
   const id = req.params;
-  const delPost = await DfsSchema.deleteOne({ _id: id });
+  const delPost = await DfsSchema.deleteOne({ _id: id.id });
   try {
     if (delPost) {
       res.send("post deleted");
