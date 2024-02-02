@@ -108,7 +108,7 @@ function AddData() {
                 <h1>Add Data</h1>
                 <div className='addData-btn'>
                     <Button type="primary" style={{ backgroundColor: 'rgba(0, 114, 188, 1)', fontFamily: 'DM sans' }} onClick={handleSubmit}>Submit</Button>&nbsp;&nbsp;&nbsp;
-                    <Button onClick={() => window.location.pathname = `/`}>Cancel</Button>
+                    <Button onClick={() => window.location.pathname = `/`} className="cancel-btn">Cancel</Button>
                 </div>
             </div>
 

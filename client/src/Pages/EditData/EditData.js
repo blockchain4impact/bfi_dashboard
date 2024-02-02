@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../AddData/AddData.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Select } from "antd";
+import { Button, Select, Modal } from "antd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
@@ -9,6 +9,17 @@ function EditData() {
     const id = useLocation();
     const [data, setData] = useState({});
     const [count, setCount] = useState(1);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        handleDelete()
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     const fetchData = async () => {
         await axios
             .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
@@ -66,25 +77,45 @@ function EditData() {
     const handleSubmit = () => {
         console.log(data, id)
         axios.put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
-                headers: {
-                    scheme: 'https',
-                }
-            })
+            headers: {
+                scheme: 'https',
+            }
+        })
             .then((res) => console.log("success", res))
             .catch((err) => console.log(err));
     };
 
+    const handleDelete = () => {
+        console.log(id.state)
+        axios.delete(`https://bfi-server.vercel.app/delPost/${id.state}`, {
+            headers: {
+                scheme: 'https',
+            }
+        })
+            .then((res) => console.log("success", res))
+            .catch((err) => console.log(err));
+    }
+
     return (
         <>
             <div className="addData">
+                <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
                 <div className="addData-head">
                     <h1>Edit Data</h1>
                     <div className="addData-btn">
-                        <Button type="primary" onClick={handleSubmit}>
+                        <Button type="primary" onClick={handleSubmit} style={{ backgroundColor: 'rgb(0, 114, 188)' }}>
                             Update
                         </Button>
                         &nbsp;&nbsp;&nbsp;
-                        <Button onClick={() => (window.location.pathname = `/${data.title}`)}>
+                        <Button type="primary" onClick={showModal} danger>
+                            Delete
+                        </Button>
+                        &nbsp;&nbsp;&nbsp;
+                        <Button onClick={() => (window.location.pathname = `/${data.title}`)} className="cancel-btn">
                             Cancel
                         </Button>
                     </div>

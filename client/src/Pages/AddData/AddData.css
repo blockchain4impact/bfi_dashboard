@@ -151,3 +151,9 @@ select {
 .dbt-ant-input{
   width: 103%;
 }
+
+.cancel-btn{
+  background-color: #F3F7FA;
+  border: 1px solid #033C62;
+  color: #033C62;
+}

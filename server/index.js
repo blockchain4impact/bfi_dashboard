@@ -51,7 +51,7 @@ app.put("/updatepost/:id", async (req, res) => {
       Overallprogress: req.body.Overallprogress,
       dashboardItems: req.body.dashboardItems,
     });
-    return res.json({ status: "ok", data: updated });
+    return res.json({ status: "ok", data: updated.dashboardItems });
   } catch (err) {
     res.send(err);
   }
@@ -63,9 +63,9 @@ app.get("/getpost/:id", async (req, res) => {
   res.send(data);
 });
 
-app.delete("/delPost", async (req, res) => {
-  const id = req.body.id;
-  const delPost = await PostSchema.deleteOne({ _id: id });
+app.delete("/delPost/:id", async (req, res) => {
+  const id = req.params;
+  const delPost = await DfsSchema.deleteOne({ _id: id });
   try {
     if (delPost) {
       res.send("post deleted");
