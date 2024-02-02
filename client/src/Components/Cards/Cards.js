@@ -10,15 +10,15 @@ export default function Cards(props) {
   if (!props.data || !props.data.items) {
     return <div>Loading...</div>;
   }
-  console.log(props.data)
+  console.log(props.data.title)
 
   return (
     <div className="cards">
       <div className="card-head">
         <h2>{props.data.title}</h2>
       </div>
-      <div className={props.data.title !== 'biome' ? "card-container" : "card-container-biome"}>
-        {props.data.title !== 'biome' ?
+      <div className={props.data.title !== 'BIOME' ? "card-container" : "card-container-biome"}>
+        {props.data.title !== 'BIOME' ?
           <>
             {props.data?.items.map((value, index) => (
               <div className="card-body">

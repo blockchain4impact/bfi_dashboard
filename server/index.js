@@ -49,16 +49,9 @@ app.put("/updatepost/:id", async (req, res) => {
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       Overallprogress: req.body.Overallprogress,
-      dashboardItems: [{
-        BFI: req.body.BFI,
-        DFS: req.body.DFS,
-        Initiatives: req.body.Initiatives,
-        Priority: req.body.Priority,
-        Status: req.body.Status,
-        progress: req.body.progress
-      }]
+      dashboardItems: req.body.dashboardItems,
     });
-    return res.json({ status: "ok", data: "updated" });
+    return res.json({ status: "ok", data: updated });
   } catch (err) {
     res.send(err);
   }

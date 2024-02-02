@@ -9,6 +9,7 @@
 
 .home-container{
   display: flex;
+  /* overflow: hidden; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -39,4 +40,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+*{
+  font-family: 'DM sans';
 }
