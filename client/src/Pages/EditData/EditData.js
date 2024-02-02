@@ -29,7 +29,7 @@ function EditData() {
     };
     const fetchData = async () => {
         await axios
-            .get(`http://localhost:8080/getpost/${id.state}`)
+            .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
             .then((res) => setData(res.data));
     };
     useEffect(() => {
@@ -82,7 +82,7 @@ function EditData() {
         });
     };
     const handleSubmit = () => {
-        axios.put(`http://localhost:8080/updatepost/${id.state}`, data, {
+        axios.put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
             headers: {
                 scheme: 'https',
             }
@@ -93,7 +93,7 @@ function EditData() {
 
     const handleDelete = () => {
         console.log(id.state)
-        axios.delete(`http://localhost:8080/delPost/${id.state}`)
+        axios.delete(`https://bfi-server.vercel.app/delPost/${id.state}`)
             .then((res) => { console.log("success", res); success('Deleted Successfully'); window.location.pathname = `/${data.title}` })
             .catch((err) => console.log(err));
     }

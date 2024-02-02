@@ -4,7 +4,7 @@ import axios from 'axios';
 const OrgTimeline = () => {
     // const [data, setData] = useState([])
     // const fetchData = async () => {
-    //     await axios.get(`http://localhost:8080/`).then((res)=>setData(res.data))
+    //     await axios.get(`https://bfi-server.vercel.app/`).then((res)=>setData(res.data))
     // }
     // useEffect(() => {
     //     fetchData()

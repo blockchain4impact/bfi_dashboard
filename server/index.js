@@ -28,8 +28,8 @@ app.post("/post", async (req, res) => {
   const post = new DfsSchema({
     title: req.body.Title,
     objective: req.body.Objective,
-    startDate: req.body.Start_Date,
-    endDate: req.body.End_Date,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
     Overallprogress: req.body.Overall_progress,
     dashboardItems: req.body.dashboardItems,
   });
