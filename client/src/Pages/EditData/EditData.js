@@ -65,8 +65,7 @@ function EditData() {
     };
     const handleSubmit = () => {
         console.log(data, id)
-        axios
-            .put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
+        axios.put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
                 headers: {
                     scheme: 'https',
                 }
