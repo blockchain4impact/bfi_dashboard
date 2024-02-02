@@ -11,7 +11,7 @@ function EditData() {
     const [count, setCount] = useState(1);
     const fetchData = async () => {
         await axios
-            .get(`http://localhost:8080/getpost/${id.state}`)
+            .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
             .then((res) => setData(res.data));
     };
     useEffect(() => {
@@ -64,8 +64,13 @@ function EditData() {
         });
     };
     const handleSubmit = () => {
+        console.log(data, id)
         axios
-            .put(`http://localhost:8080/updatepost/${id.state}`, data)
+            .put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
+                headers: {
+                    scheme: 'https',
+                }
+            })
             .then((res) => console.log("success", res))
             .catch((err) => console.log(err));
     };

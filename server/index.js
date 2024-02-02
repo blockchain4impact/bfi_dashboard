@@ -51,6 +51,7 @@ app.put("/updatepost/:id", async (req, res) => {
       Overallprogress: req.body.Overallprogress,
       dashboardItems: req.body.dashboardItems,
     });
+    console.log(updated)
     return res.json({ status: "ok", data: "updated" });
   } catch (err) {
     res.send(err);
