@@ -8,13 +8,25 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 5000;
 
 app.use(express.json());
-app.use(cors());
-app.use(function(req, res, next) {
+const allowedDomains = ["http://localhost:3000", "https://bfi-iota.vercel.app"]
+app.use(
+  cors({
+    origin: allowedDomains,
+    credentials: true
+  })
+)
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+  if ('OPTIONS' == req.method) {
+    res.sendStatus(200);
+  }
+  else {
+    next();
+  }
 });
+
 const DfsSchema = require("./models/dfsSchema");
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);
