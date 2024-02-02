@@ -9,7 +9,7 @@ const port = process.env.REACT_APP_PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
-
+app.options('*', cors());
 const DfsSchema = require("./models/dfsSchema");
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);

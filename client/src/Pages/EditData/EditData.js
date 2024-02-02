@@ -99,10 +99,8 @@ function EditData() {
     return (
         <>
             <div className="addData">
-                <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                <Modal title="Delete!" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Are you sure you want to delete?</p>
                 </Modal>
                 <div className="addData-head">
                     <h1>Edit Data</h1>
