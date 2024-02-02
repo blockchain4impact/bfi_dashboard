@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../AddData/AddData.css"
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { Button, message } from 'antd';
+import { Button, message, DatePicker, Select } from 'antd';
 import axios from 'axios';
 
 function AddData() {
@@ -9,6 +9,10 @@ function AddData() {
     const [count, setCount] = useState(1)
     const [data, setData] = useState({})
     const [dashboardItems, setDashboardItems] = useState([])
+    const [isOpValid, setIsOpValid] = useState(true)
+    const [isValid, setIsValid] = useState(true)
+    const { RangePicker } = DatePicker;
+    const dateFormat = 'DD-MM-YY';
     const success = () => {
         messageApi.open({
             type: 'success',
@@ -22,9 +26,67 @@ function AddData() {
         });
     };
     const handleChange = (e) => {
+        if (e.target.name === 'Overall_progress' || e.target.name === 'progress') {
+            const percentageRegex = /^[0-9]+(\.[0-9]+)?%$/;
+            if (percentageRegex.test(e.target.value)) {
+                setData({ ...data, [e.target.name]: e.target.value })
+                setIsOpValid(true);
+            } else {
+                setIsOpValid(false);
+            }
+        }
         setData({ ...data, [e.target.name]: e.target.value })
     }
+    const convertMonth = (dateString) => {
+        const [day, month, year] = dateString.split('-');
+        const monthNames = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+        ];
+        const monthFullName = monthNames[parseInt(month, 10) - 1];
+        const formattedDateString = `${day}-${monthFullName}-${year.slice(-2)}`;
+        return formattedDateString;
+    };
+    const onDateChange = (date, dateString) => {
+        const convertedstartDate = convertMonth(dateString[0]);
+        const convertedendDate = convertMonth(dateString[1])
+        setData({ ...data, 'startDate': convertedstartDate, 'endDate': convertedendDate })
+    };
+
+    const onTitleChange = (value) => {
+        setData({ ...data, 'Title': value })
+    };
+
+    const onPriorityChange = (value, index) => {
+        setDashboardItems((prevData) => {
+            const updatedData = [...prevData];
+            updatedData[index] = { ...updatedData[index], 'Priority': value };
+            return updatedData;
+        });
+    }
+
+    const onStatusChange = (value, index) => {
+        setDashboardItems((prevData) => {
+            const updatedData = [...prevData];
+            updatedData[index] = { ...updatedData[index], 'Status': value };
+            return updatedData;
+        });
+    }
+
     const handleDashItemsChange = (e, index) => {
+        if (e.target.name === 'progress') {
+            const percentageRegex = /^[0-9]+(\.[0-9]+)?%$/;
+            if (percentageRegex.test(e.target.value)) {
+                setDashboardItems((prevData) => {
+                    const updatedData = [...prevData];
+                    updatedData[index] = { ...updatedData[index], [e.target.name]: e.target.value };
+                    return updatedData;
+                });
+                setIsValid(true);
+            } else {
+                setIsValid(false);
+            }
+        }
         setDashboardItems((prevData) => {
             const updatedData = [...prevData];
             updatedData[index] = { ...updatedData[index], [e.target.name]: e.target.value };
@@ -36,8 +98,8 @@ function AddData() {
             ...data,
             dashboardItems: [...dashboardItems],
         };
-
-        axios.post('http://localhost:8080/post', combinedData).then((res) => success()).catch((err) => error(err))
+        isOpValid && isValid && console.log(combinedData)
+        // axios.post('http://localhost:8080/post', combinedData).then((res) => success()).catch((err) => error(err))
     }
     return (
         <div className='addData'>
@@ -54,24 +116,40 @@ function AddData() {
                 <div className='form-data'>
                     <div className='addform'>
                         <label htmlFor='Title'>Title</label>
-                        <input className='input' type={"text"} placeholder={"Hiring"} name={"Title"} onChange={handleChange} />
+                        <Select
+                            className='ant-input'
+                            placeholder="Select a Title"
+                            onChange={onTitleChange}
+                            options={[
+                                {
+                                    value: 'dfs',
+                                    label: 'DFS',
+                                },
+                                {
+                                    value: 'bri',
+                                    label: 'BRI',
+                                },
+                                {
+                                    value: 'org',
+                                    label: 'ORG',
+                                },
+                            ]}
+                        />
                     </div>
                     <div className='addform'>
                         <label htmlFor='Objective'>Objective</label>
                         <textarea className='input' type={"text"} placeholder={"Enter Objective"} rows="5" cols="33" name={"Objective"} onChange={handleChange} />
                     </div>
                     <div className='addform'>
-                        <label htmlFor='Start_Date'>Start Date</label>
-                        <input className='input' type={"text"} placeholder={"eg. 05-Nov-23"} name={"Start_Date"} onChange={handleChange} />
-                    </div>
-                    <div className='addform'>
-                        <label htmlFor='End_Date'>End Date</label>
-                        <input className='input' type={"text"} placeholder={"eg. 05-Dec-23"} name={"End_Date"} onChange={handleChange} />
+                        <label htmlFor='Start_Date'>Start Date and End Date</label>
+                        <RangePicker className='ant-input' onChange={onDateChange} format={dateFormat} />
                     </div>
                     <div className='addform'>
                         <label htmlFor='Overall_progress'>Overall progress</label>
-                        <input className='input' type={"text"} placeholder={"Enter Overall progress"} name={"Overall_progress"} onChange={handleChange} />
+                        <input className='input' type={"text"} style={{ borderColor: isOpValid ? 'lightgray' : 'red' }} placeholder={"Enter Overall progress"} name={"Overall_progress"} onChange={handleChange} />
+                        {!isOpValid && <p style={{ color: 'red', fontSize: '12px' }}>enter a valid percentage (e.g., 25%, 3.5%, etc.)</p>}
                     </div>
+
                 </div>
                 <div className='dashboard-form'>
                     <div className='dashboard-form-head'>
@@ -100,11 +178,47 @@ function AddData() {
                                 </div>
                                 <div className='addform'>
                                     <label htmlFor='Priority'>Priority</label>
-                                    <input className='input' type={"text"} placeholder={"Enter Priority"} name={"Priority"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    <Select
+                                        className='ant-input dbt-ant-input'
+                                        placeholder="Select Priority"
+                                        onSelect={(value) => onPriorityChange(value, i)}
+                                        options={[
+                                            {
+                                                value: 'High',
+                                                label: 'High',
+                                            },
+                                            {
+                                                value: 'Medium',
+                                                label: 'Medium',
+                                            },
+                                            {
+                                                value: 'Low',
+                                                label: 'Low',
+                                            },
+                                        ]}
+                                    />
                                 </div>
                                 <div className='addform'>
                                     <label htmlFor='Status'>Status</label>
-                                    <input className='input' type={"text"} placeholder={"Enter Status"} name={"Status"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    <Select
+                                        className='ant-input dbt-ant-input'
+                                        placeholder="Select Status"
+                                        onSelect={(value) => onStatusChange(value, i)}
+                                        options={[
+                                            {
+                                                value: 'Ongoing',
+                                                label: 'Ongoing',
+                                            },
+                                            {
+                                                value: 'Yet to start',
+                                                label: 'Yet to start',
+                                            },
+                                            {
+                                                value: 'Completed',
+                                                label: 'Completed',
+                                            },
+                                        ]}
+                                    />
                                 </div>
                                 <div className='addform'>
                                     <label htmlFor='Timeline'>Timeline</label>
@@ -112,7 +226,8 @@ function AddData() {
                                 </div>
                                 <div className='addform'>
                                     <label htmlFor='progress'>progress</label>
-                                    <input className='input' type={"text"} placeholder={"Enter progress"} name={"progress"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    <input className='input' type={"text"} style={{ borderColor: isValid ? 'lightgray' : 'red' }} placeholder={"Enter progress"} name={"progress"} onChange={(e) => handleDashItemsChange(e, i)} />
+                                    {!isValid && <p style={{ color: 'red', fontSize: '12px' }}>enter a valid percentage (e.g., 25%, 3.5%, etc.)</p>}
                                 </div>
                             </div>
                         ))}

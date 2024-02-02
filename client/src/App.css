@@ -9,6 +9,7 @@
 
 .home-container{
   display: flex;
+  /* overflow: hidden; */
 }
 
 @media (prefers-reduced-motion: no-preference) {

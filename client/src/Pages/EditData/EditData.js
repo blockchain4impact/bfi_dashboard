@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../AddData/AddData.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Select } from "antd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
@@ -17,9 +17,39 @@ function EditData() {
     useEffect(() => {
         fetchData();
     }, []);
+    console.log(data.title)
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
+    const onPriorityChange = (value, index) => {
+        setData(prevData => {
+            const updatedDashboardItems = [...prevData.dashboardItems];
+            updatedDashboardItems[index] = {
+                ...updatedDashboardItems[index],
+                'Priority': value,
+            };
+            return {
+                ...prevData,
+                dashboardItems: updatedDashboardItems
+            };
+        });
+    }
+    const onTitleChange = (value) => {
+        setData({ ...data, 'Title': value })
+    };
+    const onStatusChange = (value, index) => {
+        setData(prevData => {
+            const updatedDashboardItems = [...prevData.dashboardItems];
+            updatedDashboardItems[index] = {
+                ...updatedDashboardItems[index],
+                'Status': value,
+            };
+            return {
+                ...prevData,
+                dashboardItems: updatedDashboardItems
+            };
+        });
+    }
     const handleDashItemsChange = (e, index) => {
         setData(prevData => {
             const updatedDashboardItems = [...prevData.dashboardItems];
@@ -59,12 +89,24 @@ function EditData() {
                     <div className="form-data">
                         <div className="addform">
                             <label htmlFor="Title">Title</label>
-                            <input
-                                className="input"
-                                type={"text"}
-                                value={data.title}
-                                name={"title"}
-                                onChange={handleChange}
+                            <Select
+                                className='ant-input'
+                                onChange={onTitleChange}
+                                placeholder={data.title}
+                                options={[
+                                    {
+                                        value: 'dfs',
+                                        label: 'DFS',
+                                    },
+                                    {
+                                        value: 'bri',
+                                        label: 'BRI',
+                                    },
+                                    {
+                                        value: 'org',
+                                        label: 'ORG',
+                                    },
+                                ]}
                             />
                         </div>
                         <div className="addform">
@@ -111,12 +153,6 @@ function EditData() {
                         </div>
                     </div>
                     <div className="dashboard-form">
-                        {/* <div className="dashboard-form-head">
-                            <p className="add-btn" onClick={() => setCount(count + 1)}>
-                                Add
-                                <PlusCircleOutlined className="bellicon" />
-                            </p>
-                        </div> */}
                         <div className="dashboard-body">
                             {data.dashboardItems?.map((value, i) => (
                                 <div key={i} className="dashboardItems">
@@ -171,24 +207,48 @@ function EditData() {
                                     </div>
                                     <div className="addform">
                                         <label htmlFor="Priority">Priority</label>
-                                        <input
-                                            className="input"
-                                            type={"text"}
-                                            value={value.Priority}
-                                            placeholder={"Enter Priority"}
-                                            name={"Priority"}
-                                            onChange={(e) => handleDashItemsChange(e, i)}
+                                        <Select
+                                            className='ant-input dbt-ant-input'
+                                            placeholder="Select Priority"
+                                            onSelect={(value) => onPriorityChange(value, i)}
+                                            defaultValue={value.Priority}
+                                            options={[
+                                                {
+                                                    value: 'High',
+                                                    label: 'High',
+                                                },
+                                                {
+                                                    value: 'Medium',
+                                                    label: 'Medium',
+                                                },
+                                                {
+                                                    value: 'Low',
+                                                    label: 'Low',
+                                                },
+                                            ]}
                                         />
                                     </div>
                                     <div className="addform">
                                         <label htmlFor="Status">Status</label>
-                                        <input
-                                            className="input"
-                                            type={"text"}
-                                            value={value.Status}
-                                            placeholder={"Enter Status"}
-                                            name={"Status"}
-                                            onChange={(e) => handleDashItemsChange(e, i)}
+                                        <Select
+                                            className='ant-input dbt-ant-input'
+                                            placeholder="Select Status"
+                                            onSelect={(value) => onStatusChange(value, i)}
+                                            defaultValue={value.Status}
+                                            options={[
+                                                {
+                                                    value: 'Ongoing',
+                                                    label: 'Ongoing',
+                                                },
+                                                {
+                                                    value: 'Yet to start',
+                                                    label: 'Yet to start',
+                                                },
+                                                {
+                                                    value: 'Completed',
+                                                    label: 'Completed',
+                                                },
+                                            ]}
                                         />
                                     </div>
                                     <div className="addform">
