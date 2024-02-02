@@ -98,8 +98,8 @@ function AddData() {
             ...data,
             dashboardItems: [...dashboardItems],
         };
-        isOpValid && isValid &&
-        axios.post('http://localhost:8080/post', combinedData).then((res) => {success(); window.location.reload()}).catch((err) => error(err))
+        isOpValid && isValid && 
+        axios.post('https://bfi-server.vercel.app/post', combinedData).then((res) => {success();}).catch((err) => error(err))
     }
     return (
         <div className='addData'>
