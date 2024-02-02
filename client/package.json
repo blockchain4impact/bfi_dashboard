@@ -25,6 +25,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": {
+    "dev": { "target": "http://localhost:3000"},
+    "prod": { "target": "https://bfi-iota.vercel.app" }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

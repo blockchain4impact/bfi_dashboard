@@ -5,28 +5,34 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(cors({
+  origin: "https://bfi-iota.vercel.app",
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+// const allowedDomains = ["http://localhost:3000", "https://bfi-iota.vercel.app"]
+// app.use(
+//   cors({
+//     origin: allowedDomains,
+//     credentials: true
+//   })
+// )
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   if ('OPTIONS' == req.method) {
+//     res.sendStatus(200);
+//   }
+//   else {
+//     next();
+//   }
+// });
+
+
 const port = process.env.REACT_APP_PORT || 5000;
 
 app.use(express.json());
-const allowedDomains = ["http://localhost:3000", "https://bfi-iota.vercel.app"]
-app.use(
-  cors({
-    origin: allowedDomains,
-    credentials: true
-  })
-)
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  if ('OPTIONS' == req.method) {
-    res.sendStatus(200);
-  }
-  else {
-    next();
-  }
-});
-
 const DfsSchema = require("./models/dfsSchema");
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);
