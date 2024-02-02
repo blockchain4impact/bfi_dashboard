@@ -5,9 +5,11 @@ require("dotenv").config();
 
 const app = express();
 
-const port = process.env.REACT_APP_PORT || 5000;
-
-app.use(express.json());
+app.use(cors({
+  origin: 'https://bfi-server.vercel.app',
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // const allowedDomains = ["http://localhost:3000", "https://bfi-iota.vercel.app"]
 // app.use(
 //   cors({
@@ -26,11 +28,11 @@ app.use(express.json());
 //     next();
 //   }
 // });
-const corsOptions = {
-  origin: "http://localhost:3000",
-};
-app.use(cors(corsOptions));
 
+
+const port = process.env.REACT_APP_PORT || 5000;
+
+app.use(express.json());
 const DfsSchema = require("./models/dfsSchema");
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);
