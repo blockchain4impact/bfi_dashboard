@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../AddData/AddData.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Select, Modal } from "antd";
+import { Button, Select, Modal, message } from "antd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 function EditData() {
     const id = useLocation();
     const [data, setData] = useState({});
-    const [count, setCount] = useState(1);
+    // const [count, setCount] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
+    const success = (msg) => {
+        messageApi.open({
+            type: 'success',
+            content: msg,
+        });
+    };
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -22,7 +29,7 @@ function EditData() {
     };
     const fetchData = async () => {
         await axios
-            .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
+            .get(`http://localhost:8080/getpost/${id.state}`)
             .then((res) => setData(res.data));
     };
     useEffect(() => {
@@ -75,30 +82,26 @@ function EditData() {
         });
     };
     const handleSubmit = () => {
-        console.log(data, id)
-        axios.put(`https://bfi-server.vercel.app/updatepost/${id.state}`, data, {
+        axios.put(`http://localhost:8080/updatepost/${id.state}`, data, {
             headers: {
                 scheme: 'https',
             }
         })
-            .then((res) => console.log("success", res))
+            .then((res) => {console.log("success", res); success('Updated Successfully'); window.location.pathname = `/${data.title}`})
             .catch((err) => console.log(err));
     };
 
     const handleDelete = () => {
         console.log(id.state)
-        axios.delete(`https://bfi-server.vercel.app/delPost/${id.state}`, {
-            headers: {
-                scheme: 'https',
-            }
-        })
-            .then((res) => console.log("success", res))
+        axios.delete(`http://localhost:8080/delPost/${id.state}`)
+            .then((res) => { console.log("success", res); success('Deleted Successfully'); window.location.pathname = `/${data.title}` })
             .catch((err) => console.log(err));
     }
 
     return (
         <>
             <div className="addData">
+                {contextHolder}
                 <Modal title="Delete!" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                     <p>Are you sure you want to delete?</p>
                 </Modal>
