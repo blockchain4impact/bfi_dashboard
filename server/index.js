@@ -7,6 +7,7 @@ const app = express();
 
 app.use(cors({
   origin: "https://bfi-iota.vercel.app",
+  // origin: "http://localhost:3000",
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'scheme']
 }));

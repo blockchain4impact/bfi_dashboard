@@ -99,7 +99,7 @@ function AddData() {
             dashboardItems: [...dashboardItems],
         };
         isOpValid && isValid && 
-        axios.post('https://bfi-server.vercel.app/post', combinedData).then((res) => {success();}).catch((err) => error(err))
+        axios.post('https://bfi-server.vercel.app/post', combinedData).then((res) => {success('Data Added Successfully'); window.location.pathname = `/`}).catch((err) => error(err))
     }
     return (
         <div className='addData'>
