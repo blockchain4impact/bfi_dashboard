@@ -203,7 +203,6 @@ const BriTimeline = () => {
           const xPos = findStartDate(value.startDate);
           const yPos = findEndingDate(value.endDate);
           const width = yPos - xPos;
-          // const names = namesArray(value.dashboardItems)
           const percentage = width * (parseInt(value.Overallprogress) / 100)
           return (
             <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
