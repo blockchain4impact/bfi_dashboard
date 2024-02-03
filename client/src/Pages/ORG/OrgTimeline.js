@@ -113,7 +113,7 @@ const OrgTimeline = () => {
                 const width = yPos - xPos
                 const percentage = width * (parseInt(value.Overallprogress) / 100)
                 return (
-                    <g onClick={() => { navigateToEdit(value._id) }}>
+                    <g onClick={() => { navigateToEdit(value._id) }} style={{cursor: 'pointer'}}>
                         <foreignObject className="node" x={xPos + 5} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                             <body xmlns="http://www.w3.org/1999/xhtml">
                                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
