@@ -6,29 +6,11 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-  origin: "https://bfi-iota.vercel.app",
+  origin: ["https://bfi-iota.vercel.app","http://localhost:3000"],
   // origin: "http://localhost:3000",
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'scheme']
 }));
-// const allowedDomains = ["http://localhost:3000", "https://bfi-iota.vercel.app"]
-// app.use(
-//   cors({
-//     origin: allowedDomains,
-//     credentials: true
-//   })
-// )
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-//   res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   if ('OPTIONS' == req.method) {
-//     res.sendStatus(200);
-//   }
-//   else {
-//     next();
-//   }
-// });
 
 
 const port = process.env.REACT_APP_PORT || 5000;
