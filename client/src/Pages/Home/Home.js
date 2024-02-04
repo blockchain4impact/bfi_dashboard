@@ -3,380 +3,284 @@ import Cards from "../../Components/Cards/Cards";
 import "./Home.css";
 import Overall from "../../Components/Overall/Overall";
 import axios from "axios";
+import CircularProgress from "../../Components/CircularPB/CircularProgress";
 
-export const cardData = [
+export const biomeData = [
   {
     id: 1,
-    title: "BRI",
-    pathname: '/bri',
-    items: [
-      {
-        id: 1,
-        percentage: "25%",
-        title:
-          "BFI-BIOME(Virtual Network)",
-        detail: "BFI is recognized as a key catalyst supporter for Biome",
-        names: ["Pooja", "Gaurav"],
-        bgcolor: 'rgb(138,43,226)',
-        lightbgcolor: 'rgba(138,43,226,0.2)',
-      },
-      {
-        id: 2,
-        percentage: "0%",
-        title:
-          "National Conferences 2024",
-        detail: "Successful launch with 10+ EoI received",
-        names: ["Pooja", "Gaurav"],
-        bgcolor: 'rgb(255,140,0)',
-        lightbgcolor: 'rgba(255,140,0,0.2)',
-      },
-      {
-        id: 3,
-        percentage: "58%",
-        title: "Signing MoU with Insitutes and Incubators for BFI-BIOME",
-        detail: "Signing of MoU(s) with 5+ Institute/Incubators",
-        names: ["Pooja", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-      },
-      {
-        id: 4,
-        percentage: "0%",
-        title: "Finalizing projects/programs and commencement of the projects/programs",
-        detail: "Commencement of Projects/programs",
-        names: ["Pooja", "Gaurav"],
-      },
-      {
-        id: 5,
-        percentage: "0%",
-        title: "Periodic project/program review/evaluation",
-        detail: "Review reports/results",
-        names: ["Pooja", "Gaurav"],
-      },
-      {
-        id: 6,
-        percentage: "0%",
-        title: "Annual Project/Program Review",
-        detail: "Impact report",
-        names: ["Pooja", "Gaurav"],
-      },
-    ],
-    overall: [
-      {
-        percentage: "50%",
-        names: ["Pooja", "Gaurav"]
-      }
-    ]
+    badge: "Institute",
+    InstituteName: "BITS",
+    Institute: "Institute",
+    EOLStatus: "Received",
+    InDiss: "Done",
+    FormalDiss: "Done",
+    MoUr: "Shared",
+    Mous: "Yet to Start",
+    Funds: "Yet to Start",
+    ProjectsShortlist: "Yet to Start",
+    ProjectsStarted: "Yet to Start"
   },
   {
     id: 2,
-    title: "BIOME",
-    pathname: '/biome',
-    items: [
-      {
-        id: 1,
-        percentage: "25%",
-        title: "BITS",
-        detail: "Discussions with Inst./Incubators",
-        names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(138,43,226)',
-        lightbgcolor: 'rgba(138,43,226,0.2)',
-        badge: "Institute"
-      },
-      {
-        id: 2,
-        percentage: "75%",
-        title: "CDRI",
-        detail: "Finalize the list of Institutes/Incubators",
-        names: ["Faraz", "Naga"],
-        bgcolor: 'rgb(255,140,0)',
-        lightbgcolor: 'rgba(255,140,0,0.2)',
-        badge: "Institute"
-      },
-      {
-        id: 3,
-        percentage: "0%",
-        title: "FNDR",
-        detail: "Shortlisting of projects/finalization of program",
-        names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-        badge: "Institute"
-      },
-      {
-        id: 4,
-        percentage: "0%",
-        title: "IlSc",
-        detail: "Shortlisting of projects/finalization of program",
-        names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-        badge: "Institute"
-      },
-      {
-        id: 5,
-        percentage: "0%",
-        title: "AIC CCMB",
-        detail: "Shortlisting of projects/finalization of program",
-        names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-        badge: "Incubator"
-      },
-    ],
-    Dashboarditems: [
-      {
-        id: 1,
-        badge: "Institute",
-        InstituteName: "BITS",
-        Institute: "Institute",
-        EOLStatus: "Received",
-        InDiss: "Done",
-        FormalDiss: "Done",
-        MoUr: "Shared",
-        Mous: "Yet to Start",
-        Funds: "Yet to Start",
-        ProjectsShortlist: "Yet to Start",
-        ProjectsStarted: "Yet to Start"
-      },
-      {
-        id: 2,
-        InstituteName: "CCMB",
-        badge: "Institute",
-        Institute: "Institute",
-        EOLStatus: "Received",
-        InDiss: "Done",
-        FormalDiss: "Done",
-        MoUr: "Shared",
-        Mous: "Yet to Start",
-        Funds: "Yet to Start",
-        ProjectsShortlist: "Yet to Start",
-        ProjectsStarted: "Yet to Start"
-      },
-      {
-        id: 3,
-        badge: "Institute",
-        InstituteName: "FNDR",
-        Institute: "Institute",
-        EOLStatus: "Received",
-        InDiss: "Done",
-        FormalDiss: "Done",
-        MoUr: "Shared",
-        Mous: "Yet to Start",
-        Funds: "Yet to Start",
-        ProjectsShortlist: "Yet to Start",
-        ProjectsStarted: "Yet to Start"
-      },
-      {
-        id: 4,
-        badge: "Institute",
-        InstituteName: "IISc",
-        Institute: "Institute",
-        EOLStatus: "Received",
-        InDiss: "Done",
-        FormalDiss: "Done",
-        MoUr: "Shared",
-        Mous: "Completed",
-        Funds: "On Going",
-        ProjectsShortlist: "Yet to Start",
-        ProjectsStarted: "Yet to Start"
-      },
-      {
-        id: 5,
-        badge: "Incubator",
-        InstituteName: "AIC CCMB",
-        Institute: "Institute",
-        EOLStatus: "Received",
-        InDiss: "Done",
-        FormalDiss: "Not Done",
-        MoUr: "in Discussion",
-        Mous: "Yet to Start",
-        Funds: "Yet to Start",
-        ProjectsShortlist: "Yet to Start",
-        ProjectsStarted: "Yet to Start"
-      },
-    ],
-    overall: [
-      {
-        percentage: "25%",
-        names: ["Gaurav", "Pooja"]
-      }
-    ]
+    InstituteName: "CCMB",
+    badge: "Institute",
+    Institute: "Institute",
+    EOLStatus: "Received",
+    InDiss: "Done",
+    FormalDiss: "Done",
+    MoUr: "Shared",
+    Mous: "Yet to Start",
+    Funds: "Yet to Start",
+    ProjectsShortlist: "Yet to Start",
+    ProjectsStarted: "Yet to Start"
   },
   {
     id: 3,
-    title: "ORG",
-    pathname: '/org',
-    items: [
-      {
-        id: 1,
-        percentage: "75%",
-        title: "Interviews and Finalization",
-        detail: "Complete interviews and Finalise Candidates - BRI",
-        names: ["Pooja and Faraz", "Gaurav"],
-        bgcolor: 'rgb(138,43,226)',
-        lightbgcolor: 'rgba(138,43,226,0.2)',
-        taskcard: ["Interviews and Finalization", "Contract signing with BVT", ""]
-      },
-      {
-        id: 2,
-        percentage: "60%",
-        title: "Clean audit with PWC",
-        detail: "Interium Audit Report",
-        names: ["Girish", "Gaurav"],
-        bgcolor: 'rgb(255,140,0)',
-        lightbgcolor: 'rgba(255,140,0,0.2)',
-      },
-      {
-        id: 3,
-        percentage: "75%",
-        title: "Infrastructure",
-        detail: "Öffice space",
-        names: ["Team BFI", "Naga"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-      },
-      {
-        id: 4,
-        percentage: "100%",
-        title: "Hiring External Partners",
-        detail: "The Madras Branding Company",
-        names: ["Faraz", "Gaurav"],
-      },
-      {
-        id: 5,
-        percentage: "90%",
-        title: "PR and Social Media Promotions",
-        detail: "Brand Building",
-        names: ["Faraz", "Naga"],
-      },
-      {
-        id: 6,
-        percentage: "50%",
-        title: "Website updation",
-        detail: "Visibility and Brand Building",
-        names: ["Girish", "Naga"],
-      },
-      {
-        id: 7,
-        percentage: "25%",
-        title: "Print Media Activities and PR",
-        detail: "Goals and Milestones setting",
-        names: ["Faraz", "Naga"],
-      },
-      {
-        id: 8,
-        percentage: "75%",
-        title: "Dashboard creation",
-        detail: "Goals and Milestones setting",
-        names: ["Faraz", "Naga"],
-      },
-      {
-        id: 9,
-        percentage: "75%",
-        title: "Procurements and Vendor Payments",
-        detail: "Smooth operations",
-        names: ["Faraz", "Naga"],
-      },
-      {
-        id: 10,
-        percentage: "16%",
-        title: "Onboarding a Grant/ Project management platform",
-        detail: "Streamlined Process and Documentation",
-        names: ["Divyarth", "Naga"],
-      },
-      {
-        id: 11,
-        percentage: "75%",
-        title: "Closure of projects under Crypto Relief",
-        detail: "All relief projects are closed and audit is completed",
-        names: ["Divyarth", "Naga"],
-      },
-    ],
-    overall: [
-      {
-        percentage: "75%",
-        names: ["Pooja", "Faraz", "Gaurav", "Ramnath", "Naga"]
-      }
-    ]
+    badge: "Institute",
+    InstituteName: "FNDR",
+    Institute: "Institute",
+    EOLStatus: "Received",
+    InDiss: "Done",
+    FormalDiss: "Done",
+    MoUr: "Shared",
+    Mous: "Yet to Start",
+    Funds: "Yet to Start",
+    ProjectsShortlist: "Yet to Start",
+    ProjectsStarted: "Yet to Start"
   },
   {
     id: 4,
-    title: "DFS",
-    pathname: '/dfs',
-    percentage: "75%",
-    subtasks: 'Contract signing with BVT',
-    taskslist: ['BFI-BIOME(Virtual Network)', 'National Conferences 2024'],
-    items: [
-      {
-        id: 1,
-        percentage: "83%",
-        title: "Interviews and finalization",
-        detail: "Complete interviews and Finalise Candidates",
-        names: ["Ramnath", "Naga"],
-        bgcolor: 'rgb(138,43,226)',
-        lightbgcolor: 'rgba(138,43,226,0.2)',
-        width: '66%'
-      },
-      {
-        id: 2,
-        percentage: "25%",
-        title: "Contract signing with BVT",
-        detail: "Complete Onboarding",
-        names: ["Ramnath", "Naga"],
-        bgcolor: 'rgb(255,140,0)',
-        lightbgcolor: 'rgba(255,140,0,0.2)',
-        width: '99%'
-      },
-      {
-        id: 3,
-        percentage: "20%",
-        title: "Launch IHCR Fund",
-        detail: "Onboarding the Partners Process",
-        names: ["Ramnath", "Naga"],
-        bgcolor: 'rgb(50,205,50)',
-        lightbgcolor: 'rgba(50,205,50,0.2)',
-        width: '80%'
-      },
-      {
-        id: 4,
-        percentage: "45%",
-        title: "Regular Program Monitoring + Team Governance",
-        detail: "Onboarding the Partners Process",
-        names: ["Ramnath", "Naga"],
-      },
-    ],
-    overall: [
-      {
-        percentage: "40%",
-        names: ["Ramnath", "Naga", "VSR", "HCD", "Girish"]
-      }
-    ]
+    badge: "Institute",
+    InstituteName: "IISc",
+    Institute: "Institute",
+    EOLStatus: "Received",
+    InDiss: "Done",
+    FormalDiss: "Done",
+    MoUr: "Shared",
+    Mous: "Completed",
+    Funds: "On Going",
+    ProjectsShortlist: "Yet to Start",
+    ProjectsStarted: "Yet to Start"
   },
+  {
+    id: 5,
+    badge: "Incubator",
+    InstituteName: "AIC CCMB",
+    Institute: "Institute",
+    EOLStatus: "Received",
+    InDiss: "Done",
+    FormalDiss: "Not Done",
+    MoUr: "in Discussion",
+    Mous: "Yet to Start",
+    Funds: "Yet to Start",
+    ProjectsShortlist: "Yet to Start",
+    ProjectsStarted: "Yet to Start"
+  }
 ];
+
+const biomeOverall = {
+  percentage: "25",
+  names: ["Gaurav", "Pooja"]
+}
 
 export default function Home() {
   const [data, setData] = useState([])
+
   const fetchData = async () => {
     await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
   }
   useEffect(() => {
     fetchData()
   }, []);
+  const britotalNames = [], brinames = [];
+  const dfstotalNames = [], dfsnames = [];
+  const orgtotalNames = [], orgnames = [];
+  let bripercent = 0, dfspercent = 0, orgpercent = 0;
+  data.filter(val => val.title === 'bri').map(value => { bripercent = bripercent + (parseInt(value.Overallprogress) / 3); value.dashboardItems.map(names => britotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'dfs').map(value => { dfspercent = dfspercent + (parseInt(value.Overallprogress) / 3); value.dashboardItems.map(names => dfstotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'org').map(value => { orgpercent = orgpercent + (parseInt(value.Overallprogress) / 3); value.dashboardItems.map(names => orgtotalNames.push(names.BFI, names.DFS)) })
+  brinames.push(...new Set(britotalNames))
+  dfsnames.push(...new Set(dfstotalNames))
+  orgnames.push(...new Set(orgtotalNames))
   return (
     <div className="home-main">
       <h1 style={{ textAlign: 'left', marginLeft: '3vh', marginBlock: '2vh' }}>Main Dashboard</h1>
       <div className="home">
-        {cardData.map((card) => (
-          <Cards key={card.id} data={card} />
-        ))}
+        <div className="cards">
+          <div className="card-head">
+            <h2>BRI</h2>
+          </div>
+          <div className="card-container">
+            {data?.filter(val => val.title === 'bri').map((value, index) => (
+              <div className="card-body">
+                <div className="card-body-content">
+                  <div className="card-body-percentage">
+                    <CircularProgress percentage={value.dashboardItems[0].progress} width={45} />
+                  </div>
+                  <div className="card-body-data card-style">
+                    <p className="title">{value.objective}</p>
+                    <p className="detail" style={{ color: 'gray' }}>{value.dashboardItems[0].Key_Results}</p>
+                  </div>
+                </div>
+                <div className="card-body-details">
+                  <p className="card-date card-style">{value.dashboardItems[0].Timeline ? value.dashboardItems[0].Timeline : "31-Mar-27"}</p>
+                  <div className="card-status">
+                    <p className="card-style status" style={{ color: value.dashboardItems[0].Status === 'Completed' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.dashboardItems[0].Status === 'Completed' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
+                      {value.dashboardItems[0].Status}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+            }
+          </div>
+        </div>
+        <div className="cards">
+          <div className="card-head">
+            <h2>BIOME</h2>
+          </div>
+          <div className="card-container">
+            <table className="biome-table">
+              <thead>
+                <tr>
+                  <td>Institute/Incubator Name</td>
+                  <td>Institute/Incubator</td>
+                  <td>EoI status</td>
+                  <td>Initial Discussion</td>
+                </tr>
+              </thead>
+              <tbody>
+                {biomeData.map((value, index) => (
+                  <tr>
+                    <td>{value.InstituteName}</td>
+                    <td>{value.Institute}</td>
+                    <td className="biome-status">{value.EOLStatus}</td>
+                    <td className="biome-status">{value.InDiss}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="cards">
+          <div className="card-head">
+            <h2>DFS</h2>
+          </div>
+          <div className="card-container">
+            {data?.filter(val => val.title === 'dfs').map((value, index) => (
+              <div className="card-body">
+                <div className="card-body-content">
+                  <div className="card-body-percentage">
+                    <CircularProgress percentage={value.dashboardItems[0].progress} width={45} />
+                  </div>
+                  <div className="card-body-data card-style">
+                    <p className="title">{value.objective}</p>
+                    <p className="detail" style={{ color: 'gray' }}>{value.dashboardItems[0].Key_Results}</p>
+                  </div>
+                </div>
+                <div className="card-body-details">
+                  <p className="card-date card-style">{value.dashboardItems[0].Timeline ? value.dashboardItems[0].Timeline : "31st Mar, 2027"}</p>
+                  <div className="card-status">
+                    <p className="card-style status" style={{ color: value.dashboardItems[0].Status === 'Completed' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.dashboardItems[0].Status === 'Completed' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
+                      {value.dashboardItems[0].Status}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+            }
+          </div>
+        </div>
+        <div className="cards">
+          <div className="card-head">
+            <h2>ORG</h2>
+          </div>
+          <div className="card-container">
+            {data?.filter(val => val.title === 'org').map((value, index) => (
+              <div className="card-body">
+                <div className="card-body-content">
+                  <div className="card-body-percentage">
+                    <CircularProgress percentage={value.dashboardItems[0].progress} width={45} />
+                  </div>
+                  <div className="card-body-data card-style">
+                    <p className="title">{value.objective}</p>
+                    <p className="detail" style={{ color: 'gray' }}>{value.dashboardItems[0].Key_Results}</p>
+                  </div>
+                </div>
+                <div className="card-body-details">
+                  <p className="card-date card-style">{value.dashboardItems[0].Timeline ? value.dashboardItems[0].Timeline : "31st Mar, 2027"}</p>
+                  <div className="card-status">
+                    <p className="card-style status" style={{ color: value.dashboardItems[0].Status === 'Completed' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.dashboardItems[0].Status === 'Completed' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
+                      {value.dashboardItems[0].Status}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+            }
+          </div>
+        </div>
       </div>
 
       <div className="overall">
-        {cardData.map((card) => (
-          <Overall data={card} />
-        ))}
+        <div className='overall-main'>
+          <div className='overall-head'>
+            <h4>BRI</h4>
+            <p>Overall Percentage</p>
+          </div>
+          <div className='overall-body-content'>
+            <CircularProgress percentage={`${bripercent}%`} width={65} />
+            <div className='names'>
+              {brinames?.map((name, index) =>
+                <p className='name-tag'>{name}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className='overall-main'>
+          <div className='overall-head'>
+            <h4>BIOME</h4>
+            <p>Overall Percentage</p>
+          </div>
+          <div className='overall-body-content'>
+            <CircularProgress percentage={`${biomeOverall.percentage}%`} width={65} />
+            <div className='names'>
+              {biomeOverall.names?.map((names) =>
+                <p className='name-tag'>{names}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className='overall-main'>
+          <div className='overall-head'>
+            <h4>DFS</h4>
+            <p>Overall Percentage</p>
+          </div>
+          <div className='overall-body-content'>
+            <CircularProgress percentage={`${dfspercent}%`} width={65} />
+            <div className='names'>
+              {dfsnames?.map((name, index) =>
+                <p className='name-tag'>{name}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className='overall-main'>
+          <div className='overall-head'>
+            <h4>ORG</h4>
+            <p>Overall Percentage</p>
+          </div>
+          <div className='overall-body-content'>
+            <CircularProgress percentage={`${orgpercent}%`} width={65} />
+            <div className='names'>
+              {orgnames?.map((name, index) =>
+                <p className='name-tag'>{name}</p>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   );
 }
