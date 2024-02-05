@@ -18,7 +18,6 @@ const DfsTimeline = () => {
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
     const startYear = (startDate) => {
         let year;
-        console.log(startDate)
         year = startDate.substring(7, 11)
         return year
     }
@@ -32,7 +31,6 @@ const DfsTimeline = () => {
 
         month = startDate.substring(3, 6)
         year = startYear(startDate)
-        console.log("month:", month, "year:", year)
         if (year === '23') {
             if (month === 'Oct') {
                 xPos = oct
@@ -64,7 +62,6 @@ const DfsTimeline = () => {
         let yPos, month, year;
         month = endDate.substring(3, 6)
         year = endYear(endDate)
-        console.log(year)
         if (year === '23') {
             if (month === 'Oct') {
                 yPos = oct
@@ -92,6 +89,36 @@ const DfsTimeline = () => {
         return yPos
     }
 
+    const TimelineColor = (percentage) => {
+        if (percentage < 25) {
+            return 'rgba(253, 212, 212, 1)'
+        } else if (percentage > 25 && percentage < 99) {
+            return 'rgba(255, 248, 229, 1)'
+        } else if (percentage === 100) {
+            return 'rgba(151, 195, 84, 1)'
+        }
+    }
+
+    const TimelineProgressColor = (percentage) => {
+        if (percentage < 25) {
+            return 'rgba(243, 87, 87, 1)'
+        } else if (percentage > 25 && percentage < 99) {
+            return 'rgba(255, 214, 89, 1)'
+        } else if (percentage === 100) {
+            return 'rgba(151, 195, 84, 1)'
+        }
+    }
+
+    const buttonColor = (percentage) => {
+        if (percentage < 25) {
+            return 'rgba(195, 72, 72, 1)'
+        } else if (percentage > 25 && percentage < 99) {
+            return 'rgba(230, 193, 81, 1)'
+        } else if (percentage === 100) {
+            return 'rgba(186, 228, 122, 1)'
+        }
+    }
+
     return (
         <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
             <g>
@@ -99,7 +126,7 @@ const DfsTimeline = () => {
                     fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2023</text>
 
                 <text x="50" y="55" id="oct"
-                    fontWeight="600" dx="-11.1953125px">Oct</text>
+                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct</text>
                 <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 <text x="250" y="55"
@@ -137,24 +164,28 @@ const DfsTimeline = () => {
                 const yPos = findEndingDate(value.endDate)
                 const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
                 const percentage = width * (parseInt(value.Overallprogress) / 100)
+                var textx = endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45
+                if (xPos === yPos) {
+                    textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
+                }
                 return (
                     <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
                         <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
                             <body xmlns="http://www.w3.org/1999/xhtml">
                                 <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))],paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
                                     <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
                                     <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
                                 </div>
                             </body>
                         </foreignObject>
                         <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
-                            <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
-                            <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
-                            <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
+                            <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
+                            <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
+                            <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
                             <circle cx='25' cy='22' r="3" fill="#FFF" />
                         </svg>
-                        <svg x={endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45} y={`100` * `${i + 1}` + 8}>
+                        <svg x={textx} y={`100` * `${i + 1}` + 8}>
                             <filter id="shadow">
                                 <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
                             </filter>

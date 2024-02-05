@@ -126,7 +126,35 @@ const BriTimeline = () => {
     }
     return yPos
   }
+  const TimelineColor = (percentage) => {
+    if (percentage < 25) {
+      return 'rgba(253, 212, 212, 1)'
+    } else if (percentage > 25 && percentage < 99) {
+      return 'rgba(255, 248, 229, 1)'
+    } else if (percentage === 100) {
+      return 'rgba(151, 195, 84, 1)'
+    }
+  }
 
+  const TimelineProgressColor = (percentage) => {
+    if (percentage < 25) {
+      return 'rgba(243, 87, 87, 1)'
+    } else if (percentage > 25 && percentage < 99) {
+      return 'rgba(255, 214, 89, 1)'
+    } else if (percentage === 100) {
+      return 'rgba(151, 195, 84, 1)'
+    }
+  }
+
+  const buttonColor = (percentage) => {
+    if (percentage < 25) {
+      return 'rgba(195, 72, 72, 1)'
+    } else if (percentage > 25 && percentage < 99) {
+      return 'rgba(230, 193, 81, 1)'
+    } else if (percentage === 100) {
+      return 'rgba(186, 228, 122, 1)'
+    }
+  }
   return (
     <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
       <g>
@@ -204,6 +232,10 @@ const BriTimeline = () => {
           const yPos = findEndingDate(value.endDate);
           const width = yPos - xPos;
           const percentage = width * (parseInt(value.Overallprogress) / 100)
+          var textx = yPos + 10
+          if (xPos === yPos) {
+            textx = yPos + 55
+          }
           return (
             <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
               <foreignObject className="node" x={xPos + 20} y={`100` * `${i + 1}` - 25} width="100%" height="50">
@@ -216,12 +248,12 @@ const BriTimeline = () => {
                 </body>
               </foreignObject>
               <svg x={xPos} y={`100` * `${i + 1}`}>
-                <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill="rgba(253, 212, 212, 1)"></rect>
-                <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill="rgba(243, 87, 87, 1)"></rect>
-                <circle cx='25' cy='22' r="7" fill="rgba(195, 72, 72, 1)" />
+                <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
+                <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
+                <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
                 <circle cx='25' cy='22' r="3" fill="#FFF" />
               </svg>
-              <svg x={yPos + 10} y={`100` * `${i + 1}` + 8}>
+              <svg x={textx} y={`100` * `${i + 1}` + 8}>
                 <filter id="shadow">
                   <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
                 </filter>

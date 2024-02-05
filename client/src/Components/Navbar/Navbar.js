@@ -4,9 +4,24 @@ import bfilogo from "../../Assets/images/bfilogo.png"
 import { SearchOutlined, BellOutlined, DownOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import user from "../../Assets/images/user.png"
 import downarrow from "../../Assets/images/downarrow.png"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { Button, Dropdown } from 'antd';
 
 export default function Navbar() {
+  const logout = () => {
+    localStorage.removeItem('isLoggedIn')
+}
+  const items = [
+    {
+      key: '4',
+      danger: true,
+      label: (
+        <a onClick={logout} href="/">
+          Logout
+        </a>
+      ),
+    }
+  ]
   const navigate = useNavigate()
   return (
     <div className="navbar">
@@ -19,12 +34,20 @@ export default function Navbar() {
           <SearchOutlined className="searchicon" />
         </div>
         <div className="icons">
-          <PlusCircleOutlined className="bellicon" onClick={()=>navigate('/add')} style={{cursor: 'pointer'}}/>
+          <PlusCircleOutlined className="bellicon" onClick={() => navigate('/add')} style={{ cursor: 'pointer' }} />
           <BellOutlined className="bellicon" />
         </div>
         <div className="user">
           <img src={user} alt="user-logo" className="userimg" />
-          <img src={downarrow} alt="bfi-logo-img" className="downicon" />
+          <Dropdown
+            menu={{
+              items,
+            }}
+          >
+            <a onClick={(e) => e.preventDefault()} href="/">
+              <DownOutlined />
+            </a>
+          </Dropdown>
 
         </div>
 
