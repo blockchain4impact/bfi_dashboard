@@ -8,21 +8,29 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { Button, Dropdown } from 'antd';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem('isLoggedIn')
-}
+  }
+  const gotToLogin = () => {
+    navigate('/login')
+  }
   const items = [
     {
-      key: '4',
-      danger: true,
+      key: '1',
+      danger: localStorage.getItem('isLoggedIn') ? true:false,
       label: (
-        <a onClick={logout} href="/">
-          Logout
-        </a>
+        localStorage.getItem('isLoggedIn') ?
+          <a onClick={logout} href="/">
+            Logout
+          </a>
+          :
+          <a onClick={gotToLogin} href="/login">
+            Login
+          </a>
       ),
     }
   ]
-  const navigate = useNavigate()
   return (
     <div className="navbar">
       <div className="logo">
@@ -38,7 +46,7 @@ export default function Navbar() {
           <BellOutlined className="bellicon" />
         </div>
         <div className="user">
-          <img src={user} alt="user-logo" className="userimg" />
+          <img src={user} alt="user-logo" className="userimg" />&nbsp;&nbsp;
           <Dropdown
             menu={{
               items,

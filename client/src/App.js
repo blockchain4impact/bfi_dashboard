@@ -13,29 +13,22 @@ import Login from "./Pages/Login/Login";
 function App() {
   return (
     <div className="App">
-      {localStorage.getItem('isLoggedIn') ?
-        <Router>
-          <Navbar />
-          <div className="home-container">
+      <Router>
+        <Navbar />
+        <div className="home-container">
             <Sidebar />
-            <Routes>
-              <Route path="/" Component={Home} />
-              <Route path="/org" Component={Org} />
-              <Route path="/bri" Component={Bri} />
-              <Route path="/biome" Component={Biome} />
-              <Route path="/dfs" Component={Dfs} />
-              <Route path="/add" Component={AddData} />
-              <Route path="/edit" Component={EditData} />
-            </Routes>
-          </div>
-        </Router>
-        :
-        <Router>
           <Routes>
-            <Route path="/" Component={Login} />
+            <Route path="/" Component={Home} />
+            <Route path="/org" Component={Org} />
+            <Route path="/bri" Component={Bri} />
+            <Route path="/biome" Component={Biome} />
+            <Route path="/dfs" Component={Dfs} />
+            <Route path="/add" Component={AddData} />
+            <Route path="/edit" Component={EditData} />
+            <Route path="/login" Component={Login} />
           </Routes>
-        </Router>
-      }
+        </div>
+      </Router>
     </div>
   );
 }
