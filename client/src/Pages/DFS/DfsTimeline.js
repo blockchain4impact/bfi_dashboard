@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 const DfsTimeline = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
+    const [messageApi, contextHolder] = message.useMessage();
     const fetchData = async () => {
         await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
     }
     useEffect(() => {
         fetchData()
     }, []);
+    const error = (err) => {
+        messageApi.open({
+            type: 'error',
+            content: err,
+        });
+    };
     const navigateToEdit = (id) => {
-        navigate('/edit', { state: id })
+        if (localStorage.getItem('isLoggedIn')) {
+            navigate('/edit', { state: id })
+        } else {
+            error('Please login to edit!')
+        }
+
     }
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
@@ -120,85 +133,89 @@ const DfsTimeline = () => {
     }
 
     return (
-        <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
-            <g>
-                <text x="265" y="15"
-                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2023</text>
+        <div>
+            {contextHolder}
 
-                <text x="50" y="55" id="oct"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct</text>
-                <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+            <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
+                <g>
+                    <text x="265" y="15"
+                        fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2023</text>
 
-                <text x="250" y="55"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Nov</text>
-                <line x1="250" x2="250" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="50" y="55" id="oct"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct</text>
+                    <line x1="50" x2="50" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <text x="450" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Dec</text>
-                <line x1="450" x2="450" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="250" y="55"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Nov</text>
+                    <line x1="250" x2="250" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <line x1="600" x2="600" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" strokeWidth="1"></line>
+                    <text x="450" y="55" id="dec"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Dec</text>
+                    <line x1="450" x2="450" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <text x="965" y="15"
-                    fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2024</text>
+                    <line x1="600" x2="600" y1="0" y2="25" fill="none" stroke="rgba(118, 131, 150, 1)" strokeWidth="1"></line>
 
-                <text x="700" y="55" id="oct"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jan - Mar</text>
-                <line x1="725" x2="725" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="965" y="15"
+                        fill="rgba(78, 91, 110, 1)" dx="-11.1953125px" fontWeight="700" fontSize='16px'>2024</text>
 
-                <text x="900" y="55"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Apr - Jun</text>
-                <line x1="925" x2="925" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="700" y="55" id="oct"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jan - Mar</text>
+                    <line x1="725" x2="725" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <text x="1100" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jul - Sep</text>
-                <line x1="1125" x2="1125" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="900" y="55"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Apr - Jun</text>
+                    <line x1="925" x2="925" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                <text x="1300" y="55" id="dec"
-                    fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct - Dec</text>
-                <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
+                    <text x="1100" y="55" id="dec"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Jul - Sep</text>
+                    <line x1="1125" x2="1125" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-            </g>
-            {data.filter((val) => val.title === 'dfs').map((value, i) => {
-                const xPos = findStartDate(value.startDate)
-                const yPos = findEndingDate(value.endDate)
-                const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
-                const percentage = width * (parseInt(value.Overallprogress) / 100)
-                var textx = endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45
-                if (xPos === yPos) {
-                    textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
-                }
-                return (
-                    <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
-                        <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
-                            <body xmlns="http://www.w3.org/1999/xhtml">
-                                <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
-                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
-                                    <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
-                                </div>
-                            </body>
-                        </foreignObject>
-                        <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
-                            <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
-                            <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
-                            <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
-                            <circle cx='25' cy='22' r="3" fill="#FFF" />
-                        </svg>
-                        <svg x={textx} y={`100` * `${i + 1}` + 8}>
-                            <filter id="shadow">
-                                <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
-                            </filter>
-                            <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
-                            <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">
-                                {value.Overallprogress}
-                            </text>
-                        </svg>
-                    </g>
+                    <text x="1300" y="55" id="dec"
+                        fill="rgba(118, 131, 150, 1)" fontWeight="600" dx="-11.1953125px">Oct - Dec</text>
+                    <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
-                )
-            })}
-        </svg >
+                </g>
+                {data.filter((val) => val.title === 'dfs').map((value, i) => {
+                    const xPos = findStartDate(value.startDate)
+                    const yPos = findEndingDate(value.endDate)
+                    const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
+                    const percentage = width * (parseInt(value.Overallprogress) / 100)
+                    var textx = endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45
+                    if (xPos === yPos) {
+                        textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
+                    }
+                    return (
+                        <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
+                            <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+                                <body xmlns="http://www.w3.org/1999/xhtml">
+                                    <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
+                                        <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                                        <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
+                                        <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
+                                    </div>
+                                </body>
+                            </foreignObject>
+                            <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+                                <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
+                                <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
+                                <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
+                                <circle cx='25' cy='22' r="3" fill="#FFF" />
+                            </svg>
+                            <svg x={textx} y={`100` * `${i + 1}` + 8}>
+                                <filter id="shadow">
+                                    <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
+                                </filter>
+                                <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
+                                <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">
+                                    {value.Overallprogress}
+                                </text>
+                            </svg>
+                        </g>
+
+                    )
+                })}
+            </svg>
+        </div>
     );
 };
 

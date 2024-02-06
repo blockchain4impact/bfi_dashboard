@@ -47,6 +47,11 @@
     background-color: white;
     width: 20%;
     padding: 5vh;
-    margin: 0 auto;
+    margin: 5% auto;
     border-radius: 1vh;
+}
+
+.bfi-login-icon{
+    width: 50%;
+    margin-bottom: 2vh;
 }
