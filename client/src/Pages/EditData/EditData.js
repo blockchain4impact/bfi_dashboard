@@ -35,7 +35,6 @@ function EditData() {
     useEffect(() => {
         fetchData();
     }, []);
-    console.log(data.title)
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
@@ -87,7 +86,7 @@ function EditData() {
                 scheme: 'https',
             }
         })
-            .then((res) => {console.log("success", res); success('Updated Successfully'); window.location.pathname = `/${data.title}`})
+            .then((res) => { console.log("success", res); success('Updated Successfully'); window.location.pathname = `/${data.title}` })
             .catch((err) => console.log(err));
     };
 

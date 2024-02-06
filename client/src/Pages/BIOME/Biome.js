@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { cardData } from '../Home/Home';
 import "../BIOME/Biome.css"
+import axios from 'axios'
 import Collapse from '../../Components/Collapse/Collapse';
 import TimelineHeader from '../../Components/TimlineHeader/TimelineHeader';
 export const data = [
@@ -205,11 +206,18 @@ export const data = [
 ]
 
 export default function Biome() {
-
+    const [data1, setData] = useState([])
+    const fetchData = async () => {
+      await axios.get('http://localhost:8080/biome').then((res) => setData(res.data))
+    }
+    useEffect(() => {
+      fetchData()
+    }, []);
+    // console.log(data1)
     return (
         <div className='biome'>
             <TimelineHeader />
-            {data.map((val) =>
+            {data1?.map((val) =>
                 <Collapse items={val} />
             )}
         </div>

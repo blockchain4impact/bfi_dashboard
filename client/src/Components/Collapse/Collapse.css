@@ -48,6 +48,8 @@
 
 .collapse-expanded{
     margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .biome-column{
@@ -64,4 +66,12 @@
     padding-inline: 2vh;
     text-align: center;
     font-weight: 700;
+}
+
+.ant-input-biome{
+    width: 40%;
+    border: 1px solid #d9d9d9;
+    background-color: transparent;
+    margin-top: 5px;
+    border-radius: 1vh;
 }
