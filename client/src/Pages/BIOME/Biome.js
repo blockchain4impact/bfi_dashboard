@@ -208,7 +208,7 @@ export const data = [
 export default function Biome() {
     const [data1, setData] = useState([])
     const fetchData = async () => {
-      await axios.get('http://localhost:8080/biome').then((res) => setData(res.data))
+      await axios.get('https://bfi-server.vercel.app/biome').then((res) => setData(res.data))
     }
     useEffect(() => {
       fetchData()

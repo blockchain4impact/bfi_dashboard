@@ -60,7 +60,7 @@ export default function Collapse(props) {
     })
     console.log(data); const handleSubmit = () => {
         if (localStorage.getItem('isLoggedIn')) {
-            axios.put(`http://localhost:8080/biomeUpdate/${id}`, updatedData, {
+            axios.put(`https://bfi-server.vercel.app/biomeUpdate/${id}`, updatedData, {
                 headers: {
                     scheme: 'https',
                 }
