@@ -93,8 +93,8 @@ export default function Home() {
     fetchData()
   }, []);
   var orgDataCount = data.filter(val => val.title === 'org')
-  var briDataCount = data.filter(val => val.title === 'org')
-  var dfsDataCount = data.filter(val => val.title === 'org')
+  var briDataCount = data.filter(val => val.title === 'bri')
+  var dfsDataCount = data.filter(val => val.title === 'dfs')
   const britotalNames = [], brinames = [];
   const dfstotalNames = [], dfsnames = [];
   const orgtotalNames = [], orgnames = [];
