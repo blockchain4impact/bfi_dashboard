@@ -67,7 +67,9 @@ export default function Collapse(props) {
             })
                 .then((res) => { success("success"); })
                 .catch((err) => error(err));
-            window.location.reload()
+            setTimeout(()=>{
+                window.location.reload()
+            },2000)
         }else{
             error('Please login to edit!')
         }
