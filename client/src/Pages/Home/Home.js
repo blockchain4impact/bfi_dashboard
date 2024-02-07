@@ -99,9 +99,9 @@ export default function Home() {
   const dfstotalNames = [], dfsnames = [];
   const orgtotalNames = [], orgnames = [];
   let bripercent = 0, dfspercent = 0, orgpercent = 0;
-  data.filter(val => val.title === 'bri').map(value => { bripercent = bripercent + parseInt((parseInt(value.Overallprogress) / briDataCount.length)); value.dashboardItems.map(names => britotalNames.push(names.BFI, names.DFS)) })
-  data.filter(val => val.title === 'dfs').map(value => { dfspercent = dfspercent + parseInt((parseInt(value.Overallprogress) / dfsDataCount.length)); value.dashboardItems.map(names => dfstotalNames.push(names.BFI, names.DFS)) })
-  data.filter(val => val.title === 'org').map(value => { orgpercent = orgpercent + parseInt((parseInt(value.Overallprogress) / orgDataCount.length)); value.dashboardItems?.map(names => orgtotalNames.push(names?.BFI, names?.DFS)) })
+  data.filter(val => val.title === 'bri').map(value => { bripercent = bripercent + parseInt((parseInt(value.Overallprogress) / briDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && britotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'dfs').map(value => { dfspercent = dfspercent + parseInt((parseInt(value.Overallprogress) / dfsDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && dfstotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'org').map(value => { orgpercent = orgpercent + parseInt((parseInt(value.Overallprogress) / orgDataCount.length)); value.dashboardItems?.map(names => names.BFI && names.DFS && orgtotalNames.push(names?.BFI, names?.DFS)) })
   brinames.push(...new Set(britotalNames))
   dfsnames.push(...new Set(dfstotalNames))
   orgnames.push(...new Set(orgtotalNames))
