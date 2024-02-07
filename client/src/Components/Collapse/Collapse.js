@@ -205,6 +205,10 @@ export default function Collapse(props) {
                                         {
                                             value: 'Yet to share',
                                             label: 'Yet to share',
+                                        },
+                                        {
+                                            value: 'In discussion',
+                                            label: 'In discussion',
                                         }
                                     ]}
                                 />
