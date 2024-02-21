@@ -122,15 +122,15 @@ function AddData() {
                             onChange={onTitleChange}
                             options={[
                                 {
-                                    value: 'dfs',
+                                    value: 'DFS',
                                     label: 'DFS',
                                 },
                                 {
-                                    value: 'bri',
+                                    value: 'BRI',
                                     label: 'BRI',
                                 },
                                 {
-                                    value: 'org',
+                                    value: 'ORG',
                                     label: 'ORG',
                                 },
                             ]}

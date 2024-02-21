@@ -170,7 +170,7 @@ const DfsTimeline = () => {
                     <line x1="1325" x2="1325" y1="75" y2="1155" fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 </g>
-                {data.filter((val) => val.title === 'dfs').map((value, i) => {
+                {data.filter((val) => val.title === 'DFS').map((value, i) => {
                     const xPos = findStartDate(value.startDate)
                     const yPos = findEndingDate(value.endDate)
                     const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos

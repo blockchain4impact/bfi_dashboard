@@ -31,6 +31,7 @@ function EditData() {
         await axios
             .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
             .then((res) => setData(res.data));
+        
     };
     useEffect(() => {
         fetchData();
@@ -108,7 +109,7 @@ function EditData() {
                     <p>Are you sure you want to delete?</p>
                 </Modal>
                 <div className="addData-head">
-                    <h1>Edit Data</h1>
+                    <h1>{data.title}</h1>
                     {!editable &&
                         <div className="addData-btn">
                             <Button type="primary" onClick={handleSubmit} style={{ backgroundColor: 'rgb(0, 114, 188)' }}>
@@ -135,15 +136,15 @@ function EditData() {
                                 placeholder={data.title}
                                 options={[
                                     {
-                                        value: 'dfs',
+                                        value: 'DFS',
                                         label: 'DFS',
                                     },
                                     {
-                                        value: 'bri',
+                                        value: 'BRI',
                                         label: 'BRI',
                                     },
                                     {
-                                        value: 'org',
+                                        value: 'ORG',
                                         label: 'ORG',
                                     },
                                 ]}

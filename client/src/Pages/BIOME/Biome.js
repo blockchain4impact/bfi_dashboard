@@ -213,7 +213,6 @@ export default function Biome() {
     useEffect(() => {
       fetchData()
     }, []);
-    // console.log(data1)
     return (
         <div className='biome'>
             <TimelineHeader />

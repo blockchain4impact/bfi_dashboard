@@ -174,7 +174,7 @@ const OrgTimeline = () => {
                     <line x1="1325" x2="1325" y1="75" y2={100 * data.length} fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 </g>
-                {data.filter((val) => val.title === 'org').map((value, i) => {
+                {data.filter((val) => val.title === 'ORG').map((value, i) => {
                     const xPos = findStartDate(value.startDate)
                     const yPos = findEndingDate(value.endDate)
                     const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos

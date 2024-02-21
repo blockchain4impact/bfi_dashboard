@@ -239,7 +239,7 @@ const BriTimeline = () => {
 
         </g>
         <svg>
-          {data.filter((val, index) => val.title === 'bri').map((value, i) => {
+          {data.filter((val, index) => val.title === 'BRI').map((value, i) => {
             const xPos = findStartDate(value.startDate);
             const yPos = findEndingDate(value.endDate);
             const width = yPos - xPos;

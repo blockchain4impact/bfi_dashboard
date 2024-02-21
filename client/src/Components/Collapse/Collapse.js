@@ -107,214 +107,297 @@ export default function Collapse(props) {
                         <div className='biome-column'>
                             <div className='biome-dataset'>
                                 <p>EoI status</p>
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onEOLStatusChange(data._id, value)}
-                                    placeholder={data.EOLStatus}
-                                    options={[
-                                        {
-                                            value: 'Received',
-                                            label: 'Received',
-                                        },
-                                        {
-                                            value: 'Not Received',
-                                            label: 'Not Received',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            props.items.EOLStatus === 'Received' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            props.items.EOLStatus === 'Received' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{props.items.EOLStatus}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onEOLStatusChange(data._id, value)}
+                                        placeholder={data.EOLStatus}
+                                        options={[
+                                            {
+                                                value: 'Received',
+                                                label: 'Received',
+                                            },
+                                            {
+                                                value: 'Not Received',
+                                                label: 'Not Received',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>Initial Discussion</p>
-                                {/* <p className='biome-item' style={{
-                                    backgroundColor:
-                                        data.EOLStatus !== 'Done' ?
-                                            'rgba(250, 255, 247, 1)'
-                                            :
-                                            'rgba(255, 218, 218, 1)',
-                                    color:
-                                        data.EOLStatus !== 'Done' ?
-                                            'rgba(53, 83, 5, 1)'
-                                            :
-                                            'rgba(95, 4, 4, 1)'
-                                }}>{data.InDiss}</p> */}
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onInDissChange(data._id, value)}
-                                    placeholder={data.InDiss}
-                                    options={[
-                                        {
-                                            value: 'Done',
-                                            label: 'Done',
-                                        },
-                                        {
-                                            value: 'Not Done',
-                                            label: 'Not Done',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            data.EOLStatus !== 'Done' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            data.EOLStatus !== 'Done' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{data.InDiss}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onInDissChange(data._id, value)}
+                                        placeholder={data.InDiss}
+                                        options={[
+                                            {
+                                                value: 'Done',
+                                                label: 'Done',
+                                            },
+                                            {
+                                                value: 'Not Done',
+                                                label: 'Not Done',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>Formal Program Discussion</p>
-                                {/* <p className='biome-item' style={{
-                                    backgroundColor:
-                                        data.EOLStatus !== 'Done' ?
-                                            'rgba(250, 255, 247, 1)'
-                                            :
-                                            'rgba(255, 218, 218, 1)',
-                                    color:
-                                        data.EOLStatus !== 'Done ' ?
-                                            'rgba(53, 83, 5, 1)'
-                                            :
-                                            'rgba(95, 4, 4, 1)'
-                                }}>{data.FormalDiss}</p> */}
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onFormalDissChange(data._id, value)}
-                                    placeholder={data.FormalDiss}
-                                    options={[
-                                        {
-                                            value: 'Done',
-                                            label: 'Done',
-                                        },
-                                        {
-                                            value: 'Not Done',
-                                            label: 'Not Done',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            data.EOLStatus !== 'Done' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            data.EOLStatus !== 'Done' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{data.FormalDiss}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onFormalDissChange(data._id, value)}
+                                        placeholder={data.FormalDiss}
+                                        options={[
+                                            {
+                                                value: 'Done',
+                                                label: 'Done',
+                                            },
+                                            {
+                                                value: 'Not Done',
+                                                label: 'Not Done',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>MoU shared</p>
-                                {/* <p className='biome-item' style={{
-                                    backgroundColor:
-                                        data.EOLStatus !== 'In discussion' ?
-                                            'rgba(250, 255, 247, 1)'
-                                            :
-                                            'rgba(255, 218, 218, 1)',
-                                    color:
-                                        data.EOLStatus !== 'In discussion' ?
-                                            'rgba(53, 83, 5, 1)'
-                                            :
-                                            'rgba(95, 4, 4, 1)'
-                                }}>{data.MoUr}</p> */}
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onMoUrChange(data._id, value)}
-                                    placeholder={data.MoUr}
-                                    options={[
-                                        {
-                                            value: 'Shared',
-                                            label: 'Shared',
-                                        },
-                                        {
-                                            value: 'Yet to share',
-                                            label: 'Yet to share',
-                                        },
-                                        {
-                                            value: 'In discussion',
-                                            label: 'In discussion',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            data.EOLStatus !== 'In discussion' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            data.EOLStatus !== 'In discussion' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{data.MoUr}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onMoUrChange(data._id, value)}
+                                        placeholder={data.MoUr}
+                                        options={[
+                                            {
+                                                value: 'Shared',
+                                                label: 'Shared',
+                                            },
+                                            {
+                                                value: 'Yet to share',
+                                                label: 'Yet to share',
+                                            },
+                                            {
+                                                value: 'In discussion',
+                                                label: 'In discussion',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                         </div>
                         <div className='biome-column'>
                             <div className='biome-dataset'>
                                 <p>MoU Signed</p>
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onMousChange(data._id, value)}
-                                    placeholder={data.Mous}
-                                    options={[
-                                        {
-                                            value: 'Completed',
-                                            label: 'Completed',
-                                        },
-                                        {
-                                            value: 'On Going',
-                                            label: 'On Going',
-                                        },
-                                        {
-                                            value: 'Yet to start',
-                                            label: 'Yet to start',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            props.items.EOLStatus === 'Completed' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            props.items.EOLStatus === 'Completed' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{props.items.Mous}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onMousChange(data._id, value)}
+                                        placeholder={data.Mous}
+                                        options={[
+                                            {
+                                                value: 'Completed',
+                                                label: 'Completed',
+                                            },
+                                            {
+                                                value: 'On Going',
+                                                label: 'On Going',
+                                            },
+                                            {
+                                                value: 'Yet to start',
+                                                label: 'Yet to start',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>Funds Transferred</p>
-
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onFundsChange(data._id, value)}
-                                    placeholder={data.Funds}
-                                    options={[
-                                        {
-                                            value: 'Completed',
-                                            label: 'Completed',
-                                        },
-                                        {
-                                            value: 'On Going',
-                                            label: 'On Going',
-                                        },
-                                        {
-                                            value: 'Yet to start',
-                                            label: 'Yet to start',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            props.items.EOLStatus === 'On Going' ?
+                                                'rgba(253, 241, 199, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            props.items.EOLStatus === 'On Going' ?
+                                                'rgba(114, 63, 2, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{props.items.Funds}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onFundsChange(data._id, value)}
+                                        placeholder={data.Funds}
+                                        options={[
+                                            {
+                                                value: 'Completed',
+                                                label: 'Completed',
+                                            },
+                                            {
+                                                value: 'On Going',
+                                                label: 'On Going',
+                                            },
+                                            {
+                                                value: 'Yet to start',
+                                                label: 'Yet to start',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>Projects/Program Shortlisted</p>
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onProjectsShortlistChange(data._id, value)}
-                                    placeholder={data.ProjectsShortlist}
-                                    options={[
-                                        {
-                                            value: 'Completed',
-                                            label: 'Completed',
-                                        },
-                                        {
-                                            value: 'On Going',
-                                            label: 'On Going',
-                                        },
-                                        {
-                                            value: 'Yet to start',
-                                            label: 'Yet to start',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            props.items.EOLStatus === 'Yet to Start' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            props.items.EOLStatus === 'Yet to Start' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{props.items.ProjectsShortlist}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onProjectsShortlistChange(data._id, value)}
+                                        placeholder={data.ProjectsShortlist}
+                                        options={[
+                                            {
+                                                value: 'Completed',
+                                                label: 'Completed',
+                                            },
+                                            {
+                                                value: 'On Going',
+                                                label: 'On Going',
+                                            },
+                                            {
+                                                value: 'Yet to start',
+                                                label: 'Yet to start',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                             <div className='biome-dataset'>
                                 <p>Project/Program started</p>
-                                <Select
-                                    className='ant-input-biome'
-                                    onChange={(value) => onProjectsStartedChange(data._id, value)}
-                                    placeholder={data.ProjectsStarted}
-                                    options={[
-                                        {
-                                            value: 'Completed',
-                                            label: 'Completed',
-                                        },
-                                        {
-                                            value: 'On Going',
-                                            label: 'On Going',
-                                        },
-                                        {
-                                            value: 'Yet to start',
-                                            label: 'Yet to start',
-                                        }
-                                    ]}
-                                    disabled={editable}
-                                />
+                                {editable ?
+                                    <p className='biome-item' style={{
+                                        backgroundColor:
+                                            props.items.EOLStatus === 'Yet to Start' ?
+                                                'rgba(250, 255, 247, 1)'
+                                                :
+                                                'rgba(255, 218, 218, 1)',
+                                        color:
+                                            props.items.EOLStatus === 'Yet to Start' ?
+                                                'rgba(53, 83, 5, 1)'
+                                                :
+                                                'rgba(95, 4, 4, 1)'
+                                    }}>{props.items.ProjectsStarted}</p>
+                                    :
+                                    <Select
+                                        className='ant-input-biome'
+                                        onChange={(value) => onProjectsStartedChange(data._id, value)}
+                                        placeholder={data.ProjectsStarted}
+                                        options={[
+                                            {
+                                                value: 'Completed',
+                                                label: 'Completed',
+                                            },
+                                            {
+                                                value: 'On Going',
+                                                label: 'On Going',
+                                            },
+                                            {
+                                                value: 'Yet to start',
+                                                label: 'Yet to start',
+                                            }
+                                        ]}
+                                        disabled={editable}
+                                    />
+                                }
                             </div>
                         </div>
                     </div>
