@@ -11,6 +11,7 @@ export default function Collapse(props) {
     const [updatedData, setUpdateData] = useState([])
     const [id, setId] = useState("")
     const [messageApi, contextHolder] = message.useMessage();
+    const [editable, setEditable] = useState(true);
     const success = (msg) => {
         messageApi.open({
             type: 'success',
@@ -56,9 +57,12 @@ export default function Collapse(props) {
         setUpdateData({ ...data, "MoUr": value })
     }
     useEffect(() => {
-        setData(props.items)
+        setData(props.items);
+        if (localStorage.getItem('isLoggedIn')) {
+            setEditable(false)
+        }
     })
-    console.log(data); const handleSubmit = () => {
+    const handleSubmit = () => {
         if (localStorage.getItem('isLoggedIn')) {
             axios.put(`https://bfi-server.vercel.app/biomeUpdate/${id}`, updatedData, {
                 headers: {
@@ -67,10 +71,10 @@ export default function Collapse(props) {
             })
                 .then((res) => { success("success"); })
                 .catch((err) => error(err));
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.location.reload()
-            },2000)
-        }else{
+            }, 2000)
+        } else {
             error('Please login to edit!')
         }
 
@@ -117,6 +121,7 @@ export default function Collapse(props) {
                                             label: 'Not Received',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -147,6 +152,7 @@ export default function Collapse(props) {
                                             label: 'Not Done',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -177,6 +183,7 @@ export default function Collapse(props) {
                                             label: 'Not Done',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -211,6 +218,7 @@ export default function Collapse(props) {
                                             label: 'In discussion',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                         </div>
@@ -235,6 +243,7 @@ export default function Collapse(props) {
                                             label: 'Yet to start',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -258,6 +267,7 @@ export default function Collapse(props) {
                                             label: 'Yet to start',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -280,6 +290,7 @@ export default function Collapse(props) {
                                             label: 'Yet to start',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                             <div className='biome-dataset'>
@@ -302,11 +313,14 @@ export default function Collapse(props) {
                                             label: 'Yet to start',
                                         }
                                     ]}
+                                    disabled={editable}
                                 />
                             </div>
                         </div>
                     </div>
-                    <Button style={{ marginInline: '3vh' }} onClick={handleSubmit}>Update</Button>
+                    {!editable &&
+                        <Button style={{ marginInline: '3vh' }} onClick={handleSubmit}>Update</Button>
+                    }
                 </div>
             }
 

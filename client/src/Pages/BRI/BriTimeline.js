@@ -28,11 +28,8 @@ const BriTimeline = () => {
     });
   };
   const navigateToEdit = (id) => {
-    if (localStorage.getItem('isLoggedIn')) {
-      navigate('/edit', { state: id })
-    } else {
-      error('Please login to edit!')
-    }
+
+    navigate('/edit', { state: id })
 
   }
   const startYear = (date) => {

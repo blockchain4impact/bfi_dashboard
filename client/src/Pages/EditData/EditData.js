@@ -8,9 +8,9 @@ import { useLocation } from "react-router-dom";
 function EditData() {
     const id = useLocation();
     const [data, setData] = useState({});
-    // const [count, setCount] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
+    const [editable, setEditable] = useState(true);
     const success = (msg) => {
         messageApi.open({
             type: 'success',
@@ -34,6 +34,9 @@ function EditData() {
     };
     useEffect(() => {
         fetchData();
+        if (localStorage.getItem('isLoggedIn')) {
+            setEditable(false)
+        }
     }, []);
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -106,19 +109,21 @@ function EditData() {
                 </Modal>
                 <div className="addData-head">
                     <h1>Edit Data</h1>
-                    <div className="addData-btn">
-                        <Button type="primary" onClick={handleSubmit} style={{ backgroundColor: 'rgb(0, 114, 188)' }}>
-                            Update
-                        </Button>
-                        &nbsp;&nbsp;&nbsp;
-                        <Button type="primary" onClick={showModal} danger>
-                            Delete
-                        </Button>
-                        &nbsp;&nbsp;&nbsp;
-                        <Button onClick={() => (window.location.pathname = `/${data.title}`)} className="cancel-btn">
-                            Cancel
-                        </Button>
-                    </div>
+                    {!editable &&
+                        <div className="addData-btn">
+                            <Button type="primary" onClick={handleSubmit} style={{ backgroundColor: 'rgb(0, 114, 188)' }}>
+                                Update
+                            </Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button type="primary" onClick={showModal} danger>
+                                Delete
+                            </Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button onClick={() => (window.location.pathname = `/${data.title}`)} className="cancel-btn">
+                                Cancel
+                            </Button>
+                        </div>
+                    }
                 </div>
                 <div className="addData-body">
                     <div className="form-data">
@@ -142,6 +147,7 @@ function EditData() {
                                         label: 'ORG',
                                     },
                                 ]}
+                                disabled={editable}
                             />
                         </div>
                         <div className="addform">
@@ -154,6 +160,7 @@ function EditData() {
                                 cols="33"
                                 name={"objective"}
                                 onChange={handleChange}
+                                disabled={editable}
                             />
                         </div>
                         <div className="addform">
@@ -164,6 +171,7 @@ function EditData() {
                                 value={data.startDate}
                                 name={"startDate"}
                                 onChange={handleChange}
+                                disabled={editable}
                             />
                         </div>
                         <div className="addform">
@@ -174,6 +182,7 @@ function EditData() {
                                 value={data.endDate}
                                 name={"endDate"}
                                 onChange={handleChange}
+                                disabled={editable}
                             />
                         </div>
                         <div className="addform">
@@ -184,6 +193,7 @@ function EditData() {
                                 value={data.Overallprogress}
                                 name={"Overallprogress"}
                                 onChange={handleChange}
+                                disabled={editable}
                             />
                         </div>
                     </div>
@@ -201,6 +211,7 @@ function EditData() {
                                             rows="5"
                                             cols="33"
                                             name={"Key_Results"}
+                                            disabled={editable}
                                             onChange={(e) => handleDashItemsChange(e, i)}
                                         />
                                     </div>
@@ -216,6 +227,7 @@ function EditData() {
                                             placeholder={"Enter Initiatives"}
                                             name={"Initiatives"}
                                             onChange={(e) => handleDashItemsChange(e, i)}
+                                            disabled={editable}
                                         />
                                     </div>
                                     <div className="addform">
@@ -226,6 +238,7 @@ function EditData() {
                                             value={value.DFS}
                                             placeholder={"Enter DFS"}
                                             name={"DFS"}
+                                            disabled={editable}
                                             onChange={(e) => handleDashItemsChange(e, i)}
                                         />
                                     </div>
@@ -238,6 +251,7 @@ function EditData() {
                                             placeholder={"Enter BFI"}
                                             name={"BFI"}
                                             onChange={(e) => handleDashItemsChange(e, i)}
+                                            disabled={editable}
                                         />
                                     </div>
                                     <div className="addform">
@@ -261,6 +275,7 @@ function EditData() {
                                                     label: 'Low',
                                                 },
                                             ]}
+                                            disabled={editable}
                                         />
                                     </div>
                                     <div className="addform">
@@ -284,6 +299,7 @@ function EditData() {
                                                     label: 'Completed',
                                                 },
                                             ]}
+                                            disabled={editable}
                                         />
                                     </div>
                                     <div className="addform">
@@ -294,6 +310,7 @@ function EditData() {
                                             value={value.progress}
                                             placeholder={"Enter progress"}
                                             name={"progress"}
+                                            disabled={editable}
                                             onChange={(e) => handleDashItemsChange(e, i)}
                                         />
                                     </div>

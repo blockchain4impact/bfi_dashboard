@@ -20,12 +20,7 @@ const DfsTimeline = () => {
         });
     };
     const navigateToEdit = (id) => {
-        if (localStorage.getItem('isLoggedIn')) {
-            navigate('/edit', { state: id })
-        } else {
-            error('Please login to edit!')
-        }
-
+        navigate('/edit', { state: id })
     }
     const oct = 50, nov = 250, dec = 450, janmar = 700, aprjun = 900, julsep = 1100, octdec = 1300;
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
