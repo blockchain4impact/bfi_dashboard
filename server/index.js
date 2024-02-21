@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://bfi-iota.vercel.app","http://localhost:3000"],
+  origin: ["https://bfi-iota.vercel.app", "http://localhost:3000"],
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'scheme']
 }));
@@ -16,6 +16,7 @@ const port = process.env.REACT_APP_PORT || 5000;
 
 app.use(express.json());
 const DfsSchema = require("./models/dfsSchema");
+const BiomeSchema = require("./models/biomeSchema");
 
 mongoose.connect(process.env.REACT_APP_MONGODB_CONNECT_URI);
 
@@ -24,22 +25,38 @@ app.get("/", async (req, res) => {
   res.send(data);
 });
 
-app.post("/post", async (req, res) => {
-  const post = new DfsSchema({
-    title: req.body.Title,
-    objective: req.body.Objective,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    Overallprogress: req.body.Overall_progress,
-    dashboardItems: req.body.dashboardItems,
-  });
+app.get("/biome", async (req, res) => {
+  const data = await BiomeSchema.find({});
+  res.send(data);
+});
+
+app.get("/biome", async (req, res) => {
+  const data = await BiomeSchema.find({});
+  res.send(data);
+});
+
+app.put("/biomeUpdate/:id", async (req, res) => {
+  const id = req.params;
+  const data = req.body;
   try {
-    await post.save();
-    if (post.save()) {
-      res.send({ Posted: true });
-    } else {
-      res.send("not saved");
-    }
+    console.log(req.body.EOLStatus)
+    const post = await BiomeSchema.findByIdAndUpdate(id.id, {
+      EOLStatus: req.body.EOLStatus,
+      InDiss: req.body.InDiss,
+      FormalDiss: req.body.FormalDiss,
+      MoUr: req.body.MoUr,
+      Mous: req.body.Mous,
+      Funds: req.body.Funds,
+      ProjectsShortlist: req.body.ProjectsShortlist,
+      ProjectsStarted: req.body.ProjectsStarted,
+    });
+    // {$set:
+    // {
+    //   EOLStatus: data
+    // }
+    // }
+    // );
+    return res.json({ status: "updated", data: post });
   } catch (err) {
     res.send(err);
   }

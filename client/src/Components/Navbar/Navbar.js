@@ -5,10 +5,25 @@ import { SearchOutlined, BellOutlined, DownOutlined, PlusCircleOutlined } from '
 import user from "../../Assets/images/user.png"
 import downarrow from "../../Assets/images/downarrow.png"
 import { NavLink, useNavigate } from "react-router-dom"
-import { Button, Dropdown } from 'antd';
+import { Button, Dropdown, message } from 'antd';
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+  const error = (err) => {
+    messageApi.open({
+      type: 'error',
+      content: err,
+    });
+  };
+  const navigateToAdd = () => {
+    if (localStorage.getItem('isLoggedIn')) {
+      navigate('/add')
+    } else {
+      error('Please login to add!')
+    }
+
+  }
   const logout = () => {
     localStorage.removeItem('isLoggedIn')
   }
@@ -18,7 +33,7 @@ export default function Navbar() {
   const items = [
     {
       key: '1',
-      danger: localStorage.getItem('isLoggedIn') ? true:false,
+      danger: localStorage.getItem('isLoggedIn') ? true : false,
       label: (
         localStorage.getItem('isLoggedIn') ?
           <a onClick={logout} href="/">
@@ -33,6 +48,7 @@ export default function Navbar() {
   ]
   return (
     <div className="navbar">
+      {contextHolder}
       <div className="logo">
         <img src={bfilogo} alt="bfi-logo-img" className="bfi-icon" />
       </div>
@@ -42,7 +58,7 @@ export default function Navbar() {
           <SearchOutlined className="searchicon" />
         </div>
         <div className="icons">
-          <PlusCircleOutlined className="bellicon" onClick={() => navigate('/add')} style={{ cursor: 'pointer' }} />
+          <PlusCircleOutlined className="bellicon" onClick={navigateToAdd} style={{ cursor: 'pointer' }} />
           <BellOutlined className="bellicon" />
         </div>
         <div className="user">
