@@ -24,16 +24,16 @@ export default function Home() {
     fetchData()
     fetchBiomeData()
   }, []);
-  var orgDataCount = data.filter(val => val.title === 'org')
-  var briDataCount = data.filter(val => val.title === 'bri')
-  var dfsDataCount = data.filter(val => val.title === 'dfs')
+  var orgDataCount = data.filter(val => val.title === 'ORG')
+  var briDataCount = data.filter(val => val.title === 'BRI')
+  var dfsDataCount = data.filter(val => val.title === 'DFS')
   const britotalNames = [], brinames = [];
   const dfstotalNames = [], dfsnames = [];
   const orgtotalNames = [], orgnames = [];
   let bripercent = 0, dfspercent = 0, orgpercent = 0;
-  data.filter(val => val.title === 'bri').map(value => { bripercent = bripercent + parseInt((parseInt(value.Overallprogress) / briDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && britotalNames.push(names.BFI, names.DFS)) })
-  data.filter(val => val.title === 'dfs').map(value => { dfspercent = dfspercent + parseInt((parseInt(value.Overallprogress) / dfsDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && dfstotalNames.push(names.BFI, names.DFS)) })
-  data.filter(val => val.title === 'org').map(value => { orgpercent = orgpercent + parseInt((parseInt(value.Overallprogress) / orgDataCount.length)); value.dashboardItems?.map(names => names.BFI && names.DFS && orgtotalNames.push(names?.BFI, names?.DFS)) })
+  data.filter(val => val.title === 'BRI').map(value => { bripercent = bripercent + parseInt((parseInt(value.Overallprogress) / briDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && britotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'DFS').map(value => { dfspercent = dfspercent + parseInt((parseInt(value.Overallprogress) / dfsDataCount.length)); value.dashboardItems.map(names => names.BFI && names.DFS && dfstotalNames.push(names.BFI, names.DFS)) })
+  data.filter(val => val.title === 'ORG').map(value => { orgpercent = orgpercent + parseInt((parseInt(value.Overallprogress) / orgDataCount.length)); value.dashboardItems?.map(names => names.BFI && names.DFS && orgtotalNames.push(names?.BFI, names?.DFS)) })
   brinames.push(...new Set(britotalNames))
   dfsnames.push(...new Set(dfstotalNames))
   orgnames.push(...new Set(orgtotalNames))
@@ -46,7 +46,7 @@ export default function Home() {
             <h2>BRI</h2>
           </div>
           <div className="card-container">
-            {data?.filter(val => val.title === 'bri').map((value, index) => (
+            {data?.filter(val => val.title === 'BRI').map((value, index) => (
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
@@ -102,7 +102,7 @@ export default function Home() {
             <h2>DFS</h2>
           </div>
           <div className="card-container">
-            {data?.filter(val => val.title === 'dfs').map((value, index) => (
+            {data?.filter(val => val.title === 'DFS').map((value, index) => (
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
@@ -131,7 +131,7 @@ export default function Home() {
             <h2>ORG</h2>
           </div>
           <div className="card-container">
-            {data?.filter(val => val.title === 'org').map((value, index) => (
+            {data?.filter(val => val.title === 'ORG').map((value, index) => (
               <div className="card-body">
                 <div className="card-body-content">
                   <div className="card-body-percentage">
