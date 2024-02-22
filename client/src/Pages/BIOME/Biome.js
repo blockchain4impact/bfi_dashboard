@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import { cardData } from '../Home/Home';
+import React, { useEffect, useState } from 'react'
 import "../BIOME/Biome.css"
 import axios from 'axios'
 import Collapse from '../../Components/Collapse/Collapse';
 import TimelineHeader from '../../Components/TimlineHeader/TimelineHeader';
+
 export const data = [
     {
         id: 1,
@@ -201,23 +201,25 @@ export const data = [
         ProjectsShortlist: "Yet to Start",
         ProjectsStarted: "Yet to Start"
     },
-    
+
 
 ]
 
 export default function Biome() {
     const [data1, setData] = useState([])
     const fetchData = async () => {
-      await axios.get('https://bfi-server.vercel.app/biome').then((res) => setData(res.data))
+        await axios.get('https://bfi-server.vercel.app/biome').then((res) => setData(res.data))
     }
+
     useEffect(() => {
-      fetchData()
+        fetchData()
     }, []);
+
     return (
         <div className='biome'>
             <TimelineHeader />
-            {data1?.map((val) =>
-                <Collapse items={val} />
+            {data1?.map((val, i) =>
+                <Collapse items={val} key={i}/>
             )}
         </div>
     )

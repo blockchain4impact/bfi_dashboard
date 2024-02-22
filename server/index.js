@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://bfi-iota.vercel.app", "http://localhost:3000", "https://blockchain-impact.in"],
+  origin: ["https://bfi-iota.vercel.app", "http://localhost:3000", "https://dashboard.blockchainforimpact.in"],
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'scheme']
 }));
@@ -39,7 +39,6 @@ app.put("/biomeUpdate/:id", async (req, res) => {
   const id = req.params;
   const data = req.body;
   try {
-    console.log(req.body.EOLStatus)
     const post = await BiomeSchema.findByIdAndUpdate(id.id, {
       EOLStatus: req.body.EOLStatus,
       InDiss: req.body.InDiss,
@@ -50,12 +49,6 @@ app.put("/biomeUpdate/:id", async (req, res) => {
       ProjectsShortlist: req.body.ProjectsShortlist,
       ProjectsStarted: req.body.ProjectsStarted,
     });
-    // {$set:
-    // {
-    //   EOLStatus: data
-    // }
-    // }
-    // );
     return res.json({ status: "updated", data: post });
   } catch (err) {
     res.send(err);

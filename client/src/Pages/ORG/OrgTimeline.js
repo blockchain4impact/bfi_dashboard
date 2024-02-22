@@ -26,7 +26,6 @@ const OrgTimeline = () => {
     const tagColors = ["#FFCBAE", "#CEF2E4", "#8ECDF9", "#BEFBFF", "#D2B7FF"]
     const startYear = (startDate) => {
         let year;
-        console.log(startDate)
         year = startDate.substring(7, 11)
         return year
     }
@@ -40,7 +39,6 @@ const OrgTimeline = () => {
 
         month = startDate.substring(3, 6)
         year = startYear(startDate)
-        console.log("month:", month, "year:", year)
         if (year === '23') {
             if (month === 'Oct') {
                 xPos = oct
@@ -74,7 +72,6 @@ const OrgTimeline = () => {
         let yPos, month, year;
         month = endDate.substring(3, 6)
         year = endYear(endDate)
-        console.log(year)
         if (year === '23') {
             if (month === 'Oct') {
                 yPos = oct
@@ -184,15 +181,13 @@ const OrgTimeline = () => {
                         textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
                     }
                     return (
-                        <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }}>
+                        <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }} key={i}>
                             <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
-                                <body xmlns="http://www.w3.org/1999/xhtml">
-                                    <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                        <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
-                                        <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
-                                        <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
-                                    </div>
-                                </body>
+                                <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
+                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
+                                    <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
+                                </div>
                             </foreignObject>
                             <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
                                 <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
@@ -205,7 +200,7 @@ const OrgTimeline = () => {
                                     <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
                                 </filter>
                                 <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
-                                <text x='23.5' y='18' fill="black" fontSize={'12px'} font-weight="600" dx="-11.1953125px">
+                                <text x='23.5' y='18' fill="black" fontSize={'12px'} fontWeight="600" dx="-11.1953125px">
                                     {value.Overallprogress}
                                 </text>
                             </svg>

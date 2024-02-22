@@ -11,7 +11,6 @@ function Login() {
     const [data, setData] = useState([])
     const navigate = useNavigate()
     const login = () => {
-        console.log(data)
         if(data.userid === 'info@blockchainforimpact.in' && data.password === 'Welcome2024!'){
         localStorage.setItem('isLoggedIn', true)
         navigate('/')

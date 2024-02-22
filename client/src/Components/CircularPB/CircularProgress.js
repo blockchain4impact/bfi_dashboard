@@ -24,7 +24,7 @@ export default function CircularProgress(props) {
                 cy="80"
                 fill="transparent"
                 stroke="#e0e0e0"
-                stroke-width="17px"
+                strokeWidth="17px"
 
             />
 
@@ -41,10 +41,10 @@ export default function CircularProgress(props) {
                 cy="80"
                 fill="transparent"
                 stroke={stroke}
-                stroke-linecap="round"
-                stroke-width="19px"
-                stroke-dasharray={circumference}
-                stroke-dashoffset={offset}
+                strokeLinecap="round"
+                strokeWidth="19px"
+                strokeDasharray={circumference}
+                strokeDashoffset={offset}
 
             />
 
@@ -56,8 +56,8 @@ export default function CircularProgress(props) {
                 dy=".3em"
                 fill={textColor}
                 style={{ transform: 'rotate(90deg) translate(0px, -160px)' }}
-                font-size="2em"
-                font-weight="bold"
+                fontSize="2em"
+                fontWeight="bold"
             >
                 {`${props.percentage}`}
             </text>
