@@ -5,6 +5,246 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
-.home-main{
+.home-main {
     width: 100%;
+}
+
+.cards {
+    background-color: white;
+    border-radius: 2vh;
+    margin-inline: 2vh;
+    width: 95%;
+    border: 1px solid rgba(221, 221, 221, 1);
+    height: 35vh;
+    margin-block: 1vh;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 40px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(233, 246, 255, 1);
+    border-radius: 40px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 114, 188, 1);
+    border-radius: 40px;
+}
+
+.cards>h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 20%;
+}
+
+.card-head h2 {
+    margin: 0;
+    padding: 3vh;
+    text-align: left;
+    padding-bottom: 0;
+    font-size: 24px;
+}
+
+.card-body {
+    display: flex;
+    padding-block: 3vh;
+    padding-top: 5px;
+    justify-content: space-between;
+}
+
+.card-body-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.card-status {
+    width: 100%;
+}
+
+.card-style {
+    background-color: rgba(239, 249, 255, 1);
+}
+
+.card-body-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(239, 249, 255, 1);
+    padding: 1vh;
+    border-radius: 1vh;
+    width: 78%;
+}
+
+.card-body-data {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: larger;
+    padding-left: 2vh;
+}
+
+.card-date {
+    padding: 1vh;
+    border-radius: 1vh;
+    font-size: 10px;
+    color: rgba(18, 80, 120, 1);
+    font-weight: 800;
+}
+
+.status {
+    font-size: 9px;
+    border-radius: 5px;
+    padding: 8px;
+    padding-inline: 10px;
+    font-weight: 800;
+}
+
+.title {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.detail {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.card-container {
+    height: 79%;
+    overflow-y: scroll;
+    margin-inline: 2vh;
+    padding-inline: 2vh;
+}
+
+.card-container-biome {
+    height: 75%;
+    overflow-y: scroll;
+    margin-inline: 2vh;
+}
+
+.biome-table {
+    width: 100%;
+    text-align: justify;
+    border-spacing: 1em;
+
+}
+
+.biome-table tbody {
+    padding-block: 2vh;
+}
+
+.biome-table tbody td {
+    text-align: center;
+    background-color: rgba(239, 249, 255, 1);
+    border-radius: 1vh;
+    padding-block: 1vh;
+}
+
+.biome-table thead td {
+    font-weight: 700;
+}
+
+table.biome-table td {
+    font-size: 10px;
+}
+
+.biome-status {
+    color: rgba(56, 156, 57, 1);
+    background-color: rgba(250, 255, 247, 1) !important;
+}
+
+.overall {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-block: 1vh;
+}
+
+.overall-main {
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    border: 1px solid lightgray;
+    border-radius: 2vh;
+    padding-block: 2vh;
+}
+
+.overall-head {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.overall-body-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 2vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+p.name-tag {
+    border: 1px solid rgba(0, 114, 188, 1);
+    padding: 3px 1vh;
+    border-radius: 2vh;
+    font-size: xx-small;
+    margin: 3px;
+}
+
+.names {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    color: rgba(0, 114, 188, 1);
+}
+
+.overall-head p {
+    font-size: small;
+}
+
+.spinner{
+    background-color: transparent !important;
+}
+
+/* 720p screens  */
+@media screen and (max-width: 1280px) and (max-height: 720px) and (min-height: 300px) {
+    .card-body-content {
+        width: 70%;
+    }
+
+    .card-body-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24%;
+    }
+
+    .card-container {
+        height: 75%;
+    }
+
+    .names {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
 }

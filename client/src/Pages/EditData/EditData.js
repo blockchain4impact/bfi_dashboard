@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../AddData/AddData.css";
-import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Select, Modal, message } from "antd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -11,10 +10,10 @@ function EditData() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
     const [editable, setEditable] = useState(true);
-    const success = (msg) => {
+    const success = (msg, res) => {
         messageApi.open({
             type: 'success',
-            content: msg,
+            content: msg + res,
         });
     };
     const showModal = () => {
@@ -31,7 +30,7 @@ function EditData() {
         await axios
             .get(`https://bfi-server.vercel.app/getpost/${id.state}`)
             .then((res) => setData(res.data));
-        
+
     };
     useEffect(() => {
         fetchData();
@@ -90,14 +89,13 @@ function EditData() {
                 scheme: 'https',
             }
         })
-            .then((res) => { console.log("success", res); success('Updated Successfully'); window.location.pathname = `/${data.title}` })
+            .then((res) => { success('Updated Successfully', res); window.location.pathname = `/${data.title}` })
             .catch((err) => console.log(err));
     };
 
     const handleDelete = () => {
-        console.log(id.state)
         axios.delete(`https://bfi-server.vercel.app/delPost/${id.state}`)
-            .then((res) => { console.log("success", res); success('Deleted Successfully'); window.location.pathname = `/${data.title}` })
+            .then((res) => {success('Deleted Successfully', res); window.location.pathname = `/${data.title}` })
             .catch((err) => console.log(err));
     }
 

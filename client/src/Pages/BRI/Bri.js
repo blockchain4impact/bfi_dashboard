@@ -3,14 +3,7 @@ import "../BRI/Bri.css"
 import TimelineHeader from '../../Components/TimlineHeader/TimelineHeader';
 import BriTimeline from './BriTimeline';
 
-export default function Bri(props) {
-    const years = [2023, 2024, 2025, 2026]
-    const currMonth = [
-        'Jan-Jun', 'Jul-Dec'
-    ]
-    const prevMonth = [
-        'Oct', 'Nov', 'Dec'
-    ]
+export default function Bri() {
     return (
         <div className='bri'>
             <TimelineHeader />
