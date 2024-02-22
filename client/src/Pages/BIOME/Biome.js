@@ -208,33 +208,19 @@ export const data = [
 
 export default function Biome() {
     const [data1, setData] = useState([])
-    const [loading, setLoading] = useState(false)
     const fetchData = async () => {
         await axios.get('https://bfi-server.vercel.app/biome').then((res) => setData(res.data))
     }
-
     useEffect(() => {
-        setLoading(true)
         fetchData()
-        setTimeout(() => {
-            setLoading(false)
-        }, 3000)
     }, []);
 
     return (
         <div className='biome'>
             <TimelineHeader />
-            {!loading ?
-                <>
-                    {data1?.map((val, i) =>
-                        <Collapse items={val} key={i} />
-                    )}
-                </>
-            :
-            <Spin />
-                      }
-
-
+            {data1?.map((val, i) =>
+                <Collapse items={val} key={i} />
+            )}
         </div>
     )
 }
