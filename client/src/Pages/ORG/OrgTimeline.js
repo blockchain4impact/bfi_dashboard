@@ -6,19 +6,12 @@ import { message } from 'antd';
 const OrgTimeline = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const [messageApi, contextHolder] = message.useMessage();
     const fetchData = async () => {
         await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
     }
     useEffect(() => {
         fetchData()
     }, []);
-    const error = (err) => {
-        messageApi.open({
-            type: 'error',
-            content: err,
-        });
-    };
     const navigateToEdit = (id) => {
         navigate('/edit', { state: id })
     }
@@ -131,7 +124,6 @@ const OrgTimeline = () => {
     }
     return (
         <div>
-            {contextHolder}
             <svg viewBox="0 0 1400 1400" preserveAspectRatio="none">
                 <g>
                     <text x="265" y="15"

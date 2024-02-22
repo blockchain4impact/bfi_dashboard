@@ -49,36 +49,30 @@ export default function Home() {
           <div className="card-head">
             <h2>BRI</h2>
           </div>
-          {!loading ?
-            <div className="card-container">
-              {data?.filter(val => val.title === 'BRI').map((value, index) => (
-                <div className="card-body" key={index}>
-                  <div className="card-body-content">
-                    <div className="card-body-percentage">
-                      <CircularProgress percentage={value.dashboardItems[0].progress} width={45} />
-                    </div>
-                    <div className="card-body-data card-style">
-                      <p className="title">{value.objective}</p>
-                      <p className="detail" style={{ color: 'gray' }}>{value.dashboardItems[0].Key_Results}</p>
-                    </div>
+          <div className="card-container">
+            {data?.filter(val => val.title === 'BRI').map((value, index) => (
+              <div className="card-body" key={index}>
+                <div className="card-body-content">
+                  <div className="card-body-percentage">
+                    <CircularProgress percentage={value.dashboardItems[0].progress} width={45} />
                   </div>
-                  <div className="card-body-details">
-                    <p className="card-date card-style">{value.dashboardItems[0].Timeline ? value.dashboardItems[0].Timeline : "31-Mar-27"}</p>
-                    <div className="card-status">
-                      <p className="card-style status" style={{ color: value.dashboardItems[0].Status === 'Completed' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.dashboardItems[0].Status === 'Completed' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
-                        {value.dashboardItems[0].Status}
-                      </p>
-                    </div>
+                  <div className="card-body-data card-style">
+                    <p className="title">{value.objective}</p>
+                    <p className="detail" style={{ color: 'gray' }}>{value.dashboardItems[0].Key_Results}</p>
                   </div>
                 </div>
-              ))
-              }
-            </div>
-            :
-            <div>
-              <Spin />
-            </div>
-          }
+                <div className="card-body-details">
+                  <p className="card-date card-style">{value.dashboardItems[0].Timeline ? value.dashboardItems[0].Timeline : "31-Mar-27"}</p>
+                  <div className="card-status">
+                    <p className="card-style status" style={{ color: value.dashboardItems[0].Status === 'Completed' ? 'rgba(56, 156, 57, 1)' : 'rgba(210, 150, 0, 1)', backgroundColor: value.dashboardItems[0].Status === 'Completed' ? 'rgba(250, 255, 247, 1)' : 'rgba(255, 251, 241, 1)' }}>
+                      {value.dashboardItems[0].Status}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+            }
+          </div>
         </div>
         <div className="cards">
           <div className="card-head">
