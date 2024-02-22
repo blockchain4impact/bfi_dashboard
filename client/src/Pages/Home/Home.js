@@ -12,7 +12,6 @@ const biomeOverall = {
 export default function Home() {
   const [data, setData] = useState([])
   const [biomeData, setBiomeData] = useState([])
-  const [loading, setLoading] = useState(false)
 
   const fetchData = async () => {
     await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
@@ -21,12 +20,8 @@ export default function Home() {
     await axios.get(`https://bfi-server.vercel.app/biome`).then((res) => setBiomeData(res.data))
   }
   useEffect(() => {
-    setLoading(true)
     fetchData()
     fetchBiomeData()
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
   }, []);
   var orgDataCount = data.filter(val => val.title === 'ORG')
   var briDataCount = data.filter(val => val.title === 'BRI')
@@ -88,7 +83,6 @@ export default function Home() {
                   <td>Initial Discussion</td>
                 </tr>
               </thead>
-              {!loading ?
                 <tbody>
                   {biomeData?.map((value, index) => (
                     <tr key={index}>
@@ -99,13 +93,6 @@ export default function Home() {
                     </tr>
                   ))}
                 </tbody>
-                :
-                <tbody>
-                  <tr>
-                    <td className="spinner"><Spin /></td>
-                  </tr>
-                </tbody>
-              }
             </table>
           </div>
         </div>
@@ -113,7 +100,6 @@ export default function Home() {
           <div className="card-head">
             <h2>DFS</h2>
           </div>
-          {!loading ?
             <div className="card-container">
               {data?.filter(val => val.title === 'DFS').map((value, index) => (
                 <div className="card-body" key={index}>
@@ -138,17 +124,11 @@ export default function Home() {
               ))
               }
             </div>
-            :
-            <div>
-              <Spin />
-            </div>
-          }
         </div>
         <div className="cards">
           <div className="card-head">
             <h2>ORG</h2>
           </div>
-          {!loading ?
             <div className="card-container">
               {data?.filter(val => val.title === 'ORG').map((value, index) => (
                 <div className="card-body" key={index}>
@@ -173,11 +153,6 @@ export default function Home() {
               ))
               }
             </div>
-            :
-            <div>
-              <Spin />
-            </div>
-          }
         </div>
       </div>
 
@@ -189,17 +164,11 @@ export default function Home() {
           </div>
           <div className='overall-body-content'>
             <CircularProgress percentage={`${bripercent}%`} width={65} />
-            {!loading ?
               <div className='names'>
                 {brinames?.map((name, index) =>
                   <p className='name-tag' key={index}>{name}</p>
                 )}
               </div>
-              :
-              <div>
-                <Spin />
-              </div>
-            }
           </div>
         </div>
         <div className='overall-main'>
@@ -209,17 +178,11 @@ export default function Home() {
           </div>
           <div className='overall-body-content'>
             <CircularProgress percentage={`${biomeOverall.percentage}%`} width={65} />
-            {!loading ?
               <div className='names'>
                 {biomeOverall.names?.map((names, index) =>
                   <p className='name-tag' key={index}>{names}</p>
                 )}
               </div>
-              :
-              <div>
-                <Spin />
-              </div>
-            }
           </div>
         </div>
         <div className='overall-main'>
@@ -229,17 +192,11 @@ export default function Home() {
           </div>
           <div className='overall-body-content'>
             <CircularProgress percentage={`${dfspercent}%`} width={65} />
-            {!loading ?
               <div className='names'>
                 {dfsnames?.map((name, index) =>
                   <p className='name-tag' key={index}>{name}</p>
                 )}
               </div>
-              :
-              <div>
-                <Spin />
-              </div>
-            }
           </div>
         </div>
         <div className='overall-main'>
@@ -249,17 +206,11 @@ export default function Home() {
           </div>
           <div className='overall-body-content'>
             <CircularProgress percentage={`${orgpercent}%`} width={65} />
-            {!loading ?
               <div className='names'>
                 {orgnames?.map((name, index) =>
                   <p className='name-tag' key={index}>{name}</p>
                 )}
               </div>
-              :
-              <div>
-                <Spin />
-              </div>
-            }
           </div>
         </div>
       </div>

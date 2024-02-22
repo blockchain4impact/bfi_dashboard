@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { message } from 'antd';
+import { message, Spin } from 'antd';
 
 const OrgTimeline = () => {
     const navigate = useNavigate()
@@ -10,7 +10,11 @@ const OrgTimeline = () => {
         await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
     }
     useEffect(() => {
+        setLoading(true)
         fetchData()
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
     }, []);
     const navigateToEdit = (id) => {
         navigate('/edit', { state: id })
@@ -163,43 +167,51 @@ const OrgTimeline = () => {
                     <line x1="1325" x2="1325" y1="75" y2={100 * data.length} fill="none" stroke="rgba(235, 237, 244, 1)" strokeWidth="1"></line>
 
                 </g>
-                {data.filter((val) => val.title === 'ORG').map((value, i) => {
-                    const xPos = findStartDate(value.startDate)
-                    const yPos = findEndingDate(value.endDate)
-                    const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
-                    const percentage = width * (parseInt(value.Overallprogress) / 100)
-                    var textx = endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45
-                    if (xPos === yPos) {
-                        textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
-                    }
-                    return (
-                        <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }} key={i}>
-                            <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
-                                <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
-                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
-                                    <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
-                                    <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
-                                </div>
-                            </foreignObject>
-                            <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
-                                <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
-                                <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
-                                <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
-                                <circle cx='25' cy='22' r="3" fill="#FFF" />
-                            </svg>
-                            <svg x={textx} y={`100` * `${i + 1}` + 8}>
-                                <filter id="shadow">
-                                    <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
-                                </filter>
-                                <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
-                                <text x='23.5' y='18' fill="black" fontSize={'12px'} fontWeight="600" dx="-11.1953125px">
-                                    {value.Overallprogress}
-                                </text>
-                            </svg>
-                        </g>
+                {!loading ?
+                    <>
+                        {data.filter((val) => val.title === 'ORG').map((value, i) => {
+                            const xPos = findStartDate(value.startDate)
+                            const yPos = findEndingDate(value.endDate)
+                            const width = startYear(value.startDate) === '23' && endYear(value.endDate) === '24' ? yPos - xPos + 25 : yPos - xPos
+                            const percentage = width * (parseInt(value.Overallprogress) / 100)
+                            var textx = endYear(value.endDate) === '23' ? yPos + 15 : yPos + 45
+                            if (xPos === yPos) {
+                                textx = endYear(value.endDate) === '23' ? yPos + 55 : yPos + 85
+                            }
+                            return (
+                                <g width={'50vh'} onClick={() => { navigateToEdit(value._id) }} style={{ cursor: 'pointer' }} key={i}>
+                                    <foreignObject className="node" x={startYear(value.startDate) === '23' ? xPos + 10 : xPos + 35} y={`100` * `${i + 1}` - 25} width="100%" height="50">
+                                        <div className='timeline-names' style={{ display: 'flex', gap: '1vh' }}>
+                                            <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].BFI?.substring(0, 1)}</p>
+                                            <p style={{ backgroundColor: tagColors[Math.floor((Math.random() * tagColors.length))], paddingInline: '5px', display: 'flex', alignItems: 'center', borderRadius: '50%', fontWeight: '700', color: '#505050', fontSize: '12px' }}>{value.dashboardItems[0].DFS?.substring(0, 1)}</p>
+                                            <p style={{ textAlign: 'left', fontWeight: '700', color: '#768396', fontSize: '14px' }}>{value.objective}</p>
+                                        </div>
+                                    </foreignObject>
+                                    <svg x={startYear(value.startDate) === '23' ? xPos : xPos + 25} y={`100` * `${i + 1}`}>
+                                        <rect x='0' y='0' width={width} height="45" rx="25" ry="25" fill={TimelineColor(parseInt(value.Overallprogress))}></rect>
+                                        <rect x='0' y='0' width={percentage ? percentage : '50'} height="45" rx="25" ry="25" fill={TimelineProgressColor(parseInt(value.Overallprogress))}></rect>
+                                        <circle cx='25' cy='22' r="7" fill={buttonColor(parseInt(value.Overallprogress))} />
+                                        <circle cx='25' cy='22' r="3" fill="#FFF" />
+                                    </svg>
+                                    <svg x={textx} y={`100` * `${i + 1}` + 8}>
+                                        <filter id="shadow">
+                                            <feDropShadow dx="0.2" dy="0.2" stdDeviation="0.1" />
+                                        </filter>
+                                        <rect filter="url(#shadow)" x='0' y='0' width="49px" height="28px" rx="14" ry="14" fill="#FFFF"></rect>
+                                        <text x='23.5' y='18' fill="black" fontSize={'12px'} fontWeight="600" dx="-11.1953125px">
+                                            {value.Overallprogress}
+                                        </text>
+                                    </svg>
+                                </g>
 
-                    )
-                })}
+                            )
+                        })}
+                    </>
+                    :
+                    <foreignObject className="node" x={0} y={200} width="100%" height="50">
+                        <Spin />
+                    </foreignObject>
+                }
             </svg >
         </div>
     );
