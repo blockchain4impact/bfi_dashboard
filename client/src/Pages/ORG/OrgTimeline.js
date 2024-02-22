@@ -10,11 +10,7 @@ const OrgTimeline = () => {
         await axios.get(`https://bfi-server.vercel.app/`).then((res) => setData(res.data))
     }
     useEffect(() => {
-        setLoading(true)
         fetchData()
-        setTimeout(() => {
-            setLoading(false)
-        }, 3000)
     }, []);
     const navigateToEdit = (id) => {
         navigate('/edit', { state: id })
