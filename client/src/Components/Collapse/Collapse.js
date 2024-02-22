@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "../Collapse/Collapse.css"
 import { PlusSquareOutlined, EllipsisOutlined } from "@ant-design/icons"
 import downarrow from "../../Assets/images/downarrow.png";
-import { Button, Progress, Select, message } from 'antd';
+import { Button, Progress, Select, Spin, message } from 'antd';
 import axios from 'axios'
 
 export default function Collapse(props) {
@@ -61,7 +61,7 @@ export default function Collapse(props) {
         if (localStorage.getItem('isLoggedIn')) {
             setEditable(false)
         }
-    })
+    }, [])
     const handleSubmit = () => {
         if (localStorage.getItem('isLoggedIn')) {
             axios.put(`https://bfi-server.vercel.app/biomeUpdate/${id}`, updatedData, {
@@ -79,28 +79,31 @@ export default function Collapse(props) {
         }
 
     }
-    return (
+    return (    
         <div className='biome-body' style={{ cursor: 'pointer' }}>
             {contextHolder}
-            <div className='biome-data' onClick={() => setOpen(!open)}>
-                <div className='biome-task-list' >
-                    <div className='biome-task-name'>
-                        <p>{data.InstituteName}</p>
+            
+                <div className='biome-data' onClick={() => setOpen(!open)}>
+                    <div className='biome-task-list' >
+                        <div className='biome-task-name'>
+                            <p>{data.InstituteName}</p>
+                        </div>
+                        <div className='biome-badge' >
+                            <p style={{ backgroundColor: data.badge === 'Institute' ? 'rgba(245, 213, 122, 1)' : 'rgba(191, 225, 246, 1)' }}>{data.badge}</p>
+                        </div>
                     </div>
-                    <div className='biome-badge' >
-                        <p style={{ backgroundColor: data.badge === 'Institute' ? 'rgba(245, 213, 122, 1)' : 'rgba(191, 225, 246, 1)' }}>{data.badge}</p>
-                    </div>
-                </div>
 
-                <div className='biome-list-progress'>
-                    <div className='biome-progress'>
-                        <Progress percent={100} showInfo={false} />
+                    <div className='biome-list-progress'>
+                        <div className='biome-progress'>
+                            <Progress percent={100} showInfo={false} />
+                        </div>
+                        <div className='biome-dropdown'>
+                            {!open ? <img src={downarrow} alt='dropdown' /> : <img src={downarrow} alt='dropdown' style={{ transform: 'rotate(180deg)' }} />}
+                        </div>
                     </div>
-                    <div className='biome-dropdown'>
-                        {!open ? <img src={downarrow} alt='dropdown' /> : <img src={downarrow} alt='dropdown' style={{ transform: 'rotate(180deg)' }} />}
-                    </div>
+
                 </div>
-            </div>
+              
             {open &&
                 <div className='collapse-expanded'>
                     <div className='biome-collapse'>

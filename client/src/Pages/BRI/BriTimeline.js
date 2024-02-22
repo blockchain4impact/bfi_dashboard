@@ -16,7 +16,7 @@ const BriTimeline = () => {
     fetchData()
     setTimeout(() => {
       setLoading(false)
-    }, 2000)
+    }, 3000)
   }, []);
 
   const oct = 50, nov = 150, dec = 250,
@@ -281,9 +281,9 @@ const BriTimeline = () => {
             })}
           </svg >
           :
-          <svg>
-            <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
-          </svg>
+          <foreignObject className="node" x={0} y={200} width="100%" height="50">
+            <Spin />
+          </foreignObject>
         }
       </svg>
     </div>

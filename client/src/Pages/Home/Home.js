@@ -26,7 +26,7 @@ export default function Home() {
     fetchBiomeData()
     setTimeout(() => {
       setLoading(false)
-    }, 1000)
+    }, 3000)
   }, []);
   var orgDataCount = data.filter(val => val.title === 'ORG')
   var briDataCount = data.filter(val => val.title === 'BRI')
@@ -50,6 +50,7 @@ export default function Home() {
             <h2>BRI</h2>
           </div>
           {!loading ?
+
             <div className="card-container">
               {data?.filter(val => val.title === 'BRI').map((value, index) => (
                 <div className="card-body" key={index}>
@@ -75,10 +76,9 @@ export default function Home() {
               }
             </div>
             :
-            <div>
-              <Spin />
-            </div>
+            <Spin />
           }
+
         </div>
         <div className="cards">
           <div className="card-head">
