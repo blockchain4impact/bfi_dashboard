@@ -12,7 +12,7 @@ import EditData from "./Pages/EditData/EditData";
 import Login from "./Pages/Login/Login";
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{opacity: 0}}>
       <Router>
         <Navbar />
         <div className="home-container">
