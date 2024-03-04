@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://bfi-iota.vercel.app", "http://localhost:3000", "https://dashboard.blockchainforimpact.in"],
+  origin: ["https://bfi-rho.vercel.app", "http://localhost:3000", "https://dashboard.blockchainforimpact.in"],
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization', 'scheme']
 }));
